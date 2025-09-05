@@ -1,0 +1,1800 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tramitología ABC - Guía Completa Exportación Mango Kent</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .tabs {
+        margin: 2rem 0;
+      }
+
+      .tab-buttons {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+
+      .tab-button {
+        padding: 1rem 2rem;
+        background: var(--light-bg);
+        border: none;
+        border-radius: 10px 10px 0 0;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        flex-shrink: 0;
+      }
+
+      .tab-button.active {
+        background: var(--mango-orange);
+        color: white;
+      }
+
+      .tab-content {
+        display: none;
+        background: white;
+        border: 2px solid var(--light-bg);
+        border-radius: 0 15px 15px 15px;
+        padding: 2rem;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .calculator {
+        background: linear-gradient(135deg, var(--sky-blue), var(--leaf-green));
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+      }
+
+      .calculator h3 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+      }
+
+      .calc-input {
+        margin-bottom: 1rem;
+      }
+
+      .calc-input label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .calc-input input {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .calc-result {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      .process-timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 25px;
+        top: 60px;
+        width: 2px;
+        height: calc(100% + 1rem);
+        background: var(--mango-orange);
+        opacity: 0.3;
+      }
+
+      .timeline-item:last-child::before {
+        display: none;
+      }
+
+      .timeline-icon {
+        background: var(--mango-orange);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        z-index: 2;
+        flex-shrink: 0;
+      }
+
+      .timeline-content {
+        flex: 1;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .market-comparison {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .market-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .market-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .market-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+      }
+
+      .market-card h4 {
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        margin-bottom: 1rem;
+        color: var(--dark-text);
+      }
+
+      .market-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+
+      .market-stat {
+        text-align: center;
+        padding: 1rem;
+        background: var(--light-bg);
+        border-radius: 8px;
+      }
+
+      .market-stat-value {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        display: block;
+      }
+
+      .market-stat-label {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        opacity: 0.8;
+      }
+
+      /* Sección de Descargas */
+      .downloads-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 3rem 0;
+        border: 2px solid var(--mango-orange);
+      }
+
+      .downloads-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .download-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .download-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .download-card h4 {
+        color: var(--dark-text);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .download-card i {
+        color: var(--mango-orange);
+        font-size: 1.5rem;
+      }
+
+      .download-btn {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .accordion {
+        margin: 2rem 0;
+      }
+
+      .accordion-item {
+        background: white;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .accordion-header {
+        background: var(--light-bg);
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .accordion-header:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+      }
+
+      .accordion-header h4 {
+        margin: 0;
+        color: var(--dark-text);
+        font-size: clamp(1rem, 3vw, 1.2rem);
+      }
+
+      .accordion-icon {
+        color: var(--mango-orange);
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-content {
+        padding: 0 1.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .accordion-content.active {
+        padding: 1.5rem;
+        max-height: 1000px;
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+
+        .downloads-section {
+          padding: 2rem 1rem;
+        }
+
+        .downloads-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Guia Informativa</h1>
+        <p class="hero-subtitle">
+          Todo lo que necesitas saber para exportar mango desde México hacia
+          mercados internacionales
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">$2.1B</span>
+            <span class="stat-label">Valor de exportación anual</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">85%</span>
+            <span class="stat-label">Participación Kent en exportaciones</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">45+</span>
+            <span class="stat-label">Países de destino</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">120</span>
+            <span class="stat-label">Días de temporada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="nav-title">
+          <i class="fas fa-seedling"></i>
+          Navegación
+        </div>
+
+        <a href="#introduccion" class="nav-item">
+          <i class="fas fa-home"></i>
+          Introducción
+        </a>
+
+        <a href="#variedades" class="nav-item">
+          <i class="fas fa-apple-alt"></i>
+          Variedades de Mango
+        </a>
+
+        <a href="#requisitos" class="nav-item">
+          <i class="fas fa-clipboard-check"></i>
+          Requisitos de Exportación
+        </a>
+
+        <a href="#proceso" class="nav-item">
+          <i class="fas fa-cogs"></i>
+          Proceso de Exportación
+        </a>
+
+        <a href="#mercados" class="nav-item">
+          <i class="fas fa-globe"></i>
+          Mercados Internacionales
+        </a>
+
+        <a href="#calidad" class="nav-item">
+          <i class="fas fa-award"></i>
+          Control de Calidad
+        </a>
+
+        <a href="#logistica" class="nav-item">
+          <i class="fas fa-truck"></i>
+          Logística y Transporte
+        </a>
+
+        <a href="#costos" class="nav-item">
+          <i class="fas fa-calculator"></i>
+          Calculadora de Costos
+        </a>
+
+        <a href="#descargas" class="nav-item">
+          <i class="fas fa-download"></i>
+          Documentos Descargables
+        </a>
+
+        <a href="#contacto" class="nav-item">
+          <i class="fas fa-envelope"></i>
+          Contacto
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Introducción -->
+        <section id="introduccion" class="section">
+          <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">
+              Introducción a la Exportación de Mango Kent
+            </h2>
+          </div>
+
+          <p>
+            México es el principal exportador mundial de mango, con la variedad
+            Kent representando más del 85% de las exportaciones totales. La
+            Costa Norte de Jalisco, junto con estados como Nayarit, Sinaloa y
+            Michoacán, constituyen las principales regiones productoras que
+            abastecen los mercados internacionales más exigentes.
+          </p>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-star"></i> ¿Por qué el Mango Kent?</h3>
+            <p>
+              El mango Kent se caracteriza por su excelente sabor, textura
+              suave, bajo contenido de fibra y excepcional vida de anaquel, lo
+              que lo convierte en la variedad preferida para exportación. Su
+              resistencia al transporte y capacidad de maduración controlada lo
+              hacen ideal para mercados distantes.
+            </p>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-chart-line"></i> Crecimiento del Sector</h3>
+              <p>
+                Las exportaciones de mango mexicano han crecido un 15% anual en
+                los últimos 5 años, alcanzando un valor de $2.1 mil millones de
+                dólares en 2024.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-globe-americas"></i> Mercados Principales
+              </h3>
+              <p>
+                Estados Unidos representa el 80% de las exportaciones, seguido
+                por Canadá (8%), Japón (5%) y la Unión Europea (4%).
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-calendar-alt"></i> Temporada de Exportación
+              </h3>
+              <p>
+                La temporada principal va de marzo a julio, con picos de
+                producción en abril y mayo, aprovechando la ventana comercial
+                antes de la temporada de otros países.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Variedades de Mango -->
+        <section id="variedades" class="section">
+          <div class="section-header">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Variedades de Mango para Exportación</h2>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-buttons">
+              <button class="tab-button active" onclick="showTab('kent')">
+                Kent
+              </button>
+              <button class="tab-button" onclick="showTab('tommy')">
+                Tommy Atkins
+              </button>
+              <button class="tab-button" onclick="showTab('keitt')">
+                Keitt
+              </button>
+              <button class="tab-button" onclick="showTab('haden')">
+                Haden
+              </button>
+            </div>
+
+            <div id="kent" class="tab-content active">
+              <h4>Mango Kent - La Estrella de las Exportaciones</h4>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h3><i class="fas fa-seedling"></i> Características</h3>
+                  <ul>
+                    <li>Peso promedio: 450-650 gramos</li>
+                    <li>Forma ovalada, ligeramente aplanada</li>
+                    <li>Piel verde con tonos rojizos</li>
+                    <li>Pulpa amarillo-naranja, sin fibra</li>
+                    <li>Sabor dulce y aromático</li>
+                  </ul>
+                </div>
+
+                <div class="info-card">
+                  <h3>
+                    <i class="fas fa-shipping-fast"></i> Ventajas para
+                    Exportación
+                  </h3>
+                  <ul>
+                    <li>Excelente vida de anaquel (21-28 días)</li>
+                    <li>Resistencia al transporte</li>
+                    <li>Maduración uniforme</li>
+                    <li>Alta aceptación en mercados internacionales</li>
+                    <li>Menor susceptibilidad a daños mecánicos</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div id="tommy" class="tab-content">
+              <h4>Tommy Atkins - Resistencia y Durabilidad</h4>
+              <p>
+                Variedad conocida por su resistencia al transporte y larga vida
+                de anaquel, aunque con mayor contenido de fibra que el Kent.
+              </p>
+            </div>
+
+            <div id="keitt" class="tab-content">
+              <h4>Keitt - Temporada Tardía</h4>
+              <p>
+                Variedad de temporada tardía que extiende la ventana de
+                exportación hasta agosto-septiembre.
+              </p>
+            </div>
+
+            <div id="haden" class="tab-content">
+              <h4>Haden - Variedad Tradicional</h4>
+              <p>
+                Una de las variedades más antiguas, con excelente sabor pero
+                menor resistencia al transporte.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Requisitos de Exportación -->
+        <section id="requisitos" class="section">
+          <div class="section-header">
+            <div class="section-number">3</div>
+            <h2 class="section-title">
+              Requisitos Fitosanitarios y de Exportación
+            </h2>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Importante:</strong> Los requisitos pueden variar según el
+            país de destino. Siempre consulte las regulaciones más actualizadas
+            con SENASICA y las autoridades del país importador.
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h4>Registro de Huertos y Empacadoras</h4>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+              <div class="accordion-content">
+                <p>
+                  Todos los huertos y plantas empacadoras deben estar
+                  registrados ante SENASICA para poder exportar:
+                </p>
+                <ul>
+                  <li>Registro del lugar de producción (huerto)</li>
+                  <li>Certificación de la planta empacadora</li>
+                  <li>Cumplimiento de Buenas Prácticas Agrícolas (BPA)</li>
+                  <li>Implementación de sistemas de trazabilidad</li>
+                  <li>Capacitación del personal en manejo fitosanitario</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h4>Tratamiento Hidrotérmico Cuarentenario (THC)</h4>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+              <div class="accordion-content">
+                <p>
+                  Tratamiento obligatorio para la exportación a Estados Unidos y
+                  otros mercados:
+                </p>
+                <ul>
+                  <li>Temperatura del agua: 46.1°C ± 0.3°C</li>
+                  <li>Tiempo de tratamiento: 75-110 minutos según tamaño</li>
+                  <li>Monitoreo continuo de temperatura</li>
+                  <li>Registro detallado del proceso</li>
+                  <li>Certificación por inspector oficial</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h4>Certificado Fitosanitario</h4>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+              <div class="accordion-content">
+                <p>
+                  Documento oficial que certifica el cumplimiento de requisitos
+                  fitosanitarios:
+                </p>
+                <ul>
+                  <li>Emisión por inspector oficial de SENASICA</li>
+                  <li>Declaraciones adicionales según país de destino</li>
+                  <li>Validez: hasta 14 días desde la emisión</li>
+                  <li>Debe acompañar el embarque hasta destino final</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Proceso de Exportación -->
+        <section id="proceso" class="section">
+          <div class="section-header">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Proceso Paso a Paso</h2>
+          </div>
+
+          <div class="process-timeline">
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>1. Producción y Cosecha</h4>
+                <p>
+                  Implementación de Buenas Prácticas Agrícolas, monitoreo de
+                  madurez fisiológica y cosecha en el punto óptimo de madurez
+                  (75-80% de desarrollo).
+                </p>
+                <ul>
+                  <li>Selección de frutos con índice de madurez adecuado</li>
+                  <li>Corte con pedúnculo de 6-10 mm</li>
+                  <li>Manejo cuidadoso para evitar daños mecánicos</li>
+                  <li>Transporte rápido a la empacadora</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="fas fa-industry"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>2. Procesamiento en Empacadora</h4>
+                <p>
+                  Recepción, lavado, tratamiento hidrotérmico, clasificación y
+                  empaque bajo estrictos controles de calidad.
+                </p>
+                <ul>
+                  <li>Lavado y desinfección</li>
+                  <li>Tratamiento Hidrotérmico Cuarentenario (THC)</li>
+                  <li>Hidroenfriado para reducir temperatura</li>
+                  <li>Clasificación por tamaño y calidad</li>
+                  <li>Empaque en cajas de cartón corrugado</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>3. Certificación Fitosanitaria</h4>
+                <p>
+                  Inspección oficial y emisión del certificado fitosanitario por
+                  parte de SENASICA.
+                </p>
+                <ul>
+                  <li>Inspección de la carga por inspector oficial</li>
+                  <li>Verificación del cumplimiento de requisitos</li>
+                  <li>Emisión del certificado fitosanitario</li>
+                  <li>Sellado oficial del contenedor</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-icon">
+                <i class="fas fa-shipping-fast"></i>
+              </div>
+              <div class="timeline-content">
+                <h4>4. Logística y Transporte</h4>
+                <p>
+                  Transporte refrigerado manteniendo la cadena de frío hasta el
+                  destino final.
+                </p>
+                <ul>
+                  <li>Carga en contenedores refrigerados</li>
+                  <li>Temperatura de transporte: 10-13°C</li>
+                  <li>Humedad relativa: 85-90%</li>
+                  <li>Monitoreo continuo durante el tránsito</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mercados Internacionales -->
+        <section id="mercados" class="section">
+          <div class="section-header">
+            <div class="section-number">5</div>
+            <h2 class="section-title">Mercados Internacionales</h2>
+          </div>
+
+          <div class="market-comparison">
+            <div class="market-card">
+              <h4><i class="fas fa-flag-usa"></i> Estados Unidos</h4>
+              <p>
+                Principal mercado de destino con el 80% de las exportaciones
+                mexicanas.
+              </p>
+              <div class="market-stats">
+                <div class="market-stat">
+                  <span class="market-stat-value">$1.68B</span>
+                  <span class="market-stat-label">Valor anual</span>
+                </div>
+                <div class="market-stat">
+                  <span class="market-stat-value">85%</span>
+                  <span class="market-stat-label">Participación</span>
+                </div>
+              </div>
+              <ul>
+                <li>Temporada: Marzo - Julio</li>
+                <li>Requisito: THC obligatorio</li>
+                <li>Precio promedio: $1.20-1.80/kg</li>
+                <li>Demanda creciente: 8% anual</li>
+              </ul>
+            </div>
+
+            <div class="market-card">
+              <h4><i class="fas fa-maple-leaf"></i> Canadá</h4>
+              <p>Segundo mercado más importante con crecimiento sostenido.</p>
+              <div class="market-stats">
+                <div class="market-stat">
+                  <span class="market-stat-value">$168M</span>
+                  <span class="market-stat-label">Valor anual</span>
+                </div>
+                <div class="market-stat">
+                  <span class="market-stat-value">8%</span>
+                  <span class="market-stat-label">Participación</span>
+                </div>
+              </div>
+              <ul>
+                <li>Temporada: Marzo - Agosto</li>
+                <li>Requisito: Certificación orgánica preferida</li>
+                <li>Precio promedio: $1.40-2.00/kg</li>
+                <li>Crecimiento: 12% anual</li>
+              </ul>
+            </div>
+
+            <div class="market-card">
+              <h4><i class="fas fa-torii-gate"></i> Japón</h4>
+              <p>Mercado premium con altos estándares de calidad.</p>
+              <div class="market-stats">
+                <div class="market-stat">
+                  <span class="market-stat-value">$105M</span>
+                  <span class="market-stat-label">Valor anual</span>
+                </div>
+                <div class="market-stat">
+                  <span class="market-stat-value">5%</span>
+                  <span class="market-stat-label">Participación</span>
+                </div>
+              </div>
+              <ul>
+                <li>Temporada: Abril - Junio</li>
+                <li>Requisito: Irradiación obligatoria</li>
+                <li>Precio promedio: $2.50-3.50/kg</li>
+                <li>Demanda estable con potencial</li>
+              </ul>
+            </div>
+
+            <div class="market-card">
+              <h4><i class="fas fa-flag"></i> Unión Europea</h4>
+              <p>Mercado emergente con oportunidades de crecimiento.</p>
+              <div class="market-stats">
+                <div class="market-stat">
+                  <span class="market-stat-value">$84M</span>
+                  <span class="market-stat-label">Valor anual</span>
+                </div>
+                <div class="market-stat">
+                  <span class="market-stat-value">4%</span>
+                  <span class="market-stat-label">Participación</span>
+                </div>
+              </div>
+              <ul>
+                <li>Temporada: Marzo - Junio</li>
+                <li>Requisito: Certificaciones ambientales</li>
+                <li>Precio promedio: $1.80-2.40/kg</li>
+                <li>Crecimiento potencial: 15% anual</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Control de Calidad -->
+        <section id="calidad" class="section">
+          <div class="section-header">
+            <div class="section-number">6</div>
+            <h2 class="section-title">Control de Calidad</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-search"></i> Parámetros de Calidad</h3>
+              <ul>
+                <li><strong>Madurez:</strong> 75-80% de desarrollo</li>
+                <li><strong>Peso:</strong> 350-650 gramos</li>
+                <li><strong>Firmeza:</strong> 8-12 libras/pulgada²</li>
+                <li><strong>Sólidos solubles:</strong> Mínimo 8°Brix</li>
+                <li><strong>Defectos:</strong> Máximo 5% tolerancia</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-ban"></i> Defectos No Permitidos</h3>
+              <ul>
+                <li>Daños por insectos o enfermedades</li>
+                <li>Magulladuras o daños mecánicos</li>
+                <li>Deformaciones severas</li>
+                <li>Residuos de pesticidas sobre límites</li>
+                <li>Presencia de plagas cuarentenarias</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-clipboard-list"></i> Sistemas de Calidad</h3>
+              <ul>
+                <li>Buenas Prácticas Agrícolas (BPA)</li>
+                <li>Buenas Prácticas de Manufactura (BPM)</li>
+                <li>Análisis de Peligros y Puntos Críticos (HACCP)</li>
+                <li>Certificaciones internacionales (GlobalGAP)</li>
+                <li>Trazabilidad completa del producto</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-check-circle"></i>
+            <strong>Tip de Calidad:</strong> La implementación de sistemas de
+            calidad robustos no solo garantiza el cumplimiento de requisitos,
+            sino que también mejora la competitividad y permite acceder a
+            mercados premium.
+          </div>
+        </section>
+
+        <!-- Logística y Transporte -->
+        <section id="logistica" class="section">
+          <div class="section-header">
+            <div class="section-number">7</div>
+            <h2 class="section-title">Logística y Transporte</h2>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-buttons">
+              <button class="tab-button active" onclick="showTab('terrestre')">
+                Transporte Terrestre
+              </button>
+              <button class="tab-button" onclick="showTab('maritimo')">
+                Transporte Marítimo
+              </button>
+              <button class="tab-button" onclick="showTab('aereo')">
+                Transporte Aéreo
+              </button>
+            </div>
+
+            <div id="terrestre" class="tab-content active">
+              <h4>Transporte Terrestre - Principal Modalidad</h4>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h3><i class="fas fa-truck"></i> Características</h3>
+                  <ul>
+                    <li>95% de las exportaciones a EE.UU.</li>
+                    <li>Tiempo de tránsito: 2-5 días</li>
+                    <li>Temperatura controlada: 10-13°C</li>
+                    <li>Capacidad: 20-22 toneladas por tráiler</li>
+                  </ul>
+                </div>
+
+                <div class="info-card">
+                  <h3><i class="fas fa-route"></i> Rutas Principales</h3>
+                  <ul>
+                    <li>Nogales, Arizona (Frontera principal)</li>
+                    <li>Laredo, Texas (Segunda opción)</li>
+                    <li>McAllen, Texas (Mercado regional)</li>
+                    <li>Calexico, California (Costa Oeste)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div id="maritimo" class="tab-content">
+              <h4>Transporte Marítimo - Mercados Lejanos</h4>
+              <p>
+                Utilizado principalmente para exportaciones a Japón, Europa y
+                otros mercados distantes.
+              </p>
+              <ul>
+                <li>Tiempo de tránsito: 12-21 días</li>
+                <li>Contenedores refrigerados (reefers)</li>
+                <li>Mayor capacidad, menor costo por unidad</li>
+                <li>Requiere mayor planificación</li>
+              </ul>
+            </div>
+
+            <div id="aereo" class="tab-content">
+              <h4>Transporte Aéreo - Mercados Premium</h4>
+              <p>
+                Modalidad para productos de alto valor y mercados que requieren
+                entrega rápida.
+              </p>
+              <ul>
+                <li>Tiempo de tránsito: 1-3 días</li>
+                <li>Costo más elevado</li>
+                <li>Ideal para muestras y pedidos urgentes</li>
+                <li>Mercados asiáticos premium</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Calculadora de Costos -->
+        <section id="costos" class="section">
+          <div class="section-header">
+            <div class="section-number">8</div>
+            <h2 class="section-title">Calculadora de Costos de Exportación</h2>
+          </div>
+
+          <div class="calculator">
+            <h3>
+              <i class="fas fa-calculator"></i> Calcule sus Costos de
+              Exportación
+            </h3>
+
+            <div class="calc-input">
+              <label for="volumen">Volumen de exportación (toneladas):</label>
+              <input
+                type="number"
+                id="volumen"
+                placeholder="Ej: 20"
+                oninput="calcularCostos()"
+              />
+            </div>
+
+            <div class="calc-input">
+              <label for="destino">Destino:</label>
+              <select id="destino" onchange="calcularCostos()">
+                <option value="">Seleccione destino</option>
+                <option value="usa">Estados Unidos</option>
+                <option value="canada">Canadá</option>
+                <option value="japon">Japón</option>
+                <option value="europa">Europa</option>
+              </select>
+            </div>
+
+            <div class="calc-input">
+              <label for="transporte">Tipo de transporte:</label>
+              <select id="transporte" onchange="calcularCostos()">
+                <option value="">Seleccione transporte</option>
+                <option value="terrestre">Terrestre</option>
+                <option value="maritimo">Marítimo</option>
+                <option value="aereo">Aéreo</option>
+              </select>
+            </div>
+
+            <div class="calc-result" id="resultado">
+              Complete los campos para ver el cálculo de costos
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de Descargas -->
+        <section id="descargas" class="section downloads-section">
+          <div class="section-header">
+            <div class="section-number">9</div>
+            <h2 class="section-title">Documentos Descargables</h2>
+          </div>
+
+          <p>
+            Descargue documentos complementarios, formatos y herramientas útiles
+            para su proceso de exportación de mango Kent.
+          </p>
+
+          <div class="downloads-grid">
+            <div class="download-card">
+              <h4>
+                <i class="fas fa-file-pdf"></i> Guía Completa de Exportación
+              </h4>
+              <p>
+                Manual detallado con todos los procedimientos, requisitos y
+                mejores prácticas para la exportación de mango Kent.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar PDF
+              </a>
+            </div>
+
+            <div class="download-card">
+              <h4><i class="fas fa-file-excel"></i> Calculadora de Costos</h4>
+              <p>
+                Hoja de cálculo interactiva para estimar costos de producción,
+                procesamiento y exportación de mango Kent.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar XLSX
+              </a>
+            </div>
+
+            <div class="download-card">
+              <h4><i class="fas fa-file-word"></i> Formatos y Plantillas</h4>
+              <p>
+                Documentos editables con formatos oficiales, listas de
+                verificación y plantillas para el proceso de exportación.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar DOCX
+              </a>
+            </div>
+
+            <div class="download-card">
+              <h4><i class="fas fa-file-pdf"></i> Requisitos por País</h4>
+              <p>
+                Compendio actualizado de requisitos fitosanitarios específicos
+                para cada mercado de destino.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar PDF
+              </a>
+            </div>
+
+            <div class="download-card">
+              <h4>
+                <i class="fas fa-file-excel"></i> Base de Datos de Precios
+              </h4>
+              <p>
+                Histórico de precios internacionales del mango Kent por mercado
+                y temporada para análisis de rentabilidad.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar XLSX
+              </a>
+            </div>
+
+            <div class="download-card">
+              <h4><i class="fas fa-file-word"></i> Plan de Negocios</h4>
+              <p>
+                Plantilla completa para desarrollar un plan de negocios para
+                exportación de mango Kent.
+              </p>
+              <a href="#" class="download-btn">
+                <i class="fas fa-download"></i>
+                Descargar DOCX
+              </a>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-info-circle"></i>
+            <strong>Nota:</strong> Los enlaces de descarga están configurados
+            como marcadores de posición. Reemplace los enlaces "#" con las URLs
+            reales de sus documentos una vez que los suba a su servidor.
+          </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="section">
+          <div class="section-header">
+            <div class="section-number">10</div>
+            <h2 class="section-title">Contacto y Asesoría</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-phone"></i> Asesoría Especializada</h3>
+              <p>
+                Nuestro equipo de expertos está disponible para brindarle
+                asesoría personalizada en su proceso de exportación.
+              </p>
+              <ul>
+                <li>Teléfono: +52 (33) 1234-5678</li>
+                <li>WhatsApp: +52 (33) 9876-5432</li>
+                <li>Email: info@tramitologiaabc.com</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-map-marker-alt"></i> Oficinas</h3>
+              <p>
+                Visítenos en nuestras oficinas para una consulta presencial.
+              </p>
+              <ul>
+                <li>Guadalajara, Jalisco</li>
+                <li>Tepic, Nayarit</li>
+                <li>Culiacán, Sinaloa</li>
+                <li>Uruapan, Michoacán</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-clock"></i> Horarios de Atención</h3>
+              <p>
+                Estamos disponibles para atenderle en los siguientes horarios:
+              </p>
+              <ul>
+                <li>Lunes a Viernes: 8:00 AM - 6:00 PM</li>
+                <li>Sábados: 9:00 AM - 2:00 PM</li>
+                <li>Emergencias: 24/7 durante temporada</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2024 Tramitología ABC. Todos los derechos reservados. |
+        Especialistas en Exportación de Mango Kent
+      </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      // Tab functionality
+      function showTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabContents.forEach((content) => {
+          content.classList.remove("active");
+        });
+
+        // Remove active class from all buttons
+        const tabButtons = document.querySelectorAll(".tab-button");
+        tabButtons.forEach((button) => {
+          button.classList.remove("active");
+        });
+
+        // Show selected tab content
+        document.getElementById(tabName).classList.add("active");
+
+        // Add active class to clicked button
+        event.target.classList.add("active");
+      }
+
+      // Accordion functionality
+      function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector(".accordion-icon");
+
+        if (content.classList.contains("active")) {
+          content.classList.remove("active");
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          // Close all other accordions
+          const allContents = document.querySelectorAll(".accordion-content");
+          const allIcons = document.querySelectorAll(".accordion-icon");
+
+          allContents.forEach((c) => c.classList.remove("active"));
+          allIcons.forEach((i) => (i.style.transform = "rotate(0deg)"));
+
+          // Open clicked accordion
+          content.classList.add("active");
+          icon.style.transform = "rotate(180deg)";
+        }
+      }
+
+      // Cost calculator
+      function calcularCostos() {
+        const volumen =
+          parseFloat(document.getElementById("volumen").value) || 0;
+        const destino = document.getElementById("destino").value;
+        const transporte = document.getElementById("transporte").value;
+        const resultado = document.getElementById("resultado");
+
+        if (volumen === 0 || !destino || !transporte) {
+          resultado.innerHTML =
+            "Complete todos los campos para ver el cálculo de costos";
+          return;
+        }
+
+        // Costos base por tonelada (USD)
+        const costos = {
+          usa: { terrestre: 150, maritimo: 200, aereo: 800 },
+          canada: { terrestre: 180, maritimo: 220, aereo: 850 },
+          japon: { terrestre: 0, maritimo: 400, aereo: 1200 },
+          europa: { terrestre: 0, maritimo: 450, aereo: 1100 },
+        };
+
+        const costoUnitario = costos[destino][transporte] || 0;
+        const costoTotal = volumen * costoUnitario;
+
+        if (costoUnitario === 0) {
+          resultado.innerHTML =
+            "Combinación de destino y transporte no disponible";
+          return;
+        }
+
+        resultado.innerHTML = `
+                <strong>Costo estimado de transporte:</strong><br>
+                $${costoTotal.toLocaleString()} USD<br>
+                <small>($${costoUnitario}/tonelada × ${volumen} toneladas)</small><br><br>
+                <em>*Costos aproximados, no incluyen seguros, documentación ni otros gastos adicionales</em>
+            `;
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll(".nav-item").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add scroll spy functionality
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll(".section");
+        const navItems = document.querySelectorAll(".nav-item");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+          if (item.getAttribute("href") === "#" + current) {
+            item.classList.add("active");
+          }
+        });
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>
