@@ -1,63 +1,67 @@
-<!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
-<!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
-
+<!-- ===== HEADER FLOTANTE - TRAMITOLOGIA ABC ===== -->
 <header class="floating-header" id="floatingHeader">
     <div class="header-container">
         <!-- Logo y título -->
-        <a href="index.html" class="header-logo">
-            <i class="fas fa-seedling"></i>
-            <div class="logo-text">
-                <span class="logo-title">Tramitología ABC</span>
-                <span class="logo-subtitle">Exportación de Mango</span>
-            </div>
+        <a href="/mangoo/index.html" class="header-logo"> <i class="fas fa-seedling"></i>
+            <div class="logo-text"> <span class="logo-title">Tramitología ABC</span> <span class="logo-subtitle">Exportación de Mango</span> </div>
         </a>
-
         <!-- Navegación principal -->
         <nav class="header-nav">
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Inicio</a></li>
-                <li><a href="main/01-Todo lo que necesitas saber .html" class="nav-link">Guía Completa</a></li>
-                <li><a href="main/02-7_pasos_para_exportar.html" class="nav-link">7 Pasos</a></li>
-                <li><a href="main/06-Requisitos_por_pais.html" class="nav-link">Requisitos</a></li>
-                <li><a href="main/07-Guia_de_bolsillo.html" class="nav-link">Guía de Bolsillo</a></li>
-                <li><a href="main/08-Normatividad.html" class="nav-link">Normatividad</a></li>
+                <!-- Enlaces principales -->
+                <li><a href="/mangoo/index.html" class="nav-link">Inicio</a></li>
+                <li><a href="/mangoo/Agente_Aduanal.html" class="nav-link">Agente Aduanal</a></li>
+                <li><a href="/mangoo/Cadena_de_frio.html" class="nav-link">Cadena de Frio</a></li>
+                <li><a href="/mangoo/Certificaciones.html" class="nav-link">Certificaciones</a></li>
+                <li><a href="/mangoo/Certificados_Fito.html" class="nav-link">Certificaciones Fito</a></li>
+                <!-- Menú desplegable con todos los demás -->
+                <li class="dropdown"> <a href="#" class="nav-link dropdown-toggle">Más <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mangoo/Cuentas_Claras.html">Cuentas Claras</a></li>
+                        <li><a href="/mangoo/Documentos_Precisos.html">Documentos Ok</a></li>
+                        <li><a href="/mangoo/En_caliente.html">En Caliente</a></li>
+                        <li><a href="/mangoo/Enfoque_estrategico.html">Enfoque estrategico</a></li>
+                        <li><a href="/mangoo/Guia_Estrategica.html">Guia con Calma</a></li>
+                        <li><a href="/mangoo/No_Olvidar.html">No Olvidar</a></li>
+                        <li><a href="/mangoo/Oportunidad_con_preparacion.html">Oportunidad</a></li>
+                        <li><a href="/mangoo/Plan_estructurado.html">Plan</a></li>
+                        <li><a href="/mangoo/Potencia_exportadora.html">Potencialidad</a></li>
+                        <li><a href="/mangoo/Registro_formal.html">Registro</a></li>
+                        <li><a href="/mangoo/main/01-Todo_lo_que_necesitas_saber.html">Guía Completa</a></li>
+                        <li><a href="/mangoo/main/02-7_pasos_para_exportar.html">7 Pasos</a></li>
+                        <li><a href="/mangoo/main/03-Que_Implica.html">Que_Implica</a></li>
+                        <li><a href="/mangoo/main/04-Es_Complicado_exportar.html">Es complicado exportar</a></li>
+                        <li><a href="/mangoo/main/05-Pesos_a_dolares.html">Pesos a dólares</a></li>
+                        <li><a href="/mangoo/main/06-Requisitos_por_pais.html">Requisitos</a></li>
+                        <li><a href="/mangoo/main/07-Guia_de_bolsillo.html">Guía de Bolsillo</a></li>
+                        <li><a href="/mangoo/main/08-Normatividad.html">Normatividad</a></li>
+                        <li><a href="/mangoo/main/09-upci.html">UPCI</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
-
-        <!-- Botones de acción -->
-        <div class="header-actions">
-            <a href="#descargas" class="action-btn download-indicator">
-                <i class="fas fa-download"></i> Descargas
-            </a>
-            <a href="#contacto" class="action-btn primary">
-                <i class="fas fa-envelope"></i> Contacto
-            </a>
-        </div>
-
-        <!-- Botón menú móvil -->
-        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
-            <i class="fas fa-bars"></i>
-        </button>
+    <!-- Botones de accion -->
+    <div class="header-actions">
+      <div class="downloads-dropdown">
+        <buttonclass="action-btn download-indicator"onclick="toggleDownloadsMenu()">
+          <i class="fas fa-download"></i> Descargas</button>
+        <div class="downloads-menu" id="downloadsMenu">
+          <i class="fas fa-download"></i>📊 Anexos Excel</button>
+            <div class="downloads-list" id="headerAnexosList"></div>
+          </div>
+       </a>
     </div>
 
-    <!-- Menú móvil -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-nav-links">
-            <a href="index.html" class="mobile-nav-link">Inicio</a>
-            <a href="main/01-Todo lo que necesitas saber .html" class="mobile-nav-link">Guía Completa</a>
-            <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link">7 Pasos</a>
-            <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link">Requisitos</a>
-            <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link">Guía de Bolsillo</a>
-            <a href="main/08-Normatividad.html" class="mobile-nav-link">Normatividad</a>
-        </div>
-        <div class="mobile-actions">
-            <a href="#descargas" class="action-btn">
-                <i class="fas fa-download"></i> Descargas
-            </a>
-            <a href="#contacto" class="action-btn">
-                <i class="fas fa-envelope"></i> Contacto
-            </a>
-        </div>
+    <!-- Boton menu movil -->
+    <buttonclass="mobile-menu-toggle"onclick="document.getElementById('mobileMenu').classList.toggle('active')">
+    <i class="fas fa-bars"></i></button>
+  </div>
+
+  <!-- Menu movil -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-links">
+      <!-- Aqui iran todos los mismos enlaces, ya estan listos -->
     </div>
+  </div>
 </header>
 
