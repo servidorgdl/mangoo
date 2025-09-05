@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tramitología ABC - Guía Completa Exportación Mango Kent</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Guía Completa de Exportación de Mango Kent</h1>
+        <p class="hero-subtitle">
+          Todo lo que necesitas saber para exportar mango Kent desde Puerto
+          Vallarta, Jalisco hacia mercados internacionales
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">$2.1B</span>
+            <span class="stat-label">Valor de exportación anual</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">85%</span>
+            <span class="stat-label">Participación Kent en exportaciones</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">45+</span>
+            <span class="stat-label">Países de destino</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">120</span>
+            <span class="stat-label">Días de temporada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="nav-title">
+          <i class="fas fa-seedling"></i>
+          Navegación
+        </div>
+
+        <a href="#introduccion" class="nav-item">
+          <i class="fas fa-home"></i>
+          Introducción
+        </a>
+
+        <a href="#contexto" class="nav-item">
+          <i class="fas fa-apple-alt"></i>
+          Contexto del Mango Kent
+        </a>
+
+        <a href="#proceso" class="nav-item">
+          <i class="fas fa-cogs"></i>
+          Proceso de Exportación
+        </a>
+
+        <a href="#aspectos-legales" class="nav-item">
+          <i class="fas fa-clipboard-check"></i>
+          Aspectos Legales
+        </a>
+
+        <a href="#contratos" class="nav-item">
+          <i class="fas fa-handshake"></i>
+          Contratos y Pagos
+        </a>
+
+        <a href="#logistica" class="nav-item">
+          <i class="fas fa-truck"></i>
+          Logística y Distribución
+        </a>
+
+        <a href="#marketing" class="nav-item">
+          <i class="fas fa-bullhorn"></i>
+          Marketing y Promoción
+        </a>
+
+        <a href="#calidad" class="nav-item">
+          <i class="fas fa-award"></i>
+          Análisis de Calidad
+        </a>
+
+        <a href="#competitividad" class="nav-item">
+          <i class="fas fa-chart-line"></i>
+          Competitividad
+        </a>
+
+        <a href="#vision-internacional" class="nav-item">
+          <i class="fas fa-globe"></i>
+          Visión Internacional
+        </a>
+
+        <a href="#recomendaciones" class="nav-item">
+          <i class="fas fa-lightbulb"></i>
+          Recomendaciones
+        </a>
+
+        <a href="#experiencias" class="nav-item">
+          <i class="fas fa-star"></i>
+          Experiencias Clave
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Introducción -->
+        <section id="introduccion" class="section">
+          <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Introducción</h2>
+          </div>
+
+          <p>
+            Este dossier proporciona una guía completa para la exportación de
+            mango Kent desde Puerto Vallarta, Jalisco, a destinos clave: Estados
+            Unidos, Canadá, Europa (España y Países Bajos) y Asia (China). Se
+            abordan todos los aspectos necesarios para emprender este negocio,
+            desde la producción hasta la comercialización internacional,
+            incluyendo tramitología, costos, logística, empaque, contratos,
+            pagos, y estrategias de marketing y calidad.
+          </p>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-star"></i> ¿Por qué el Mango Kent?</h3>
+            <p>
+              El mango Kent se caracteriza por su excelente sabor, textura
+              suave, bajo contenido de fibra y excepcional vida de anaquel, lo
+              que lo convierte en la variedad preferida para exportación. Su
+              resistencia al transporte y capacidad de maduración controlada lo
+              hacen ideal para mercados distantes.
+            </p>
+          </div>
+        </section>
+
+        <!-- Contexto del Mango Kent -->
+        <section id="contexto" class="section">
+          <div class="section-header">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Contexto del Mango Kent</h2>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-check-circle"></i>
+            <strong
+              >México es el mayor exportador mundial de mango, con 23 estados
+              productores y más de 2.15 millones de toneladas en 2021. Jalisco,
+              incluyendo Puerto Vallarta, contribuye significativamente, con el
+              mango Kent como la principal variedad exportada por su resistencia
+              y demanda internacional.</strong
+            >
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-apple-alt"></i> Características del Mango Kent
+              </h3>
+              <ul>
+                <li>
+                  <strong>Variedad:</strong> Kent es una de las principales
+                  variedades exportadas desde México debido a su sabor dulce,
+                  textura firme y buena vida de anaquel.
+                </li>
+                <li>
+                  <strong>Temporada de producción:</strong> En Jalisco, la
+                  cosecha de mango Kent ocurre entre marzo y julio, con picos en
+                  abril-mayo.
+                </li>
+                <li><strong>Peso promedio:</strong> 450-650 gramos</li>
+                <li><strong>Forma:</strong> Ovalada, ligeramente aplanada</li>
+                <li><strong>Piel:</strong> Verde con tonos rojizos</li>
+                <li><strong>Pulpa:</strong> Amarillo-naranja, sin fibra</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-globe-americas"></i> Principales Destinos
+              </h3>
+              <ul>
+                <li>
+                  <strong>Estados Unidos:</strong> 68% del mango mexicano (flete
+                  terrestre rápido, 1-3 días a ciudades clave como Houston)
+                </li>
+                <li>
+                  <strong>Canadá:</strong> 13.1% de las exportaciones mexicanas,
+                  con creciente demanda
+                </li>
+                <li>
+                  <strong>Europa (España, Países Bajos):</strong> Preferencia
+                  por Kent; Países Bajos es un hub logístico
+                </li>
+                <li>
+                  <strong>Asia (China):</strong> Mercado en expansión, pero con
+                  estrictos requisitos fitosanitarios
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-seedling"></i> Producción en Puerto Vallarta
+              </h3>
+              <ul>
+                <li>
+                  <strong>Volumen:</strong> Jalisco es uno de los principales
+                  estados productores de mango en México
+                </li>
+                <li>
+                  <strong>Clima:</strong> El clima cálido y húmedo de Puerto
+                  Vallarta es ideal para el cultivo
+                </li>
+                <li>
+                  <strong>Mermas:</strong> Aproximadamente el 12% de la
+                  producción se pierde por plagas, enfermedades o mal manejo
+                  post-cosecha
+                </li>
+                <li>
+                  <strong>Precio en huerta:</strong> $5-10 MXN/kg, dependiendo
+                  de la calidad y temporada
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Proceso de Exportación -->
+        <section id="proceso" class="section">
+          <div class="section-header">
+            <div class="section-number">3</div>
+            <h2 class="section-title">Proceso de Exportación</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-shopping-cart"></i> Compra del Producto</h3>
+              <ul>
+                <li>
+                  Contactar productores locales en Puerto Vallarta o
+                  integradoras
+                </li>
+                <li>Precio promedio por kilogramo en huerta: $5-10 MXN</li>
+                <li>En temporada alta: $10-15 MXN/kg</li>
+                <li>Extremos de temporada: $20-25 MXN/kg</li>
+                <li>
+                  Selección: Priorizar frutos de 350-500 g, sin daños físicos
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-certificate"></i> Certificaciones Requeridas
+              </h3>
+              <ul>
+                <li>
+                  <strong>SENASICA:</strong> Certificado fitosanitario
+                  obligatorio
+                </li>
+                <li>
+                  <strong>USDA/APHIS (EE.UU.):</strong> Tratamiento térmico
+                  requerido
+                </li>
+                <li>
+                  <strong>GlobalGAP:</strong> Certificación de buenas prácticas
+                  agrícolas para Europa
+                </li>
+                <li>
+                  <strong>Certificado de origen:</strong> Para exenciones
+                  arancelarias
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-thermometer-half"></i> Tratamiento Post-Cosecha
+              </h3>
+              <ul>
+                <li>
+                  <strong>Limpieza y selección:</strong> Lavado, desinfección y
+                  clasificación
+                </li>
+                <li>
+                  <strong>Tratamiento térmico:</strong> 48°C por 60-90 minutos
+                  para EE.UU.
+                </li>
+                <li>
+                  <strong>Enfriamiento:</strong> Mantener cadena de frío a
+                  10-13°C
+                </li>
+                <li>
+                  <strong>Empaque:</strong> Cajas de cartón corrugado de 4-5 kg
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Importante:</strong> Los requisitos pueden variar según el
+            país de destino. Siempre consulte las regulaciones más actualizadas
+            con SENASICA y las autoridades del país importador.
+          </div>
+        </section>
+
+        <!-- Aspectos Legales -->
+        <section id="aspectos-legales" class="section">
+          <div class="section-header">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Aspectos Legales y Administrativos</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-user"></i> Persona Física</h3>
+              <div class="success">
+                <strong>Ventajas:</strong>
+              </div>
+              <ul>
+                <li>Proceso de registro más simple</li>
+                <li>Menos documentación inicial</li>
+                <li>Costos administrativos menores</li>
+                <li>Ideal para volúmenes pequeños (&lt;100 ton/año)</li>
+              </ul>
+              <div class="warning">
+                <strong>Limitaciones:</strong>
+              </div>
+              <ul>
+                <li>Responsabilidad patrimonial ilimitada</li>
+                <li>Dificultad para contratos grandes</li>
+                <li>Menos atractivo para socios internacionales</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-building"></i> Persona Moral</h3>
+              <div class="success">
+                <strong>Ventajas:</strong>
+              </div>
+              <ul>
+                <li>Responsabilidad limitada al capital social</li>
+                <li>Mayor credibilidad internacional</li>
+                <li>Acceso a créditos empresariales</li>
+                <li>Posibilidad de socios inversionistas</li>
+              </ul>
+              <div class="warning">
+                <strong>Consideraciones:</strong>
+              </div>
+              <ul>
+                <li>Mayor complejidad administrativa</li>
+                <li>Costos de constitución: $15,000-25,000 MXN</li>
+                <li>Obligaciones fiscales más complejas</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h3>Asociaciones Recomendadas</h3>
+            <ul>
+              <li>
+                <strong
+                  >EMEX (Asociación Mexicana de Exportadores de Mango):</strong
+                >
+                $15,000-25,000 MXN/año
+              </li>
+              <li>
+                <strong>Cámara de Comercio Puerto Vallarta:</strong>
+                $5,000-8,000 MXN/año
+              </li>
+              <li>
+                <strong>COMCE (Consejo Mexicano de Comercio Exterior):</strong>
+                $20,000-35,000 MXN/año
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Contratos y Pagos -->
+        <section id="contratos" class="section">
+          <div class="section-header">
+            <div class="section-number">5</div>
+            <h2 class="section-title">Contratos y Formas de Pago</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-file-contract"></i> Tipos de Contratos</h3>
+              <ul>
+                <li>
+                  <strong>Compraventa Internacional:</strong> Especificar
+                  Incoterms (FOB, CIF, DDP)
+                </li>
+                <li>
+                  <strong>Contrato con Integradoras:</strong> Consolidación de
+                  volúmenes
+                </li>
+                <li>
+                  <strong>Contrato de Distribución:</strong> Relación a largo
+                  plazo
+                </li>
+                <li>
+                  <strong>Contrato de Consignación:</strong> Pago tras venta
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-credit-card"></i> Formas de Pago</h3>
+              <ul>
+                <li>
+                  <strong>Carta de Crédito:</strong> Método más seguro (1.5-3%
+                  del valor)
+                </li>
+                <li>
+                  <strong>Transferencia Bancaria:</strong> Común para clientes
+                  recurrentes (0.3-0.8%)
+                </li>
+                <li>
+                  <strong>Pago Anticipado:</strong> Mayor seguridad (0.1-0.3%)
+                </li>
+                <li>
+                  <strong>Cobranza Documentaria:</strong> Balance entre
+                  seguridad y costo (0.5-1.2%)
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-money-bill-wave"></i> Financiamiento</h3>
+              <ul>
+                <li><strong>BANCOMEXT:</strong> Créditos hasta $3M USD</li>
+                <li>
+                  <strong>NAFIN:</strong> Programas para PYMES exportadoras
+                </li>
+                <li>
+                  <strong>Bancos privados:</strong> BBVA, Santander con líneas
+                  de crédito
+                </li>
+                <li>
+                  <strong>Programas SADER:</strong> Apoyo para certificaciones
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Logística y Distribución -->
+        <section id="logistica" class="section">
+          <div class="section-header">
+            <div class="section-number">6</div>
+            <h2 class="section-title">Logística y Distribución</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-truck"></i> Transporte Terrestre</h3>
+              <p><strong>Estados Unidos y Canadá</strong></p>
+              <ul>
+                <li>Tiempo: 1-3 días a EE.UU., 5-6 días a Canadá</li>
+                <li>Costo: $0.2-0.5 USD/kg</li>
+                <li>Temperatura: 10-13°C constante</li>
+                <li>Rutas principales: Laredo, Nogales</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-ship"></i> Transporte Marítimo</h3>
+              <p><strong>Europa y Asia</strong></p>
+              <ul>
+                <li>Tiempo: 15-20 días a Europa, 20-30 días a China</li>
+                <li>Costo: $0.8-1.2 USD/kg</li>
+                <li>Contenedores refrigerados (reefers)</li>
+                <li>Mayor capacidad, menor costo por unidad</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-plane"></i> Transporte Aéreo</h3>
+              <p><strong>Mercados Premium</strong></p>
+              <ul>
+                <li>Tiempo: 1-3 días</li>
+                <li>Costo: $3-5 USD/kg</li>
+                <li>Ideal para muestras y pedidos urgentes</li>
+                <li>Mercados asiáticos premium</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h3>Ahorros Reales Documentados en Logística</h3>
+            <div class="info-grid" style="margin-top: 1rem">
+              <div>
+                <strong>Transporte compartido:</strong> 30% reducción en costos
+              </div>
+              <div>
+                <strong>Compra directa:</strong> 20-30% eliminando
+                intermediarios
+              </div>
+              <div>
+                <strong>Reducción de mermas:</strong> De 12% a 8-10% con
+                tecnología
+              </div>
+              <div>
+                <strong>Clasificación óptica:</strong> 80-90% exportable vs
+                60-70%
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Marketing y Promoción -->
+        <section id="marketing" class="section">
+          <div class="section-header">
+            <div class="section-number">7</div>
+            <h2 class="section-title">Marketing y Promoción</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-star"></i> Diferenciación</h3>
+              <ul>
+                <li>Promover el mango Kent como producto Premium</li>
+                <li>Destacar certificaciones GlobalGAP, PrimusGFS</li>
+                <li>Enfocarse en mangos orgánicos para Europa y China</li>
+                <li>
+                  Crear marca que resalte el origen (Puerto Vallarta, México)
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-bullhorn"></i> Canales de Promoción</h3>
+              <ul>
+                <li>
+                  <strong>Ferias internacionales:</strong> Fruit Logística
+                  (Berlín), Asia Fruit Logística
+                </li>
+                <li>
+                  <strong>Plataformas digitales:</strong> Alibaba, TradeIndia,
+                  TradeKey
+                </li>
+                <li>
+                  <strong>Redes sociales:</strong> Instagram y LinkedIn para
+                  promoción de marca
+                </li>
+                <li><strong>Supermercados:</strong> Walmart, Costco, Kroger</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-certificate"></i> Certificaciones de Calidad
+              </h3>
+              <ul>
+                <li>
+                  <strong>GlobalGAP:</strong> Obligatoria para Europa
+                  (~$20,000-50,000 MXN)
+                </li>
+                <li>
+                  <strong>USDA Organic:</strong> Atractiva para EE.UU. y Canadá
+                </li>
+                <li>
+                  <strong>Fair Trade:</strong> Aumenta atractivo en mercados
+                  europeos
+                </li>
+                <li>
+                  <strong>PrimusGFS:</strong> Enfocada en inocuidad, demandada
+                  en EE.UU.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Análisis de Calidad -->
+        <section id="calidad" class="section">
+          <div class="section-header">
+            <div class="section-number">8</div>
+            <h2 class="section-title">Análisis de Calidad y Marchamos</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-search"></i> Normas de Calidad</h3>
+              <ul>
+                <li>
+                  <strong>EE.UU.:</strong> Cumplir con FDA y APHIS (tratamiento
+                  térmico, empaque limpio)
+                </li>
+                <li>
+                  <strong>Europa:</strong> Reglamento CE 396/2005 sobre residuos
+                  de plaguicidas
+                </li>
+                <li>
+                  <strong>China:</strong> Normas estrictas de LMR (límites
+                  máximos de residuos)
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-award"></i> Marchamos de Calidad</h3>
+              <ul>
+                <li>
+                  <strong>SENASICA:</strong> Garantiza sanidad para todos los
+                  mercados
+                </li>
+                <li>
+                  <strong>GlobalGAP:</strong> Estándar internacional para Europa
+                </li>
+                <li>
+                  <strong>HACCP:</strong> Sistema de inocuidad alimentaria
+                  obligatorio
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-trophy"></i> Ventaja Competitiva</h3>
+              <ul>
+                <li>
+                  México lidera la exportación mundial de mango (68% del mercado
+                  de EE.UU.)
+                </li>
+                <li>Enfocarse en calidad Premium y sostenibilidad</li>
+                <li>Competir con Perú, Brasil y Colombia</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Competitividad -->
+        <section id="competitividad" class="section">
+          <div class="section-header">
+            <div class="section-number">9</div>
+            <h2 class="section-title">
+              Toma de Decisiones para Competitividad
+            </h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-thumbs-up"></i> Ventajas de México</h3>
+              <ul>
+                <li>
+                  <strong>Proximidad a EE.UU./Canadá:</strong> Tiempos de
+                  entrega cortos (1-6 días)
+                </li>
+                <li>
+                  <strong>Clima:</strong> Ideal para mango Kent de alta calidad
+                </li>
+                <li>
+                  <strong>Certificaciones:</strong> Infraestructura de SENASICA
+                  y EMEX facilita exportación
+                </li>
+                <li>
+                  <strong>Tratados comerciales:</strong> T-MEC, TLC México-UE
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-exclamation-triangle"></i> Desafíos</h3>
+              <ul>
+                <li>
+                  <strong>Costos Logísticos:</strong> Incremento del 30% desde
+                  2021
+                </li>
+                <li>
+                  <strong>Competencia:</strong> Perú, Brasil, Colombia con
+                  precios competitivos
+                </li>
+                <li><strong>Plagas:</strong> Mosca de la fruta, antracnosis</li>
+                <li>
+                  <strong>Cambio climático:</strong> Afecta patrones de
+                  producción
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Visión Internacional -->
+        <section id="vision-internacional" class="section">
+          <div class="section-header">
+            <div class="section-number">10</div>
+            <h2 class="section-title">Visión Internacional</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-flag-usa"></i> Estados Unidos</h3>
+              <ul>
+                <li>Principal mercado (68% de exportaciones mexicanas)</li>
+                <li>Precio: $1.20-1.80/kg</li>
+                <li>Crecimiento: 8% anual</li>
+                <li>Requisito: THC obligatorio</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-maple-leaf"></i> Canadá</h3>
+              <ul>
+                <li>Segundo mercado (13.1% de exportaciones)</li>
+                <li>Precio: $1.40-2.00/kg</li>
+                <li>Crecimiento: 12% anual</li>
+                <li>Preferencia por certificación orgánica</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-flag"></i> Europa</h3>
+              <ul>
+                <li>Mercado premium con altos estándares</li>
+                <li>Precio: $1.80-2.40/kg</li>
+                <li>Crecimiento potencial: 15% anual</li>
+                <li>Requisito: Certificaciones ambientales</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-yen-sign"></i> Asia (China)</h3>
+              <ul>
+                <li>Mercado en expansión</li>
+                <li>Precio: $2.50-3.50/kg</li>
+                <li>Requisito: Irradiación obligatoria</li>
+                <li>Aranceles: 7-10%</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recomendaciones -->
+        <section id="recomendaciones" class="section">
+          <div class="section-header">
+            <div class="section-number">11</div>
+            <h2 class="section-title">Recomendaciones Finales</h2>
+          </div>
+
+          <div class="highlight-box">
+            <h3>Estrategias Clave para el Éxito</h3>
+            <ul>
+              <li>
+                <strong>Inversión inicial mínima:</strong> $50,000 USD para
+                operación básica
+              </li>
+              <li>
+                <strong>ROI conservador:</strong> 400% anual con buena gestión
+              </li>
+              <li>
+                <strong>Enfoque en calidad:</strong> Premium vs. commodity
+              </li>
+              <li>
+                <strong>Diversificación de mercados:</strong> No depender solo
+                de EE.UU.
+              </li>
+              <li>
+                <strong>Tecnología post-cosecha:</strong> Inversión que se paga
+                sola
+              </li>
+              <li>
+                <strong>Asociaciones estratégicas:</strong> Con productores y
+                distribuidores
+              </li>
+            </ul>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-lightbulb"></i>
+            <strong>Consejo Final:</strong> El éxito en la exportación de mango
+            Kent requiere una combinación de calidad del producto, eficiencia
+            logística, cumplimiento normativo y estrategias de marketing
+            diferenciadas. La inversión en certificaciones y tecnología se
+            recupera rápidamente con acceso a mercados premium.
+          </div>
+        </section>
+
+        <!-- Experiencias Clave -->
+        <section id="experiencias" class="section">
+          <div class="section-header">
+            <div class="section-number">12</div>
+            <h2 class="section-title">
+              Experiencias Clave que Marcan la Diferencia
+            </h2>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-star"></i>
+            <strong
+              >Estrategias probadas en campo que reducen mermas, simplifican
+              trámites y maximizan rentabilidad</strong
+            >
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-handshake"></i> El Truco del "Apalabrado"
+                Inteligente
+              </h3>
+              <p>
+                <strong>La Experiencia:</strong> Los exportadores exitosos no
+                compran mango, lo "reservan" desde noviembre.
+              </p>
+              <ul>
+                <li>Firman contratos con productores en noviembre-diciembre</li>
+                <li>Ofrecen 20-30% de anticipo sobre precio estimado</li>
+                <li>
+                  <strong>Resultado:</strong> Mango a $4-8 MXN/kg vs. $5-10
+                  MXN/kg en temporada
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-thermometer-half"></i> Monitoreo que Previene
+                Desastres
+              </h3>
+              <p>
+                <strong>La Experiencia:</strong> Un termógrafo de $50 USD evita
+                reclamaciones de $10,000 USD.
+              </p>
+              <ul>
+                <li>
+                  <strong>Ubicación crítica:</strong> Lado derecho de la última
+                  paleta
+                </li>
+                <li>
+                  <strong>Configuración:</strong> Alertas automáticas si sale
+                  del rango 10-13°C
+                </li>
+                <li>
+                  <strong>Beneficio:</strong> Cumple FDA y evita hasta 10% de
+                  pérdidas por reclamos
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-shipping-fast"></i> Consolidación de Carga
+              </h3>
+              <p>
+                <strong>La Experiencia:</strong> Nunca llenes un contenedor
+                completo si estás empezando.
+              </p>
+              <ul>
+                <li>Usa contenedores reefer de 20 pies compartidos</li>
+                <li>Coordina con freight forwarders (TIBA, Kuehne+Nagel)</li>
+                <li>
+                  <strong>Ahorro real:</strong> $0.5-0.8 USD/kg vs. $1-1.2
+                  USD/kg en FCL
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-microscope"></i> Tecnología Post-Cosecha</h3>
+              <p>
+                <strong>La Experiencia:</strong> Clasificación óptica = 80-90%
+                exportable vs. 60-70% sin tecnología.
+              </p>
+              <ul>
+                <li>
+                  Sistemas MAR RODA Agrobotic o Aweta ($50,000-200,000 USD)
+                </li>
+                <li>Tratamientos cuarentenarios (48°C por 60-90 minutos)</li>
+                <li>
+                  <strong>ROI:</strong> Se paga solo con reducción de rechazos
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Lección Aprendida:</strong> Las inversiones en tecnología y
+            monitoreo no son gastos, son seguros que se pagan solos. Un
+            exportador experimentado siempre invierte en calidad antes que en
+            volumen.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <p>
+        &copy; 2025 Tramitología ABC - Guía Completa de Exportación de Mango
+        Kent. Todos los derechos reservados.
+      </p>
+      <p>Guadalajara, Jalisco. Lic. Irene García Castillo - Consultor</p>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add active class to navigation items based on scroll position
+      window.addEventListener("scroll", () => {
+        let current = "";
+        const sections = document.querySelectorAll(".section");
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+          if (item.getAttribute("href") === `#${current}`) {
+            item.classList.add("active");
+          }
+        });
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

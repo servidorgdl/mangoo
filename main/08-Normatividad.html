@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Normatividad en la Exportación de Mangos - Guía Completa</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .links-section {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-left: 5px solid var(--leaf-green);
+      }
+
+      .links-section h3 {
+        color: var(--dark-green);
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+      }
+
+      .link-category {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin: 1.5rem 0 1rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--mango-yellow);
+      }
+
+      .link-item {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+      }
+
+      .link-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .link-item a {
+        color: var(--dark-text);
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: block;
+        word-break: break-word;
+      }
+
+      .link-item a:hover {
+        color: var(--mango-orange);
+        text-decoration: underline;
+      }
+
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .bullet-list li {
+        margin-bottom: 0.8rem;
+        padding-left: 2rem;
+        position: relative;
+      }
+
+      .bullet-list li::before {
+        content: "●";
+        color: var(--mango-orange);
+        font-size: 1.2rem;
+        position: absolute;
+        left: 0.5rem;
+      }
+
+      .number-highlight {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 0.3rem 0.6rem;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-right: 0.8rem;
+        min-width: 2rem;
+        text-align: center;
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Normatividad en la Exportación de Mangos</h1>
+        <p class="hero-subtitle">
+          Guía completa de certificaciones fitosanitarias y requisitos
+          normativos
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">📋</span>
+            <span class="stat-label">Certificado Fitosanitario</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">🌍</span>
+            <span class="stat-label">Requisitos Internacionales</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">📄</span>
+            <span class="stat-label">Formularios y Anexos</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">🔗</span>
+            <span class="stat-label">Enlaces Oficiales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="nav-title">
+          <i class="fas fa-seedling"></i>
+          Lic. Irene García
+        </div>
+
+        <a href="#certificado" class="nav-item">
+          <i class="fas fa-certificate"></i>
+          Certificado Fitosanitario
+        </a>
+
+        <a href="#requisitos" class="nav-item">
+          <i class="fas fa-list-check"></i>
+          Requisitos
+        </a>
+
+        <a href="#datos-tramite" class="nav-item">
+          <i class="fas fa-file-alt"></i>
+          Datos del Trámite
+        </a>
+
+        <a href="#enlaces" class="nav-item">
+          <i class="fas fa-link"></i>
+          Enlaces Oficiales
+        </a>
+
+        <a href="#formularios" class="nav-item">
+          <i class="fas fa-download"></i>
+          Formularios
+        </a>
+
+        <a href="#herramientas" class="nav-item">
+          <i class="fas fa-tools"></i>
+          Herramientas
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Certificado Fitosanitario -->
+        <section id="certificado" class="section">
+          <div class="section-header">
+            <div class="section-number">📋</div>
+            <h2 class="section-title">
+              Certificado Fitosanitario para Exportación de Mangos
+            </h2>
+          </div>
+
+          <p style="margin-bottom: 2rem">
+            El interesado en exportar mangos y otros vegetales, sus productos y
+            subproductos, así como cualquier otra mercancía regulada o equipo
+            que implique un riesgo fitosanitario, debe solicitar a la Secretaría
+            el Certificado Fitosanitario Internacional en los términos
+            establecidos en el artículo 27 de la Ley Federal de Sanidad Vegetal,
+            previo cumplimiento de las normas oficiales mexicanas y de la
+            legislación vigente del país que importa la mercancía.
+          </p>
+
+          <div class="highlight-box">
+            <h3>
+              <i class="fas fa-question-circle"></i> ¿Qué es el Certificado
+              Fitosanitario Internacional?
+            </h3>
+            <p>
+              Es un documento que solicitan los países importadores para
+              comprobar que los productos que ingresen representan un riesgo
+              fitosanitario aceptable, de acuerdo a lo establecido en su
+              regulación nacional y cumplimiento de requisitos fitosanitarios.
+              De no presentarse este certificado, no se permite el ingreso de
+              mercancías reguladas fitosanitariamente.
+            </p>
+          </div>
+        </section>
+
+        <!-- Requisitos -->
+        <section id="requisitos" class="section">
+          <div class="section-header">
+            <div class="section-number">📝</div>
+            <h2 class="section-title">Requisitos para la Exportación</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><span class="number-highlight">1</span> Pago de derechos</h3>
+            </div>
+            <div class="info-card">
+              <h3>
+                <span class="number-highlight">2</span> Identificación Oficial
+              </h3>
+            </div>
+            <div class="info-card">
+              <h3>
+                <span class="number-highlight">3</span> Resultados de pruebas de
+                laboratorio
+              </h3>
+            </div>
+            <div class="info-card">
+              <h3>
+                <span class="number-highlight">4</span> Dictamen de Verificación
+                o inspección
+              </h3>
+            </div>
+            <div class="info-card">
+              <h3><span class="number-highlight">5</span> Escritos Libres</h3>
+            </div>
+            <div class="info-card">
+              <h3>
+                <span class="number-highlight">6</span> Certificado de origen
+              </h3>
+            </div>
+            <div class="info-card">
+              <h3>
+                <span class="number-highlight">7</span> Otros documentos según
+                el país destino
+              </h3>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Información Importante:</strong> Todos los datos y
+            requisitos mencionados son de uso exclusivo en la Ventanilla Única.
+            Es fundamental completar correctamente todos los campos requeridos
+            para evitar demoras en el proceso de exportación.
+          </div>
+        </section>
+
+        <!-- Datos del Trámite -->
+        <section id="datos-tramite" class="section">
+          <div class="section-header">
+            <div class="section-number">📊</div>
+            <h2 class="section-title">Datos Requeridos para el Trámite</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-clipboard-list"></i> Datos del Trámite</h3>
+              <ul class="bullet-list">
+                <li>Aduana de Salida/Lugar de Embarque</li>
+                <li>Punto de Ingreso País Destino</li>
+                <li>País de Origen</li>
+                <li>País de Destino</li>
+                <li>Entidad Federativa de Origen</li>
+                <li>Municipio de Origen</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-box"></i> Datos de la Mercancía</h3>
+              <ul class="bullet-list">
+                <li>Entidad Federativa</li>
+                <li>Delegación Estatal SAGARPA</li>
+                <li>Distrito de Desarrollo Rural (DDR)</li>
+                <li>Centro de Apoyo al Desarrollo Rural (CADER)</li>
+                <li>Módulo de Certificación Fitosanitaria</li>
+                <li>Tipo de Certificado</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-apple-alt"></i> Detalle de la Mercancía</h3>
+              <ul class="bullet-list">
+                <li>Fracción Arancelaria</li>
+                <li>Descripción Fracción Arancelaria</li>
+                <li>Cantidad en UMT (Unidad de Medida de la Tarifa)</li>
+                <li>Cantidad en UMC (Unidad de Medida de Comercialización)</li>
+                <li>Nombre Común y Científico del mango</li>
+                <li>Uso del producto</li>
+                <li>País de Procedencia</li>
+                <li>Marcas Distintivas</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-truck"></i> Datos del Transporte y Destino
+              </h3>
+              <ul class="bullet-list">
+                <li>Medio de Transporte</li>
+                <li>Identificación del Transporte</li>
+                <li>Datos específicos del destino</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Enlaces Oficiales -->
+        <section id="enlaces" class="section">
+          <div class="section-header">
+            <div class="section-number">🔗</div>
+            <h2 class="section-title">Enlaces y Documentación Oficial</h2>
+          </div>
+
+          <div class="links-section">
+            <h3>Portales Gubernamentales Principales</h3>
+
+            <div class="link-category">Ventanilla Única</div>
+            <div class="link-item">
+              <a
+                href="https://ventanillaunica.gob.mx/ecert/login!input.action"
+                target="_blank"
+                >Acceso a Ventanilla Única - Sistema de Certificación</a
+              >
+            </div>
+            <div class="link-item">
+              <a
+                href="https://www.ventanillaunica.gob.mx/vucem/index.html"
+                target="_blank"
+                >Portal Principal VUCEM</a
+              >
+            </div>
+            <div class="link-item">
+              <a
+                href="https://www.ventanillaunica.gob.mx/vucem/Ayuda/SAGARPA/SolObtCerExp/cfievps.html"
+                target="_blank"
+                >Ayuda - Certificación Fitosanitaria</a
+              >
+            </div>
+
+            <div class="link-category">SAT y Aduanas</div>
+            <div class="link-item">
+              <a
+                href="http://omawww.sat.gob.mx/aduanas/Portal/index.html#!/"
+                target="_blank"
+                >Portal de Aduanas SAT</a
+              >
+            </div>
+            <div class="link-item">
+              <a
+                href="https://www.ventanillaunica.gob.mx/vucem/Clasificador.html"
+                target="_blank"
+                >Clasificador Arancelario</a
+              >
+            </div>
+
+            <div class="link-category">Gobierno de México</div>
+            <div class="link-item">
+              <a href="https://www.gob.mx/" target="_blank"
+                >Portal Oficial del Gobierno de México</a
+              >
+            </div>
+            <div class="link-item">
+              <a href="https://www.gob.mx/tramites" target="_blank"
+                >Trámites y Servicios</a
+              >
+            </div>
+            <div class="link-item">
+              <a
+                href="https://www.gob.mx/se/documentos/formulario-para-solicitantes-y-sus-anexos?state=published"
+                target="_blank"
+                >Formulario para Solicitantes y Anexos</a
+              >
+            </div>
+
+            <div class="link-category">Marco Legal</div>
+            <div class="link-item">
+              <a href="http://www.ordenjuridico.gob.mx/" target="_blank"
+                >Orden Jurídico Nacional</a
+              >
+            </div>
+            <div class="link-item">
+              <a
+                href="https://www.ventanillaunica.gob.mx/vucem/legislacionynormatividad.html"
+                target="_blank"
+                >Legislación y Normatividad</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Formularios -->
+        <section id="formularios" class="section">
+          <div class="section-header">
+            <div class="section-number">📄</div>
+            <h2 class="section-title">Formularios y Anexos Descargables</h2>
+          </div>
+
+          <div class="links-section">
+            <h3>Formularios Principales</h3>
+
+            <div class="link-item">
+              <a
+                href="https://www.gob.mx/cms/uploads/attachment/file/982136/Formulario_AD_para_Solicitantes.pdf"
+                target="_blank"
+                >Formulario AD para Solicitantes (PDF)</a
+              >
+            </div>
+
+            <div class="link-category">Anexos por Empresa</div>
+            <div class="info-grid">
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982126/Anexo_1_NOMBREDELAEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 1 - Datos de la Empresa</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982125/Anexo_2__NOMBREDELAEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 2 - Información Comercial</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982127/Anexo_3_NOMBREDELAEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 3 - Documentación Técnica</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982128/Anexo_4__NOMBREDELAEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 4 - Certificaciones</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982138/Anexo_5_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 5 - Procesos de Calidad</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982129/Anexo_6_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 6 - Trazabilidad</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982130/Anexo_7_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 7 - Medidas Sanitarias</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982131/Anexo_8_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 8 - Control de Plagas</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982132/Anexo_9_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 9 - Laboratorio</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982133/Anexo_10_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 10 - Empaque y Etiquetado</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982134/Anexo_11_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 11 - Transporte</a
+                >
+              </div>
+              <div class="link-item">
+                <a
+                  href="https://www.gob.mx/cms/uploads/attachment/file/982135/Anexo_12_NOMBREDEEMPRESA.pdf"
+                  target="_blank"
+                  >Anexo 12 - Documentos Complementarios</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Nota Importante sobre Anexos:</strong> Todos los anexos
+            deben ser completados con el nombre real de la empresa. Los enlaces
+            proporcionados contienen plantillas que deben ser personalizadas
+            según cada caso específico.
+          </div>
+        </section>
+
+        <!-- Herramientas -->
+        <section id="herramientas" class="section">
+          <div class="section-header">
+            <div class="section-number">🛠️</div>
+            <h2 class="section-title">Herramientas y Servicios</h2>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-calculator"></i>
+            <strong>Herramientas Disponibles:</strong> Calculadora de aranceles,
+            semáforo fiscal, sistema de trazabilidad, calculadora de costos y
+            consultas especializadas.
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-calculator"></i> Calculadora de Aranceles
+              </h3>
+              <p>
+                Herramienta para calcular los aranceles aplicables según la
+                fracción arancelaria y país de destino.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-traffic-light"></i> Semáforo Fiscal</h3>
+              <p>
+                Sistema de verificación automática para determinar si la
+                mercancía requiere inspección física.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-route"></i> Sistema de Trazabilidad</h3>
+              <p>
+                Seguimiento completo del producto desde el origen hasta el
+                destino final.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-question-circle"></i> Consultas Especializadas
+              </h3>
+              <p>
+                Servicio de consultas técnicas para resolver dudas específicas
+                sobre el proceso de exportación.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <p>
+        © 2025 Lic. Irene García Castillo - Consultor en Comercio Internacional
+      </p>
+      <p>Secretaría de Agricultura y Desarrollo Rural - Gobierno de México</p>
+    </div>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

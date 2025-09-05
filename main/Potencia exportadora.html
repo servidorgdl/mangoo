@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Crimson Text", serif;
+      }
+
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #fff;
+        color: #121211;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .header-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #3879c9;
+      }
+
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 40px;
+      }
+
+      .left-column {
+        flex: 1;
+        padding-right: 40px;
+      }
+
+      .right-column {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .page-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #3879c9;
+        margin-bottom: 30px;
+        line-height: 1.2;
+      }
+
+      .insight-box {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3879c9;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .insight-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #3879c9;
+        margin-bottom: 10px;
+      }
+
+      .key-points {
+        margin-top: 30px;
+      }
+
+      .key-point {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
+
+      .key-point-icon {
+        color: #3879c9;
+        margin-right: 15px;
+        margin-top: 3px;
+      }
+
+      .image-container {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid #e0e0e0;
+      }
+
+      .footer {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        border-top: 1px solid #e0e0e0;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .page-number {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="slide-container">
+      <div class="header">
+        <div class="header-title">
+          Exportación de Mango desde Jalisco: Guía Estratégica
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="left-column">
+          <h1 class="page-title">
+            México: Potencia exportadora de mango con oportunidades clave en
+            Jalisco
+          </h1>
+
+          <div class="insight-box">
+            <div class="insight-title">INSIGHT CLAVE</div>
+            <p>
+              México es el quinto productor mundial de mango y el segundo
+              exportador global, con envíos principalmente a Estados Unidos,
+              Canadá, Japón y Europa.
+            </p>
+          </div>
+
+          <div class="key-points">
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div>
+                <strong>Posición global sólida:</strong> México exporta más de
+                400,000 toneladas de mango anualmente, representando el 20% del
+                comercio mundial.
+              </div>
+            </div>
+
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <strong>Ventaja geográfica:</strong> La costa norte de Jalisco
+                ofrece condiciones climáticas ideales y proximidad estratégica a
+                puertos de exportación.
+              </div>
+            </div>
+
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div>
+                <strong>Ventana de oportunidad:</strong> Producción en
+                temporadas complementarias a otros países productores,
+                permitiendo cubrir demanda cuando hay escasez global.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="image-container">
+            <img
+              src="https://private-us-east-1.manuscdn.com/sessionFile/jl9NtqJ0D4BuuttMYadPro/sandbox/slides_resource_i3jg517186truwznvei4v-e55845cb-e2b-prod_1756968156025_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL3g4aW5ZbDlUVFhBQQ.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvamw5TnRxSjBENEJ1dXR0TVlhZFByby9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pM2pnNTE3MTg2dHJ1d3pudmVpNHYtZTU1ODQ1Y2ItZTJiLXByb2RfMTc1Njk2ODE1NjAyNV9uYTFmbl9MMmh2YldVdmRXSjFiblIxTDNWd2JHOWhaQzl6WldGeVkyaGZhVzFoWjJWekwzZzRhVzVaYkRsVVZGaEJRUS5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=i9FVR23VVmHKm3P2pws3dXPqFejaw4GX-9GFR~gBVRLswd2KCZFqQVJ5-6J2gYPJHLqXR1Tw7ex9fam3Q17uDcP~jSrve1ibvqUkTpP7t1~aeG154w0qFqtUSkigGUAq48uasCevkZLPhvLRRiG1~iMuW7xb-yJR0evIPFmhr9~7m0di~a12jDRUm1QOq11aPWQo1kbwLkkh9cvpOPNwKj4MPEYFYXontxIWf9MpSv~8YKmnivS8sA10gZZsqijsajZIHDUMO29EUSXqXs8YquNvguSAaQuBMUO0qWoSMhGf46ChzkiK0nnVlV2wjUy1Tr8sWhsd~BinaqFUfV9sNQ__"
+              alt="Variedad de mangos"
+            />
+          </div>
+
+          <div style="height: 250px">
+            <canvas id="exportChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Septiembre 2025</div>
+        <div class="page-number">1</div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de principales exportadores mundiales de mango
+      const ctx = document.getElementById("exportChart").getContext("2d");
+      const exportChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["India", "México", "Tailandia", "Brasil", "Perú"],
+          datasets: [
+            {
+              label: "Principales exportadores de mango (miles de toneladas)",
+              data: [450, 400, 350, 220, 180],
+              backgroundColor: "#3879C9",
+              borderColor: "#FFFFFF",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                font: {
+                  family: "Crimson Text",
+                  size: 14,
+                },
+                boxWidth: 15,
+              },
+            },
+            title: {
+              display: true,
+              text: "Principales exportadores mundiales de mango",
+              font: {
+                family: "Crimson Text",
+                size: 16,
+                weight: "bold",
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                font: {
+                  family: "Crimson Text",
+                },
+              },
+            },
+            x: {
+              ticks: {
+                font: {
+                  family: "Crimson Text",
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

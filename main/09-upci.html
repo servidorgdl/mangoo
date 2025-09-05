@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome (si no está incluido) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css">
+    <title>Marco Juridico</title>
+    <style>
+        body {
+            .zen-loop-regular {
+                font-family: "Zen Loop", cursive;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .zen-loop-regular-italic {
+                font-family: "Zen Loop", sans-serif;
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            font-family: 'Monserrat',
+            sans-serif;
+            background-color: #FFFFFF;
+            color: #1f2b34;
+            line-height: 1.5;
+        }
+
+        .page {
+            width: 21.6cm;
+            min-height: 27.9cm;
+            margin: 0 auto;
+            padding: 2.5cm;
+            background: white;
+            box-shadow: 0 0 35px #496f74;
+            margin-bottom: 2cm;
+            page-break-after: always;
+        }
+
+        .cover-page {
+            background: linear-gradient(135deg, #ada370 0%, #55859e 50%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cover-title {
+            font-size: 30pt;
+            font-weight: bold;
+            margin-bottom: 1cm;
+            text-shadow: 2px 2px 4px #238aaa;
+        }
+
+        .cover-subtitle {
+            font-size: 25pt;
+            margin-bottom: 2cm;
+            font-style: italic;
+        }
+
+        .cover-author {
+            font-size: 18pt;
+            margin-top: 3cm;
+        }
+
+        .page-header {
+            border-bottom: 6px solid #374735;
+            margin-bottom: 1cm;
+            padding-bottom: 0.5cm;
+        }
+
+        .main-title {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #6c97bb;
+            margin-bottom: 0.5cm;
+        }
+
+        .section-title {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #0862ff;
+            margin: 1cm 0 0.5cm 0;
+            padding-left: 0.5cm;
+            border-left: 4pt solid #ebdd65;
+        }
+
+        .subsection-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #0ea6cc;
+            margin: 0.8cm 0 0.4cm 0;
+        }
+
+        .body-text {
+            font-size: 12pt;
+            margin-bottom: 0.4cm;
+            text-align: justify;
+            max-width: 75ch;
+        }
+
+        .highlight-box {
+            background-color: #F5F5F5;
+            border-left: 4pt solid #aa596e;
+            padding: 0.8cm;
+            box-shadow: 0 0 35px #496f74;
+            margin: 0.6cm 0;
+            border-radius: 0 8px 8px 0;
+            text-align: justify;
+        }
+
+        .highlight-box .title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2bb4ca;
+            margin-bottom: 0.4cm;
+            text-align: justify;
+        }
+
+        .bullet-point {
+            margin-left: 1cm;
+            margin-bottom: 0.3cm;
+            position: relative;
+            text-align: justify;
+        }
+
+        .bullet-point::before {
+            content: "●";
+            color: #468295;
+            font-size: 14pt;
+            position: absolute;
+            left: -0.6cm;
+            text-align: justify;
+        }
+
+        .number-highlight {
+            background-color: #e9c051;
+            color: white;
+            padding: 0.2cm 0.4cm;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 12pt;
+            display: inline-block;
+            margin-right: 0.5cm;
+        }
+
+        .warning-box {
+            background-color: #cde0a0;
+            border-left: 4pt solid #a2cac7;
+            padding: 0.8cm;
+            box-shadow: 0 0 35px #496f74;
+            margin: 0.6cm 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box .title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #f12222;
+            margin-bottom: 0.4cm;
+        }
+
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 35px #648B76;
+            margin: 0.8cm 0;
+        }
+
+        .cost-table th {
+            background-color: #55a49e;
+            color: white;
+            padding: 0.4cm;
+            text-align: left;
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+        .cost-table td {
+            padding: 0.4cm;
+            border-bottom: 1px solid #7b9c94;
+            font-size: 11pt;
+        }
+
+        .cost-table tr:nth-child(even) {
+            background-color: #e7ddd0;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 1cm;
+            right: 2.5cm;
+            color: #6e8c71;
+            font-size: 10pt;
+        }
+
+        .index-page {
+            padding-top: 1cm;
+        }
+
+        .index-title {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #675948;
+            margin-bottom: 1cm;
+            text-align: left;
+        }
+
+        .index-item {
+            display: personally;
+            justify-content: space-between;
+            margin-bottom: 0.5cm;
+            padding: 0.3cm;
+            border-bottom: 1px dotted #ff0049;
+        }
+
+        .index-item .title {
+            font-size: 12pt;
+            color: #1B365D;
+        }
+
+        .index-item .page-num {
+            font-size: 12pt;
+            color: #7c7d2e;
+            font-weight: bold;
+        }
+
+        .textarea-container {
+            margin-top: 1cm;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            font-family: 'Calibri', Arial, sans-serif;
+            font-size: 12pt;
+            padding: 0.5cm;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+        fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+            });
+    </script>
+    <link rel="stylesheet" href="header.css">
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+        fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+            });
+    </script>
+    <link rel="stylesheet" href="header.css">
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+        <div class="header-container">
+            <!-- Logo y título -->
+            <a href="index.html" class="header-logo">
+                <i class="fas fa-seedling"></i>
+                <div class="logo-text">
+                    <span class="logo-title">Tramitología ABC</span>
+                    <span class="logo-subtitle">Exportación de Mango</span>
+                </div>
+            </a>
+
+            <!-- Navegación principal -->
+            <nav class="header-nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="main/01-Todo lo que necesitas saber .html" class="nav-link">Guía Completa</a></li>
+                    <li><a href="main/02-7_pasos_para_exportar.html" class="nav-link">7 Pasos</a></li>
+                    <li><a href="main/06-Requisitos_por_pais.html" class="nav-link">Requisitos</a></li>
+                    <li><a href="main/07-Guia_de_bolsillo.html" class="nav-link">Guía de Bolsillo</a></li>
+                    <li><a href="main/08-Normatividad.html" class="nav-link">Normatividad</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botones de acción -->
+            <div class="header-actions">
+                <a href="#descargas" class="action-btn download-indicator">
+                    <i class="fas fa-download"></i> Descargas
+                </a>
+                <a href="#contacto" class="action-btn primary">
+                    <i class="fas fa-envelope"></i> Contacto
+                </a>
+            </div>
+
+            <!-- Botón menú móvil -->
+            <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú móvil -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">Inicio</a>
+                <a href="main/01-Todo lo que necesitas saber .html" class="mobile-nav-link">Guía Completa</a>
+                <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link">7 Pasos</a>
+                <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link">Requisitos</a>
+                <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link">Guía de Bolsillo</a>
+                <a href="main/08-Normatividad.html" class="mobile-nav-link">Normatividad</a>
+            </div>
+            <div class="mobile-actions">
+                <a href="#descargas" class="action-btn">
+                    <i class="fas fa-download"></i> Descargas
+                </a>
+                <a href="#contacto" class="action-btn">
+                    <i class="fas fa-envelope"></i> Contacto
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <h1 class="cover-title">Procedimiento para NUEVOS Solicitantes</h1>
+        <h2 class="cover-subtitle">Marco Juridico</h2>
+        <p class="cover-author">Secretaría de Economía
+            <br>Unidad de Prácticas Comerciales Internacionales
+        </p>
+        <p><a href="mailto:upci@economia.gob.mx">upci@economia.gob.mx</a></p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="page index-page">
+        <h2 class="index-title">Tabla de Contenido</H2>
+        <div class="index-item">
+            <span class="title">Introducción</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">Instructivo</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">I. Aspectos Generales</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">1. Estructura Corporativa</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">2. Información del Representante Legal</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">3. Identificación de la Investigación</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">4. Indicadores de la Empresa Exportadora</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">5. Sistemas de Distribución</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">II. Aspectos sobre Discriminación de Precios</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">1. Precio de Exportación</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">2. Valor Normal</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">3. Ajustes al Precio de Exportación y al Valor Normal</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">4. Cálculo del Valor Normal con Base en un País Sustituto</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">5. Margen de Discriminación de Precios</span>
+
+        </div>
+        <div class="index-item">
+            <span class="title">Apéndice 1</span>
+
+        </div>
+        <div class="page-number">i</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="page">
+        <div class="page-header">
+            <h1 class="main-title">Introducción</h1>
+        </div>
+        <p class="body-text">
+            La Unidad de Prácticas Comerciales Internacionales, <a
+                href="mailto:upci@economia.gob.mx">upci@economia.gob.mx</a> en adelante la Unidad, de la Secretaría de
+            Economía, en adelante la Secretaría, es la unidad administrativa encargada de llevar a cabo los
+            procedimientos de investigación en materia de prácticas desleales de comercio internacional. Dichos
+            procedimientos se encuentran regulados por el Acuerdo relativo a la Aplicación del Artículo VI del Acuerdo
+            General sobre Aranceles Aduaneros y Comercio de 1994 (Acuerdo Antidumping); Acuerdo relativo a la Aplicación
+            del Artículo XVI del Acuerdo General sobre Aranceles Aduaneros y Comercio de 1994 (ASMC); la Ley de Comercio
+            Exterior (LCE) y el Reglamento de la Ley de Comercio Exterior (RLCE). Como resultado de dichos
+            procedimientos de investigación la Secretaría tiene la facultad de determinar la imposición de cuotas
+            compensatorias.</p>
+        </p>
+        <p class="body-text">
+            De conformidad con los artículos 9.5 del Acuerdo Antidumping; 19.3 del ASMC y 89D de la LCE, los productores
+            extranjeros
+            de un producto objeto de una cuota compensatoria <em>antidumping</em> residual, derivada de una
+            investigación en la cual
+            no pudieron participar por no haber exportado durante el periodo de investigación, podrán solicitar que la
+            Secretaría
+            lleve a cabo una investigación con el propósito de que se les determine un margen individual de
+            discriminación de precios.
+        </p>
+        <p class="body-text">
+            La investigación que lleve a cabo la Secretaría se realizará mediante un procedimiento en los términos del
+            artículo 52 de
+            la LCE.
+        </p>
+        <p class="body-text">
+            En ese sentido, los artículos 54 de la LCE y 75 del RLCE disponen que los solicitantes deberán presentar
+            como mínimo la
+            información requerida en este formulario para iniciar el procedimiento administrativo de investigación en
+            materia de
+            prácticas desleales de comercio internacional, en su modalidad de discriminación de precios, específicamente
+            sobre la
+            forma de presentar la información, los argumentos y las pruebas, con la finalidad de agilizar su tramitación
+            y aportar a
+            esta Secretaría los elementos que brinden mayor claridad en el objeto de su solicitud.
+        </p>
+        <div class="warning-box">
+            <p class="title">Aviso</p>
+            <p class="body-text">
+                En este contexto, la solicitud de inicio está sujeta a los requisitos y plazos que se determinan en el
+                marco jurídico
+                aplicable, por lo que el incumplimiento en la presentación de la información aquí requerida y, en su
+                caso, de los
+                plazos señalados, podría concluir en el desechamiento de la solicitud de investigación.
+            </p>
+        </div>
+        <p class="body-text">
+            Toda información que se proporcione a la Secretaría podrá ser objeto de verificación, de conformidad con los
+            artículos
+            6.7, anexo 1 del Acuerdo Antidumping; 12.6, anexo 6 del ASMC y 83 de la LCE.
+        </p>
+        <p class="body-text">
+            Las partes interesadas podrán presentar dentro de los plazos de ofrecimiento de pruebas que fije la
+            autoridad, toda la
+            información complementaria que consideren pertinente y que no haya sido requerida por la Secretaría.
+        </p>
+        <p class="body-text">
+            A fin de brindar mayores facilidades para la tramitación de los procedimientos, la presentación de la
+            información ante la
+            Secretaría se realiza de manera electrónica a través del correo electrónico <a
+                href="mailto:upci@economia.gob.mx">
+                upci@economia.gob.mx</a>, con fundamento en lo dispuesto en el “Acuerdo por el que se establecen medidas
+            administrativas
+            en la Secretaría de Economía con el objeto de brindar facilidades a los usuarios de los trámites y
+            procedimientos que se
+            indican”, publicado el 4 de agosto de 2021 en el DOF (el “Acuerdo de facilitación”), sin perjuicio de la
+            posibilidad de
+            presentarla de manera física en la Oficialía de Partes de la Unidad.
+        </p>
+        <div class="highlight-box">
+            <p class="title">Contacto</p>
+            <p class="body-text">
+                <strong>Secretaría de Economía</strong><br>
+                <strong>Unidad de Prácticas Comerciales Internacionales</strong><br>
+                Pachuca 189, planta baja (oficialía de partes)<br>
+                Col. Condesa<br>
+                Demarcación Territorial Cuauhtémoc<br>
+                C.P. 06140<br>
+                Ciudad de México<br>
+                Correo electrónico: <a href="mailto:upci@economia.gob.mx">upci@economia.gob.mx</a>
+            </p>
+        </div>
+        <div class="page-number">1</div>
+    </div>
+
+    <div class="page page-break">
+        <div class="page-header">
+            <h2 class="section-title">Instructivo</h2>
+        </div>
+        <p class="body-text"><span class="number-highlight">1</span> La información debe ajustarse a los siguientes
+            requisitos:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Los escritos y promociones que se presenten ante la Unidad deberán estar dirigidos a la
+            persona Titular
+            de la Unidad y contener firma autógrafa. En caso de no contener firma autógrafa se tendrán por no
+            presentados, de conformidad
+            con lo dispuesto en el artículo 4 de la Ley Federal de Procedimiento Contencioso Administrativo (LFPCA), de
+            aplicación
+            supletoria.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> De conformidad con el artículo 271 del Código Federal de Procedimientos Civiles (CFPC),
+            los documentos
+            presentados en idioma distinto al español deberán acompañarse de su respectiva y fiel traducción completa o
+            de las partes
+            relevantes al español, de lo contrario, no serán considerados en el procedimiento.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>C.</strong> Corresponde a las partes interesadas indicar oportunamente a la Secretaría, si se trata
+            de información
+            que tenga el carácter de confidencial o de comercial reservada; en caso de solicitar que a cierta
+            información se le considere
+            y se le otorgue el carácter de confidencial, deberá cumplir con lo dispuesto en los artículos 6.5 del
+            Acuerdo Antidumping;
+            12.1 y 12.4 del ASMC; 51, y 80 de la LCE, y 148, 149, 150, 152, 153 y 158 del RLCE y que a continuación se
+            señala. Lo
+            anterior,
+            en el entendido de que, de no cumplir con alguno de los siguientes requisitos, la información podrá no
+            tomarse en cuenta:
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>1.</strong> Presentar la documentación con la solicitud de que se le otorgue trato de confidencial o
+            de comercial
+            reservada, identificando claramente el documento o la porción de este que deba guardar dicho trato;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>2.</strong> Justificar de manera detallada y suficiente por qué la información tiene el carácter de
+            confidencial o de
+            comercial reservada;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>3.</strong> Presentar un resumen público de la información, lo suficientemente detallado que permita
+            a quien la
+            consulte tener una comprensión razonable de esta o, en su caso, la exposición de las razones por las cuales
+            no es posible
+            resumirla.
+            Evite presentar hojas en blanco o consignar únicamente títulos, y
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>4.</strong> Manifestar su consentimiento de que la información marcada como confidencial podrá ser
+            revisada por los
+            representantes legales de las otras partes interesadas que así lo soliciten y que cumplan con los requisitos
+            previstos
+            en la LCE y el RLCE para ello. Para tal efecto, se adjunta el formato de consentimiento para la consulta de
+            información
+            confidencial, el cual se deberá remitir a la Secretaría, debidamente requisitado.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>D.</strong> Con base en lo anterior, la información deberá presentarse en dos versiones: PÚBLICA y
+            CONFIDENCIAL y, en
+            su caso, COMERCIAL RESERVADA, según corresponda, de manera que ambas sean consistentes entre sí. En la
+            versión confidencial
+            o, en su caso, comercial reservada, deberán señalarse entre corchetes los datos confidenciales o comerciales
+            reservados y, en
+            la versión pública, suprimir dichos datos mediante un espacio en blanco entre corchetes, de manera que la
+            información
+            CONFIDENCIAL no sea visible en la versión PÚBLICA.
+        </p>
+        <table class="cost-table">
+            <tr>
+                <th>Ejemplo</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Versión confidencial</td>
+                <td>Versión pública</td>
+            </tr>
+            <tr>
+                <td>Costo de producción 50 dólares por tonelada</td>
+                <td>Costo de producción [ ] Dólares por tonelada</td>
+            </tr>
+        </table>
+        </p>
+        <div class="page-number">2</div>
+    </div>
+
+    <div class="page page-break">
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>E.</strong> Insertar las leyendas: "INFORMACIÓN PÚBLICA", "INFORMACIÓN CONFIDENCIAL" o "INFORMACIÓN
+            COMERCIAL
+            RESERVADA", de acuerdo con la versión de que se trate, en la parte central de cada una de las hojas del
+            texto que
+            corresponda,
+            sin obstruir el texto.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>F.</strong> Toda la información deberá presentarse, para cada versión, PÚBLICA y CONFIDENCIAL o, en
+            su caso
+            COMERCIAL RESERVADA, en formato MS Word (.doc o .docx) o Portable Document Format (.pdf); las hojas de
+            cálculo y bases de
+            datos
+            en formato MS Excel (.xsl o .xslx), sin restricciones de lectura, copiado e impresión de texto, de
+            conformidad con el
+            punto 2 del Anexo II del Acuerdo Antidumping.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>G.</strong> En caso de presentar información de forma física, deberá atender lo siguiente:
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>a.</strong> De conformidad con lo previsto en el artículo 75 del RLCE, deberá presentar la versión
+            pública de la
+            solicitud, del formulario y de los anexos, con el número de copias correspondientes al número de
+            importadores,
+            exportadores
+            y, en su caso, gobiernos extranjeros que estén incluidos en la solicitud, con el propósito de que esta
+            autoridad corra
+            traslado de dicha información a las partes interesadas de que se tenga conocimiento. De no cumplir con esta
+            obligación,
+            la solicitud se tendrá por abandonada;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>b.</strong> Presentar su información en un horario de 9:00 a 14:00 horas de lunes a viernes, a
+            través de la
+            Oficialía de Partes de la Unidad, ubicada en Calle Pachuca No. 189, planta baja, Col. Condesa, C.P. 06140,
+            Ciudad de
+            México;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>c.</strong> Presentar su escrito o promoción en original y 3 copias, así como una copia adicional
+            para su acuse
+            de recibo, en hojas tamaño carta sin perforación, con un espacio de 3 centímetros entre el borde izquierdo
+            de la hoja y
+            el inicio del texto;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>d.</strong> Toda la información, argumentos y pruebas (incluidos los anexos) deberán presentarse en
+            forma impresa
+            y en archivo electrónico (CD), en los formatos y características señaladas en la literal G anterior, y
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>e.</strong> Presentar debidamente requisitado el formato de consentimiento para recibir información
+            y
+            notificaciones vía electrónica.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>H.</strong> En caso de presentar su información vía electrónica, deberá atender lo siguiente:
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>a.</strong> Presentar su información a través del correo electrónico <a
+                href="mailto:upci@economia.gob.mx">
+                upci@economia.gob.mx</a>, en un horario de 9:00 a 18:00 horas de lunes a viernes. Para el caso de los
+            escritos y
+            promociones,
+            o información que se reciba vía electrónica después del horario señalado o en días inhábiles, se considerará
+            presentada
+            al día hábil inmediato siguiente;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>b.</strong> Los escritos o promociones deberán estar debidamente digitalizados, completos y legibles
+            en su
+            totalidad;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>c.</strong> Para la información que exceda de 20 Megabytes (MB), se podrá: i) adjuntar la liga de
+            acceso a esta
+            utilizando una sola herramienta de información compartida en nube (Dropbox, Google Drive, One Drive, etc.)
+            para su
+            descarga
+            con los permisos correspondientes, a efecto de que la Unidad este en posibilidad de obtenerla. La
+            información que se
+            transmita a través de este medio deberá estar a disposición, sin alteración o modificación alguna durante el
+            trámite o
+            procedimiento
+            correspondiente, y ii) podrá separarse en diversos documentos y enviarse en correos electrónicos
+            subsecuentes que deberán
+            ir numerados en el orden respectivo o cronológicamente para su debida identificación;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>d.</strong> Para la presentación de muestras físicas, documentos originales o cualquier otra
+            información que, por
+            su naturaleza, carácter de la información o circunstancias particulares, no sea posible presentar vía
+            electrónica o deba
+            presentarse de manera física, deberá hacerse en la ventanilla de la Unidad a más tardar en la fecha de
+            vencimiento.
+            Dichos documentos o información se considerarán presentados el día de su recepción física, conforme a lo
+            señalado en el
+            punto
+            anterior de este formulario;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>e.</strong> Cuando los archivos enviados vía correo electrónico se encuentren dañados, sean
+            ilegibles, contengan
+            virus o no se puedan abrir, las solicitudes o escritos podrán tenerse por no presentados, salvo que dentro
+            del periodo
+            otorgado se solvente dicha situación, de no ser así la Unidad procederá con base en los hechos de que tenga
+            conocimiento,
+            de conformidad con los artículos 6.8 del Acuerdo Antidumping; 12.7 del ASMC; 54 segundo párrafo, 64 último
+            párrafo de
+            la LCE y 4 último párrafo del Acuerdo de facilitación, y
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>f.</strong> Presentar debidamente requisitado el formato de consentimiento para recibir información
+            y
+            notificaciones vía electrónica.
+        </p>
+        <div class="page-number">3</div>
+    </div>
+
+    <div class="page page-break">
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>I.</strong> Toda la información que presente (para cada versión PÚBLICA y CONFIDENCIAL), tanto en
+            forma impresa
+            como electrónica deberá ser consistente entre sí, además de estar identificadas de la misma manera. Deberá
+            evitar incluir
+            u omitir información o archivos distintos entre ellas.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>J.</strong> Toda la información que se proporcione a la Secretaría podrá ser objeto de verificación
+            a fin de
+            comprobar su exactitud, veracidad y autenticidad, de conformidad con los artículos 6.6 del Acuerdo
+            Antidumping; 12.6 del
+            ASMC;
+            83 de la LCE y 207 del CFPC, por lo que deberá conservar las fuentes y los papeles de trabajo utilizados.
+            Asimismo, para
+            el caso de la información que se presente vía electrónica la Unidad podrá, en cualquier momento, solicitar
+            la
+            documentación
+            para cotejo en caso de considerarlo necesario.
+        </p>
+        <p class="body-text"><span class="number-highlight">2</span> Responder cada una de las preguntas del Formulario
+            de la manera
+            más detallada y específicamente posible. Todas las preguntas, sin excepción, deben ser contestadas. Se deben
+            observar las
+            siguientes indicaciones:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Utilizar las leyendas “N/A” y “N/D” para los casos de “No Aplica” o “No Disponible”,
+            respectivamente,
+            indicando las razones de su respuesta.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Reportar cualquier comentario adicional que considere necesario.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>C.</strong> Todas las preguntas deben responderse con el argumento principal y no solamente hacer
+            referencia a
+            anexos. En caso de respaldar sus argumentos con alguna prueba, deberá explicarlo e indicar de forma precisa
+            y con la
+            nomenclatura
+            correspondiente la identificación del anexo relativo.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>D.</strong> En cada respuesta debe indicarse cuál es la fuente de información utilizada y, en su
+            caso, indicar el
+            soporte documental.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>E.</strong> En caso de que la respuesta implique estudios, análisis, reportes u otro tipo de
+            documento elaborado
+            por una fuente externa (consultores, despachos, asesores, etc.), deberá indicar las credenciales de la
+            fuente de
+            información.
+        </p>
+        <p class="body-text"><span class="number-highlight">3</span> Cuando las cifras de las columnas presentadas en
+            las bases de
+            datos sean resultado de operaciones aritméticas, deberá incluir las fórmulas, así como los factores
+            utilizados y las
+            referencias de las celdas
+            con la finalidad de que esta Secretaría esté en posibilidad de reproducir los cálculos efectuados. No se
+            tomará en cuenta
+            la información de aquellas celdas que se vinculen a una fuente que no fue presentada. Vincule e indique las
+            cifras
+            utilizadas
+            con los anexos documentales correspondientes. Además, deberá aportar la información y metodología que
+            sustente cada uno
+            de sus cálculos.</p>
+        <p class="body-text"><span class="number-highlight">4</span> Utilizar los formatos señalados para cada
+            requerimiento de
+            información. Especificar las unidades de medida relevantes.</p>
+        <p class="body-text"><span class="number-highlight">5</span> Los documentos y medios de prueba que se anexen
+            deberán
+            listarse, describir su contenido y precisar la fuente de dónde se obtuvieron (título, autor, página, fecha
+            del documento o de
+            su consulta, página de
+            Internet u otra, según corresponda), además, de anexar copia de esta. La fuente en cada prueba que presente
+            es de suma
+            importancia para que esta autoridad administrativa pueda evaluar y constatar su exactitud y pertinencia. Los
+            archivos
+            electrónicos
+            que se presenten como anexos deben estar debidamente nombrados (incluyendo el número, literal, inciso y/o el
+            identificador que corresponda) y deben estar presentes en la lista que se elabore de anexos.</p>
+        <p class="body-text"><span class="number-highlight">6</span> Los archivos referentes a los Anexos de este
+            Formulario deben
+            estar debidamente nombrados siguiendo el siguiente formato como se señala también en la hoja de
+            instrucciones de cada Anexo:
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            - ANEXO 1_NOMBREDELAEMPRESA_VP/VC o VCR.XLSX
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            - VC, VP o VCR (si es versión pública, confidencial o comercial reservada).
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            - En caso de presentar un anexo como evidencia o soporte a otro: EV_ANEXO 1.1-xlsx
+        </p>
+        <p class="body-text"><span class="number-highlight">7</span> Los primeros 9 Anexos deben ser los siguientes
+            archivos que
+            acompañan al Formulario, debidamente llenados. Los archivos de soporte deben referir al anexo del que se
+            desprenden (Por
+            ejemplo, “EV_Anexo 1.1”,
+            “EV_Anexo 1.2”). Si para dar soporte a la información presentada en este Formulario requiere incluir más
+            Anexos de los ya
+            contemplados (Anexo 1 al 9), deberá numerarlos a partir del número 10, seguir la misma estructura de nombre
+            del punto
+            anterior y presentar el siguiente cuadro con la relación de todos los anexos del Formulario:</p>
+        </p>
+        <div class="page-number">4</div>
+    </div>
+
+    <div class="page page-break">
+        <h3 class="subsection-title">Cuadro 1. Relación de Anexos al Formulario</h3>
+        <table class="cost-table">
+            <tr>
+                <th>Anexo</th>
+                <th>Descripción</th>
+                <th>Referencia</th>
+                <th>Fuente</th>
+                <th>Clasificación</th>
+                <th>Nombre del Archivo</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>VENTAS TOTALES DE CADA MERCADO</td>
+                <td>Punto 21 y 43.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>VENTAS TOTALES - Producto investigado y Producto no investigado</td>
+                <td>Punto 22, 23, 43.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ESTRUCTURA DE COSTOS</td>
+                <td>Punto 24.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PRECIO DE EXPORTACIÓN A LOS ESTADOS UNIDOS MEXICANOS</td>
+                <td>Punto 21, 38, 39, 40 y 85.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>VALOR NORMAL PRECIOS EN EL MERCADO INTERNO/PRECIO DE EXPORTACIÓN DEL PAÍS DE ORIGEN A UN TERCER PAÍS
+                </td>
+                <td>Punto 21, 43, 49, 53, 58 y 85.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>VALOR NORMAL. VALOR RECONSTRUIDO EN EL PAÍS DE ORIGEN</td>
+                <td>Punto 60.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>COSTOS TOTALES DE PRODUCCIÓN</td>
+                <td>Punto 62, 69 y 73.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>ESTIMACIÓN DEL MARGEN DE DISCRIMINACIÓN DE PRECIOS</td>
+                <td>Punto 91 y 92.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>RECONSTRUCCIÓN DEL PRECIO DE EXPORTACIÓN</td>
+                <td>Apéndice 1.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Apéndice 1</td>
+                <td>Punto 42.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Diagrama 1</td>
+                <td>Punto 21 y 43.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>n…</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="page-number">5</div>
+    </div>
+
+    <div class="page page-break">
+        <div class="page-header">
+            <h2 class="section-title">I. Aspectos Generales</h2>
+        </div>
+        <p class="body-text"><span class="number-highlight">8</span> Deberá presentar y/o manifestar lo siguiente:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Original o copia certificada del acta constitutiva de la empresa con los que se pruebe
+            la existencia
+            legal de esta, así como sus últimas modificaciones.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Nombre del apoderado o de la persona que en lo sucesivo actuará en su nombre y
+            representación ante
+            esta unidad administrativa, el cual deberá acreditar su personalidad mediante escritura pública o carta
+            poder firmada ante
+            dos testigos y ratificadas las firmas, ante esta misma autoridad o notario público, conforme al artículo 19
+            del Código
+            Fiscal de la Federación.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>C.</strong> Original o copia certificada de la escritura pública, con la que acredite el nombre y
+            las facultades
+            del mandante o poderdante de la empresa.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>D.</strong> En el caso de que el país de origen de la empresa exportadora sea signatario de la
+            Convención por la
+            que se suprime el requisito de legalización de los documentos públicos extranjeros, los documentos a que se
+            hacen
+            referencia
+            en los incisos A, B y C, deberán contener la apostilla correspondiente, de conformidad con dicha Convención
+            publicada el
+            14 de agosto de 1995, en el Diario Oficial de la Federación. En caso contrario, dichos documentos deberán
+            presentarse
+            debidamente legalizados ante las autoridades consulares mexicanas competentes de conformidad con el artículo
+            546 del
+            Código Federal de Procedimientos Civiles.
+        </p>
+        <p class="body-text"><span class="number-highlight">9</span> La empresa productora o exportadora extranjera
+            deberá declarar
+            bajo protesta de decir verdad:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Que no exportó el producto sujeto a la cuota compensatoria durante el periodo que se
+            investigó.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Que no está vinculada con los exportadores o productores del país exportador que son
+            objeto de la
+            cuota antidumping.
+        </p>
+        <p class="body-text"><span class="number-highlight">10</span> De conformidad con el artículo 39 del RLCE, si el
+            producto
+            investigado se clasifica en varios tipos (“códigos”) de producto, la información de ventas debe presentarse
+            por tipo
+            (“código”) de producto. Tome
+            en cuenta el apartado “a. Códigos de producto del presente formulario”.</p>
+        <p class="body-text"><span class="number-highlight">11</span> Para el llenado de este formulario es necesario
+            tomar en cuenta
+            las siguientes definiciones:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> El periodo investigado es el tiempo de análisis para demostrar la discriminación de
+            precios. Este
+            periodo deberá ser normalmente de un año, y nunca inferior a seis meses.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Ejemplo: enero-junio de 2024.
+        </p>
+        <p class="body-text"><span class="number-highlight">12</span> Presentar los estados financieros auditados de los
+            dos últimos
+            ejercicios fiscales, así como los estados financieros anuales y trimestrales que correspondan al período de
+            investigación,
+            aun cuando no estén
+            auditados.
+        </p>
+        <p class="body-text"><span class="number-highlight">13</span> Anexar, en hojas por separado, cualquier
+            información adicional
+            que considere relevante para propósitos de la determinación del precio de exportación y del valor normal.
+        </p>
+        <p class="body-text"><span class="number-highlight">14</span> La información relativa a las exportaciones deberá
+            incluir
+            tanto las que se internen al mercado mexicano bajo el régimen temporal, así como el definitivo.</p>
+        </p>
+        <div class="page-number">6</div>
+    </div>
+
+    <div class="page page-break">
+        <h3 class="subsection-title">1. Estructura Corporativa</h3>
+        <p class="body-text"><span class="number-highlight">15</span> Explicar la estructura corporativa de su empresa.
+            Dicha
+            información deberá incluir:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>1.</strong> Nombre de la empresa matriz y/o controladora.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>2.</strong> Nombre de las empresas filiales o subsidiarias.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>3.</strong> Nombre de cualquier otra empresa vinculada de alguna otra forma con su empresa (por
+            ejemplo:
+            comercializadoras, proveedoras, etc.).
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>4.</strong> Proporcionar, en un documento aparte, diagramas de flujo que indiquen la relación
+            existente entre las
+            distintas empresas del corporativo.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>5.</strong> Indicar cuáles de estas empresas exportaron el producto investigado a los Estados Unidos
+            Mexicanos
+            durante el periodo investigado.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>6.</strong> Indicar cuáles de estas empresas produjeron el producto investigado durante el periodo
+            investigado.
+        </p>
+        <p class="body-text"><span class="number-highlight">16</span> Proporcionar la siguiente información sobre los
+            importadores o
+            clientes mexicanos a quienes les vende el producto investigado:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Razón social de la empresa y RFC.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Domicilio, incluir calle, número interior y/o exterior, colonia, código postal,
+            municipio, alcaldía y
+            entidad federativa.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>C.</strong> Teléfono.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>D.</strong> Correo electrónico.
+        </p>
+        <p class="body-text"><span class="number-highlight">17</span> Indicar si su empresa ha firmado algún acuerdo por
+            escrito con
+            algún importador mexicano. En caso afirmativo:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Presentar copia de dicho acuerdo.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Indicar si este acuerdo tiene algún efecto sobre el precio pagado por el importador.
+        </p>
+        <p class="body-text"><span class="number-highlight">18</span> Declarar si está vinculado con los productores
+            nacionales
+            mexicanos, con los importadores o con los exportadores o productores del país exportador que son objeto de
+            la cuota
+            antidumping. Para estos efectos,
+            el artículo 61 del RLCE señala que existe vinculación:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>1.</strong> Si uno de ellos ocupa cargos de dirección o responsabilidad en una empresa del otro;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>2.</strong> Si están legalmente reconocidos como asociados en negocios;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>3.</strong> Si tienen una relación de patrón trabajador;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>4.</strong> Si una persona tiene directa o indirectamente la propiedad, el control o la posesión del
+            cinco por
+            ciento o más de las acciones, partes sociales, aportaciones o títulos en circulación y con derecho a voto en
+            ambos;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>5.</strong> Si uno de ellos controla directa o indirectamente al otro;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>6.</strong> Si ambos están controlados directa o indirectamente por un tercero;
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>7.</strong> Si juntos controlan directa o indirectamente a una tercera persona, o si son de la misma
+            familia.
+        </p>
+        </p>
+        <div class="page-number">7</div>
+    </div>
+
+    <div class="page page-break">
+        <h3 class="subsection-title">2. Información del Representante Legal</h3>
+        <p class="body-text"><span class="number-highlight">19</span> Proporcionar la siguiente información de su
+            representante legal
+            conforme a lo dispuesto por el artículo 51 de la LCE:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> Nombre completo.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> Domicilio (incluir calle, número interior y/o exterior, colonia, código postal,
+            municipio, alcaldía y
+            entidad federativa).
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>C.</strong> Teléfono.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>D.</strong> Correo electrónico.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>E.</strong> Copia de su identificación oficial vigente (en caso de pertenecer al consejo de
+            administración de la
+            empresa).
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>F.</strong> Copia certificada de la cédula profesional.
+        </p>
+        <h3 class="subsection-title">3. Identificación de la Investigación</h3>
+        <p class="body-text"><span class="number-highlight">20</span> Proporcionar la siguiente información:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>1.</strong> Producto investigado.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>2.</strong> País de origen del producto investigado.
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>3.</strong> Fracción arancelaria por la que ingresa el producto investigado (código y descripción).
+        </p>
+
+        <h3 class="subsection-title">4. Indicadores de la Empresa Exportadora</h3>
+        <p class="body-text"><span class="number-highlight">21</span> Proporcione el valor de las ventas totales del
+            corporativo
+            (tanto en la moneda del país de origen como en dólares de los Estados Unidos de América, especificando el
+            tipo de cambio
+            empleado) durante el periodo
+            investigado, siguiendo el formato del Diagrama 1. Reporte los datos en forma acumulada. Indique las fuentes
+            de su
+            información. Los totales de los valores deben coincidir con los totales de los Anexos 1, 4 y 5.</p>
+        <p class="body-text"><span class="number-highlight">22</span> Para los códigos de producto objeto de
+            investigación,
+            proporcione el valor y volumen acumulados por mes de las ventas totales al mercado interno, al mercado
+            mexicano y a cada uno
+            de los mercados de exportación
+            restantes, efectuadas durante el periodo investigado. Utilice el formato del Anexo 2. Especifique las
+            fuentes de
+            información empleadas en cada caso. Esta información será cotejada contra sus registros de ventas por mes y
+            por producto
+            investigado
+            durante el procedimiento de verificación. Para código idéntico o similar a los exportados a los Estados
+            Unidos Mexicanos,
+            deberá incluir una explicación del significado de cada dígito, letra o símbolo empleado, así como una
+            descripción del
+            producto.
+        </p>
+        <p class="body-text"><span class="number-highlight">23</span> La empresa deberá proporcionar el total de ventas
+            de la empresa
+            que produce el producto objeto de investigación, en valor y volumen, efectuadas en el periodo investigado,
+            desglosadas por
+            código de producto
+            y por mercado. Utilice el formato del Anexo 2.</p>
+        <p class="body-text"><span class="number-highlight">24</span> Aporte la estructura de costos que utiliza su
+            empresa e incluya
+            la participación porcentual del costo total de producción que se utiliza en la fabricación de un (kilogramo,
+            pieza, tonelada,
+            etc., de acuerdo
+            con la unidad de medida relevante del producto objeto de investigación). Utilice el formato del Anexo 3.</p>
+        <p class="body-text"><span class="number-highlight">25</span> Proporcione la documentación que sustente la
+            determinación de
+            cada uno de los elementos.</p>
+        <div class="page-number">8</div>
+    </div>
+
+    <div class="page page-break">
+        <h3 class="subsection-title">5. Sistemas de Distribución</h3>
+        <p class="body-text"><span class="number-highlight">26</span> Describa detalladamente los canales de
+            distribución, tanto en
+            el mercado interno como en sus mercados de exportación, incluido el mercado mexicano. Incluya un diagrama de
+            flujo.</p>
+        <p class="body-text"><span class="number-highlight">27</span> Indique si vende a clientes relacionados en el
+            mercado interno
+            o en sus mercados de exportación, señale si los precios y/o términos de venta son distintos a los aplicables
+            a clientes no
+            relacionados.</p>
+        <p class="body-text"><span class="number-highlight">28</span> De ser el caso y tomando en cuenta las preguntas
+            anteriores,
+            explique cómo determina los precios de venta con las empresas comercializadoras a las que vende el producto
+            investigado.
+            Señale si celebró algún
+            contrato o acuerdo con alguna entidad, de ser el caso, presente el contrato o acuerdo correspondiente, así
+            como el
+            porcentaje pactado correspondiente al margen de reventa que obtiene la empresa comercializadora y explique
+            cómo se
+            registra
+            contablemente. Presente las pruebas documentales que respalden su respuesta.</p>
+        <p class="body-text"><span class="number-highlight">29</span> Explique detalladamente si su empresa (la
+            compareciente en el
+            presente procedimiento) tiene la responsabilidad total de la planificación, la gestión y el control de las
+            funciones de
+            fabricación; si asumen
+            el costo de producción, controlan la gestión de inventarios de materias primas, productos semielaborados y
+            terminados,
+            asignación de pedidos, atención al cliente en cuanto a plazos de entrega y logística, si estas asumen los
+            costos de las
+            reclamaciones técnicas, logísticas y de corrección y ajuste de precios.</p>
+        <p class="body-text"><span class="number-highlight">30</span> Si sus exportaciones llegan a los Estados Unidos
+            Mexicanos a
+            través de otro país, describa los canales de distribución en dicho país. Incluya un diagrama de flujo.</p>
+        <p class="body-text"><span class="number-highlight">31</span> Del mismo modo, deberá explicar, para cada mercado
+            (interno y
+            de exportación), el proceso de facturación a lo largo del canal de distribución utilizado y la manera de
+            cómo determina los
+            precios, es decir,
+            si se dan operación por operación, bajo contrato, volumen mínimo comprado por periodo establecido, si estos
+            son aplicados
+            de acuerdo al tipo de cliente, es decir, mayorista, minorista, distribuidores, intermediarios, etc., si
+            existe algún
+            tipo de arreglo que afecte el precio por volumen adquirido, entre otros. Presente el contrato o documento
+            que permita
+            observar las condiciones establecidas durante el periodo investigado en la compra-venta tanto en el mercado
+            de exportación
+            a México como en su mercado interno.</p>
+        <h3 class="subsection-title">Códigos de Producto</h3>
+        <p class="body-text"><span class="number-highlight">32</span> Liste los códigos de producto de las exportaciones
+            que realizó
+            su empresa durante el periodo investigado y que ingresaron a los Estados Unidos Mexicanos.</p>
+        <p class="body-text"><span class="number-highlight">33</span> Indique si los códigos de producto mencionados en
+            la respuesta
+            anterior cumplen con las especificaciones de la descripción del producto objeto de investigación. En caso
+            contrario, describa
+            detalladamente
+            las diferencias entre el producto nacional y el producto que exporta su empresa. Anexe las pruebas que
+            sustenten sus
+            afirmaciones (por ejemplo: resultados de análisis de laboratorio, certificados de análisis, hojas de
+            especificaciones,
+            listas
+            de clientes, etc.).</p>
+        <p class="body-text"><span class="number-highlight">34</span> Indique cuáles son las características principales
+            (químicas y
+            físicas) que emplea para conformar los códigos de producto y especifique cuáles características impactan en
+            el costo y en el
+            precio del producto
+            investigado. Aporte impresiones de pantalla de su sistema contable que permita apreciar las características
+            empleadas en
+            la conformación de los códigos de producto.</p>
+        <p class="body-text"><span class="number-highlight">35</span> A partir de la respuesta a la pregunta anterior,
+            aporte una
+            correlación de códigos de producto exportados a México con los idénticos y/o similares vendidos en el
+            mercado interno.
+            Proporcione una explicación
+            detallada de cómo fueron seleccionados.</p>
+        <p class="body-text"><span class="number-highlight">36</span> Para la información en este apartado, considere lo
+            solicitado
+            en la pregunta 22 del presente formulario, es decir, deberá proporcionar una explicación detallada del
+            significado de cada
+            dígito, letra o símbolo
+            empleado, así como una descripción del producto.
+        </p>
+        <div class="page-number">9</div>
+    </div>
+
+    <div class="page page-break">
+        <div class="page-header">
+            <h2 class="section-title">II. Aspectos sobre Discriminación de Precios</h2>
+        </div>
+        <p class="body-text"><span class="number-highlight">37</span> Toda la información que proporcione para efectos
+            del “precio de
+            exportación” y del “valor normal” deberá referirse al periodo investigado.</p>
+        <h3 class="subsection-title">1. Precio de Exportación</h3>
+        <p class="body-text"><span class="number-highlight">38</span> Liste individualmente todas las operaciones de
+            exportación del
+            producto objeto de investigación a los Estados Unidos Mexicanos. En caso de que el producto objeto de
+            investigación se
+            clasifique en varios
+            tipos de producto, que no sean físicamente iguales entre sí, clasifique sus ventas por tipo de producto, de
+            acuerdo con
+            los códigos de producto empleados en su sistema de registro contable. Utilice el formato del Anexo 4.
+            Proporcione las
+            órdenes
+            de compra, facturas de venta, comprobantes de pago y demás documentación necesaria para sustentar las
+            operaciones
+            reportadas.</p>
+        <p class="body-text"><span class="number-highlight">39</span> Asimismo, en caso de que el producto investigado
+            que exportó a
+            los Estados Unidos Mexicanos provenga de comercializadores u otras empresas vinculadas, deberán reportar en
+            el Anexo 4 los
+            códigos de producto,
+            valores, volúmenes y precios a que se vende el producto investigado, desde el productor hasta el importador
+            o cliente
+            final. Deberán relacionar cada una de esas ventas a lo largo de la cadena de distribución. Para sustentar
+            las cifras
+            reportadas,
+            presente las órdenes de compra, facturas de venta entre las diferentes partes involucradas, comprobantes de
+            pago, etc.
+            Proporcione la metodología y elementos de prueba requeridos para relacionar las operaciones en la base de
+            datos.</p>
+        <p class="body-text"><span class="number-highlight">40</span> Con fundamento en el artículo 51 del RLCE, el
+            precio de
+            exportación a los Estados Unidos Mexicanos para cada tipo de producto considerado en su respuesta debe ser
+            neto de
+            descuentos, bonificaciones y reembolsos.
+            Indique la fuente de información, fecha y tipo de cambio a dólares de los Estados Unidos de América de cada
+            una de las
+            transacciones reportadas. Use el formato del Anexo 4 y proporcione por separado la metodología detallada del
+            cálculo
+            (identificación
+            del producto objeto de investigación, clasificación, etc.), las fuentes consultadas, las pruebas que avalen
+            la
+            información incluida en este punto y los cálculos efectuados.</p>
+        <p class="body-text"><span class="number-highlight">41</span> Con fundamento en los artículos 2.3 del Acuerdo
+            Antidumping, 35
+            de la LCE y 50 del RLCE, cuando las ventas de exportación se efectúen entre partes vinculadas, el precio de
+            exportación podrá
+            reconstruirse
+            sobre la base del precio al que las mercancías importadas se revendan por primera vez a un comprador
+            independiente en los
+            Estados Unidos Mexicanos. En este caso, se deberán deducir todos los gastos incurridos entre la exportación
+            y la reventa,
+            incluidos los pagos por impuestos y aranceles en el país importador, así como los márgenes de utilidad por
+            importación y
+            distribución.</p>
+        <p class="body-text"><span class="number-highlight">42</span> En caso de que la empresa exportadora esté
+            asociada con la
+            empresa importadora o con un tercero, deberá presentar la información solicitada en el Apéndice 1; dicha
+            información es
+            indispensable para que
+            la Secretaría pueda realizar el cálculo correspondiente al precio de exportación reconstruido, por lo que,
+            en caso de no
+            contar con ella, resolverá con base en la información disponible de conformidad con los artículos 6.8 del
+            Acuerdo
+            Antidumping
+            y 54 y 64 de la LCE.
+        </p>
+        <div class="page-number">10</div>
+    </div>
+
+    <div class="page page-break">
+
+        <h3 class="subsection-title">2. Valor Normal</h3>
+        <p class="body-text"><strong>a. Referencias de precios en el mercado interno del país de origen</strong></p>
+        <p class="body-text"><span class="number-highlight">43</span> Conforme a los artículos 2.1 del Acuerdo
+            Antidumping y 31 de la
+            LCE, el valor normal se determina como el precio comparable de un producto idéntico o similar a la que se
+            exporta a los
+            Estados Unidos Mexicanos,
+            que se destine al mercado interno del país de origen. En consecuencia, liste individualmente las ventas de
+            los productos
+            idénticos o similares a cada uno de los tipos de producto especificados en el apartado de Precio de
+            exportación,
+            destinadas
+            al consumo en el mercado interno del país de origen realizadas durante el periodo investigado. Utilice el
+            formato del
+            Anexo 5. Los valores reportados en el Diagrama 1 deben coincidir con la suma de los totales de los cuadros
+            de los Anexos
+            1 y 2, así como con la suma de los totales de las transacciones reportadas en el Anexo 5. Proporcione las
+            órdenes de
+            compra, facturas de venta, comprobantes de pago y demás documentación necesaria para sustentar las
+            operaciones reportadas.
+        </p>
+        <p class="body-text"><span class="number-highlight">44</span> Si proporciona listas de ventas efectuadas en el
+            mercado
+            interno del país de origen correspondientes a códigos de productos similares a los reportados en el apartado
+            de Precio de
+            exportación, deberá justificar
+            la selección de dichos códigos, de conformidad con lo dispuesto en los artículos 2.6 del Acuerdo Antidumping
+            y 37 del
+            RLCE, y proporcionar la clasificación que permita la asociación de estos.</p>
+        <p class="body-text"><span class="number-highlight">45</span> Proporcione una explicación detallada de cómo
+            fueron
+            seleccionados los códigos de productos similares en el mercado interno. Indique las características que
+            consideró para la
+            selección de los códigos similares.</p>
+        <p class="body-text"><span class="number-highlight">46</span> De conformidad con el artículo 56 del Reglamento
+            de la Ley de
+            Comercio Exterior, aporte la información, la metodología, así como las pruebas documentales para aplicar un
+            ajuste por
+            diferencias en las características
+            físicas (diferencias en costos variables de producción) a los códigos de producto similares.</p>
+        <p class="body-text"><span class="number-highlight">47</span> La empresa deberá asegurarse que hubo ventas en el
+            mercado
+            interno de códigos de producto idénticos y/o similares que cumplan con el criterio de suficiencia, conforme
+            a lo establecido
+            en la nota 2 al pie
+            de página del artículo 2 del Acuerdo Antidumping. En caso contrario, la empresa deberá proponer una
+            metodología
+            alternativa de cálculo de valor normal siguiendo los criterios establecidos en los artículos 31 de la Ley de
+            Comercio
+            Exterior
+            y 2.2 del Acuerdo Antidumping, es decir, considerar las ventas a terceros mercados o el valor reconstruido.
+            Proporcione
+            los cálculos respectivos.</p>
+        <p class="body-text"><span class="number-highlight">48</span> Especifique si los precios de los códigos
+            idénticos o similares
+            son al público mayorista, minorista, distribuidores, intermediarios, etc. Identifique los términos y
+            condiciones de venta de
+            los precios.</p>
+        <p class="body-text"><span class="number-highlight">49</span> Con fundamento en el artículo 51 del RLCE, los
+            precios de las
+            ventas internas en el país de origen deben ser netos de descuentos, bonificaciones y reembolsos. Indique la
+            fuente de
+            información, fecha y tipo
+            de cambio a dólares de los Estados Unidos de América para cada uno de los precios empleados. Use el formato
+            del Anexo 5 y
+            proporcione por separado la metodología detallada, las fuentes consultadas, las pruebas que sustentan la
+            información
+            incluida en este punto y los cálculos efectuados.</p>
+        <p class="body-text"><span class="number-highlight">50</span> Justifique que las referencias de precios en el
+            mercado interno
+            del país de origen constituyen una base razonable para determinar el valor normal.</p>
+        </p>
+        <div class="page-number">11</div>
+    </div>
+
+    <div class="page page-break">
+
+        <p class="body-text"><strong>b. Precios de exportación del país de origen a un tercer país o valor reconstruido
+                en el país de
+                origen</strong></p>
+        <p class="body-text"><span class="number-highlight">51</span> Cuando no se realicen ventas de un producto
+            idéntico o similar
+            en el país de origen o cuando tales ventas no permitan una comparación válida, de conformidad con los
+            artículos 2.2 del
+            Acuerdo Antidumping
+            y 31 de la LCE, el valor normal podrá calcularse a partir de referencias del precio de exportación a un
+            tercer país
+            apropiado, distinto de los Estados Unidos Mexicanos, a condición de que este precio sea representativo y el
+            más alto, o
+            bien,
+            el valor reconstruido en el país de origen, definido como la suma del costo de producción, gastos generales
+            y una
+            utilidad razonable, los cuales deberán corresponder a operaciones comerciales normales en el país de origen.
+            Lo anterior,
+            de
+            acuerdo con lo dispuesto en los siguientes puntos.</p>
+        <p class="body-text"><span class="number-highlight">52</span> En caso de acudir a la metodología de precios a un
+            tercer país,
+            justifique que tales precios, constituyen una base razonable para determinar el valor normal.</p>
+        <p class="body-text"><span class="number-highlight">53</span> Liste individualmente las ventas de exportación a
+            un tercer
+            país apropiado del producto idéntico o similar de cada uno de los tipos de producto especificados en el
+            apartado de Precio de
+            exportación. Indique
+            la fuente, fecha y tipo de cambio a dólares de los Estados Unidos de América de cada una de las ventas.
+            Utilice el
+            formato del Anexo 5 y proporcione las órdenes de compra, facturas de venta, comprobantes de pago y demás
+            documentación
+            necesaria
+            para sustentar la información proporcionada.</p>
+        <p class="body-text"><span class="number-highlight">54</span> Si proporciona listas de ventas de exportación a
+            terceros
+            mercados, correspondientes a códigos de productos similares a los reportados en el apartado de Precio de
+            Exportación, deberá
+            justificar la selección
+            de dichos códigos, de conformidad con lo dispuesto en el artículo 2.6 del Acuerdo Antidumping y 37 del RLCE
+            y
+            proporcionar la clasificación que permita la asociación de estos.</p>
+        <p class="body-text"><span class="number-highlight">55</span> Proporcione una explicación detallada de cómo
+            fueron
+            seleccionados los códigos de productos similares exportados a terceros mercados. Señale las características
+            que consideró
+            para la selección de los códigos
+            similares.
+        </p>
+        <p class="body-text"><span class="number-highlight">56</span> De conformidad con el artículo 56 del RLCE, aporte
+            la
+            información, la metodología, así como las pruebas documentales para aplicar un ajuste por diferencias en las
+            características
+            físicas (diferencias en
+            costos variables de producción) a los códigos de producto similares.</p>
+        <p class="body-text"><span class="number-highlight">57</span> La empresa deberá asegurarse de que las ventas de
+            exportación a
+            terceros mercados de códigos de producto idénticos y/o similares cumplan con el criterio de suficiencia,
+            conforme a lo
+            establecido en la nota
+            2 al pie de página del artículo 2 del Acuerdo Antidumping. Proporcione los cálculos respectivos.</p>
+        <p class="body-text"><span class="number-highlight">58</span> Con fundamento en lo establecido en el artículo 51
+            del RLCE,
+            las referencias del precio de exportación del país de origen a un tercer país apropiado deberán ser netas de
+            descuentos,
+            bonificaciones y reembolsos.
+            Indique la fuente de información, la fecha y tipo de cambio a dólares de los Estados Unidos de América para
+            cada uno de
+            los precios empleados. Utilice el formato del Anexo 5 y proporcione por separado la metodología detallada,
+            las fuentes
+            consultadas, las pruebas que sustenten la información incluida en este punto y los cálculos efectuados.</p>
+        <p class="body-text"><span class="number-highlight">59</span> En cuanto al valor reconstruido, este se define
+            como la suma de
+            los costos de producción, los gastos generales (gastos de administración y ventas, gastos financieros, etc.)
+            y un monto
+            razonable de utilidad.</p>
+        <p class="body-text"><span class="number-highlight">60</span> En caso de acudir a esta metodología, proporcione
+            el valor
+            reconstruido para cada uno de los tipos de producto idénticos a los especificados en el apartado de Precio
+            de exportación.
+            Calcule el valor reconstruido
+            de conformidad con lo dispuesto en los artículos 2.2.1.1 y 2.2.2 del Acuerdo Antidumping, 44, 45 y 46 del
+            RLCE. Utilice
+            el formato del Anexo 6 y proporcione por separado la metodología detallada, las fuentes consultadas y la
+            documentación
+            que sustenta la determinación de cada uno de los elementos del valor reconstruido.</p>
+        <p class="body-text"><span class="number-highlight">61</span> Reporte el valor reconstruido en las unidades de
+            medida y
+            moneda originales, así como en las unidades relevantes del sistema métrico decimal y en dólares de los
+            Estados Unidos de
+            América.</p>
+        <p class="body-text"><span class="number-highlight">62</span> Efectúe los cálculos señalados en los puntos 63 a
+            68 de este
+            formulario. Utilice el Anexo 7 para reportar sus resultados.</p>
+        <p class="body-text"><span class="number-highlight">63</span> Calcule los costos de producción de acuerdo con lo
+            establecido
+            en el artículo 2.2.1.1 del Acuerdo Antidumping. La asignación de los costos indirectos se debe calcular
+            según lo establece el
+            artículo 46,
+            fracción III del RLCE.</p>
+        <p class="body-text"><span class="number-highlight">64</span> Identifique los insumos adquiridos de partes
+            relacionadas.
+            Determine si los precios que pagó por ellos reflejan precios de mercado, conforme a lo dispuesto por el
+            artículo 44, párrafos
+            2 y 3 del RLCE. Si
+            este no es el caso, utilice cualquier otro método de investigación económica para obtener los precios de
+            mercado de
+            dichos insumos.</p>
+        <p class="body-text"><span class="number-highlight">65</span> De conformidad con los artículos 2.2.2 del Acuerdo
+            Antidumping
+            y 46, fracciones IV, V, VI, VII, VIII, IX y X del RLCE, para determinar los gastos generales utilice los
+            datos reales
+            específicos al producto
+            objeto de investigación. De no contar con estos, utilice la información relativa a la misma categoría de
+            productos o, a
+            nivel corporativo, empleando como base de prorrateo preferentemente el costo de ventas.</p>
+        <p class="body-text"><span class="number-highlight">66</span> Adicionalmente, calcule un monto de utilidad para
+            cada código
+            de producto exportado a los Estados Unidos Mexicanos. De acuerdo con los artículos 2.2.2 del Acuerdo
+            Antidumping y 46
+            fracción XI del RLCE.
+            De no resultar aplicable, emplee cualquier otro método de asignación que resulte razonable, justificando su
+            uso.</p>
+        <p class="body-text"><span class="number-highlight">67</span> Explique con detalle la metodología de cálculo
+            empleada para
+            obtener la utilidad, señalando las cifras y las fuentes de información empleadas.</p>
+        <p class="body-text"><span class="number-highlight">68</span> Señale el factor utilizado para la conversión de
+            la unidad de
+            volumen original a la unidad relevante del sistema métrico decimal. Conforme a los artículos 2.4.1 del
+            Acuerdo Antidumping y
+            58 del RLCE, identifique
+            el tipo de cambio a dólares de los Estados Unidos de América efectivamente aplicado.</p>
+        </p>
+        <div class="page-number">12</div>
+    </div>
+    <div class="page page-break">
+        <p class="body-text"><strong>c. Operaciones comerciales normales</strong></p>
+        <p class="body-text">Con el objeto de determinar que las ventas en el mercado interno o que las ventas de
+            exportación a un
+            tercer país del producto idéntico o similar a las reportadas en el apartado de Precio de exportación durante
+            el periodo
+            investigado no fueron
+            realizadas a precios inferiores a los costos unitarios (fijos y variables) de producción, más los gastos
+            administrativos,
+            de venta y de carácter general en los términos del artículo 2.2.1 del Acuerdo Antidumping, proporcione la
+            información
+            que se describe a continuación.</p>
+        <p class="body-text"><span class="number-highlight">69</span> Para cada código de producto idéntico o similar
+            reportado en el
+            apartado de Precio de exportación, presente los costos de producción y los gastos generales promedio con el
+            mayor nivel de
+            especificidad de
+            que disponga, esto es, si tiene datos diarios reportar estos, si no, proporcionar datos semanales y así
+            sucesivamente.
+            Esta información deberá corresponder al periodo investigado. Para ello, utilice el formato del Anexo 7.</p>
+        <p class="body-text"><span class="number-highlight">70</span> Conforme a lo establecido en el artículo 46 del
+            RLCE, los
+            costos de producción se integran con los conceptos siguientes: costos de materiales y componentes directos,
+            costo de la mano
+            de obra directa y los
+            gastos indirectos de fabricación. A su vez, los gastos generales incluyen a los gastos de venta y
+            administración, los
+            gastos financieros, los gastos de investigación y desarrollo, así como los demás gastos aplicables.</p>
+        <p class="body-text"><span class="number-highlight">71</span> En caso de adquirir materiales y componentes para
+            la
+            fabricación del producto investigado de proveedores vinculados, y de conformidad con el artículo 44 del
+            Reglamento de la Ley
+            de Comercio Exterior, presente
+            una tabla con los valores y volúmenes de compra de cada uno de los proveedores vinculados y no vinculados,
+            nacionales e
+            importados para cada uno de los meses del periodo investigado. Indique los niveles de comercio de sus
+            compras, así como
+            el procedimiento utilizado para identificar en su sistema contable y de costos, la información de las
+            transacciones entre
+            partes vinculadas y no vinculadas. Identifique los países de origen.</p>
+        <p class="body-text"><span class="number-highlight">72</span> Reporte los volúmenes de producción total de cada
+            código de
+            producto idéntico o similar a los reportados en el apartado de Precio de exportación, a un nivel de
+            desagregación que
+            coincida con el empleado
+            en su respuesta al punto 70 de este formulario.</p>
+        <p class="body-text"><span class="number-highlight">73</span> Efectúe los cálculos señalados en los puntos 74 a
+            78 de este
+            formulario. Utilice las columnas relevantes del formato del Anexo 7 para reportar sus resultados.</p>
+        <p class="body-text"><span class="number-highlight">74</span> Calcule los costos de producción de acuerdo con lo
+            establecido
+            en el artículo 2.2.1.1 del Acuerdo Antidumping y la asignación de costos indirectos, conforme a lo
+            establecido en el artículo
+            46, fracción
+            III del RLCE.</p>
+        <p class="body-text"><span class="number-highlight">75</span> De conformidad con el artículo 2.2.1.1 del Acuerdo
+            Antidumping,
+            aporte los medios de prueba que acredite que, los costos de producción se calculan sobre la base de los
+            registros contables y
+            que estos registros
+            estén en conformidad con los principios de contabilidad generalmente aceptados del país exportador y
+            reflejen
+            razonablemente los costos asociados a la producción y venta del producto considerado. Aporte las pruebas
+            documentales que
+            sustenten
+            su respuesta.</p>
+        <p class="body-text"><span class="number-highlight">76</span> Identifique los insumos adquiridos de partes
+            relacionadas.
+            Determine si los precios que pagó por ellos reflejan precios de mercado, conforme a lo dispuesto por el
+            artículo 44, párrafos
+            2 y 3 del RLCE. Si
+            este no es el caso, utilice cualquier otro método de investigación económica para obtener los precios de
+            mercado de
+            dichos insumos.</p>
+        <p class="body-text"><span class="number-highlight">77</span> De conformidad con los artículos 2.2.2 del Acuerdo
+            Antidumping
+            y 46 fracciones IV, V, VI, VII, VIII, IX y X del RLCE, para determinar los gastos generales, utilice los
+            datos reales
+            específicos al producto
+            objeto de investigación. De no contar con estos, utilice la información relativa a la misma categoría de
+            productos, o a
+            nivel corporativo, empleando como base de prorrateo preferentemente al costo de ventas. Si ninguno de los
+            métodos
+            descritos
+            resulta aplicable para calcular los conceptos de gastos generales, utilice cualquier otro método de
+            asignación que
+            resulte razonable, justificando su uso.</p>
+        <p class="body-text"><span class="number-highlight">78</span> Determine el costo de producción total unitario en
+            el país de
+            origen, por código de producto, en las unidades de medida y moneda originales, así como en las unidades
+            relevantes del
+            sistema métrico decimal
+            y en dólares de los Estados Unidos de América. Si es necesario, reporte las cantidades en número de piezas.
+        </p>
+        <p class="body-text"><span class="number-highlight">79</span> Señale el factor utilizado para la conversión de
+            la unidad de
+            volumen original a la unidad relevante del sistema métrico decimal. Asimismo, identifique el tipo de cambio
+            a dólares de los
+            Estados Unidos
+            de América efectivamente aplicado, conforme al artículo 58 del RLCE.
+        </p>
+        <p class="body-text"><span class="number-highlight">80</span> Explique con detalle la metodología de cálculo
+            empleada para
+            obtener cada uno de los conceptos que integran tanto el costo de producción, como los gastos generales,
+            señalando las cifras
+            y las fuentes de
+            información empleadas.
+        </p>
+        <p class="body-text"><span class="number-highlight">81</span>Proporcione impresión de pantalla de su sistema
+            contable que
+            acredite el registro de cada uno de los elementos. Cuando los datos provengan de sus estados financieros,
+            indique el anexo
+            y/o el número de las
+            páginas de donde se extraigan los datos contables para su pronta identificación por parte de la Autoridad
+            Investigadora,
+            correlacione los documentos empleando marcas, colores, etiquetas o cualquier otro elemento. Asimismo,
+            incluya las fórmulas
+            utilizadas en las hojas de cálculo.
+        </p>
+        <p class="body-text"><span class="number-highlight">82</span>En caso de no presentar la explicación
+            correspondiente de manera
+            detallada, la Secretaría no estará en condiciones de poder valorar la información reportada.
+        </p>
+        </p>
+        <div class="page-number">13</div>
+    </div>
+    <div class="page page-break">
+        <h3 class="subsection-title">3. Ajustes al Precio de Exportación y al Valor Normal</h3>
+        </p>
+        <p class="body-text"><span class="number-highlight">83</span>Con el propósito de comparar el precio de
+            exportación y el valor
+            normal al mismo nivel, normalmente ex-fábrica, las diferencias existentes entre ambos precios deben
+            neutralizarse, de
+            conformidad con los
+            artículos 2.4 del Acuerdo Antidumping; 36 de la LCE, y 52, 53, 54, 55, 56, 57 y 58 del RLCE. Entre otros, se
+            considerarán
+            ajustes por términos y condiciones de venta, diferencias en cantidades, diferencias físicas, diferencias en
+            cargas
+            impositivas
+            y en niveles comerciales.
+        </p>
+        <p class="body-text"><span class="number-highlight">84</span>Los ajustes por diferencias en términos y
+            condiciones de venta
+            son aplicables tanto al precio de exportación como al valor normal. Por su parte, los ajustes por
+            diferencias en cantidades,
+            diferencias físicas
+            y diferencias en cargas impositivas son aplicables exclusivamente sobre el valor normal. Cualquier ajuste
+            solicitado
+            deberá ser acompañado de los medios de prueba que justifiquen su consideración.
+        </p>
+        <p class="body-text"><span class="number-highlight">85</span>Los ajustes al precio de exportación y al valor
+            normal deben
+            aplicarse a cada transacción y/o a las referencias de precios. Utilice el formato del Anexo 4 para los
+            ajustes al precio de
+            exportación a los
+            Estados Unidos Mexicanos, así como el Anexo 5 en el caso del valor normal. Por separado, describa
+            detalladamente el
+            método empleado para el cálculo de cada ajuste especificando las unidades de medida y factores de conversión
+            utilizados.
+            Indique
+            y proporcione las fuentes de información de donde se obtuvieron los ajustes, soportes documentales y fechas
+            de estas.
+            Presente varios ejemplos de los cálculos correspondientes a cada ajuste.
+        </p>
+        <p class="body-text"><span class="number-highlight">86</span>Cuando los montos de los ajustes se obtengan por
+            algún método de
+            prorrateo, presente por separado la explicación detallada del método empleado. Proporcione todas las fuentes
+            contables
+            aplicables.
+        </p>
+        <p class="body-text"><span class="number-highlight">87</span>Para cada uno de los ajustes señalados en su
+            información, deberá
+            proporcionar una explicación del concepto y justificación del ajuste, las cifras con base en las cuales se
+            determinaron, las
+            fuentes de información,
+            los métodos de cálculo y las cuentas contables en las que se registran los conceptos relativos a cada
+            ajuste. Todas las
+            cifras que se reporten deberán coincidir con las cifras registradas en su contabilidad, ya sea directamente
+            o mediante
+            una conciliación.
+        </p>
+        </p>
+        <div class="page-number">14</div>
+    </div>
+    <div class="page page-break">
+        <p class="body-text"><span class="number-highlight">88</span>En caso de que en la investigación ordinaria se
+            haya utilizado
+            la metodología de país sustituto, considere lo siguiente:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>A.</strong> De conformidad con lo previsto en los artículos 33 de la LCE y 48 del RLCE, la
+            solicitante presentó
+            argumentos y pruebas para acreditar que en la producción y venta del producto similar fabricado por las
+            empresas del
+            sector
+            o industrias en el país exportador prevalecen estructuras de costos y precios que no se determinan conforme
+            a principios
+            de mercado, por lo que el cálculo del valor normal se hará con base en un país sustituto, de acuerdo con los
+            mismos
+            lineamientos
+            a que se refieren los puntos 43 y 51 de este formulario.
+        </p>
+        </p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            <strong>B.</strong> En caso de sostener lo contrario, deberá presentar los argumentos y las pruebas
+            documentales para
+            acreditar que en la producción y venta del producto similar, fabricado por las empresas del sector o
+            industrias en el país
+            exportador, prevalecen estructuras de costos y precios que se determinan conforme a principios de mercado,
+            asimismo,
+            deberá presentar la información de valor normal de conformidad con los precios internos a que se refiere el
+            Apartado C
+            (Discriminación
+            de precios), punto 2 (Valor normal), de este formulario.
+        </p>
+
+        <h3 class="subsection-title">5.Margen de Discriminación de Precios</h3>
+        </p>
+        <p class="body-text"><span class="number-highlight">89</span>De conformidad con el artículo 38 del RLCE, el
+            margen de
+            discriminación de precios corresponde a la diferencia entre el valor normal (ajustado) y el precio de
+            exportación (ajustado),
+            relativa a este último
+            y expresada en términos porcentuales, es decir:</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            MD= [(VNa - PEa) / PEa × 100]</p>
+        <p class="bullet-point" style="margin-left: 2cm;">
+            donde: MD= margen de discriminación de precios VNa= valor normal ajustado PEa= precio de exportación
+            ajustado
+        </p>
+        <p class="body-text"><span class="number-highlight">90</span>De conformidad con los artículos 2.4 del Acuerdo
+            Antidumping y
+            39 del RLCE, en el caso de que el producto objeto de investigación comprenda mercancías que no sean
+            físicamente iguales entre
+            sí, el margen
+            de discriminación de precios se debe estimar para cada uno de los tipos de producto que conforman el
+            producto objeto de
+            investigación.
+        </p>
+        <p class="body-text"><span class="number-highlight">91</span>Asimismo, se debe calcular un promedio ponderado de
+            todas las
+            estimaciones individuales consideradas. Esta ponderación se calculará conforme a la participación relativa
+            de cada tipo de
+            producto en el volumen
+            total exportado. Utilice el formato del Anexo 8.
+        </p>
+        <p class="body-text"><span class="number-highlight">92</span>Si ha utilizado dos o más referencias para
+            determinar el valor
+            normal y/o el precio de exportación de un mismo tipo de producto, reporte en el Anexo 8 exclusivamente el
+            valor promedio
+            ajustado que obtenga
+            de dichas referencias, en dólares de los Estados Unidos de América y en la unidad de medida relevante. En su
+            caso,
+            incluya una descripción detallada del método de ponderación utilizado para calcular dicho valor promedio.
+        </p>
+        </p>
+        <div class="page-number">15</div>
+    </div>
+    <div class="page page-break">
+
+        <section>
+            <h2>Declaración</h2>
+            <p><strong>Declaro bajo protesta de decir verdad que la información contenida en este formulario es completa
+                    y
+                    correcta.
+                </strong></p>
+            <table>
+                <tr>
+                    <td><strong>Nombre:</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Firma:</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Fecha:</strong></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            </p>
+            </p>
+            <h2>Consentimiento para la Consulta de Información Clasificada como Confidencial</h2>
+            <p><strong>Procedimiento:</strong> Nuevo exportador</p>
+            <p><strong>Producto:</strong></p>
+            <p><strong>Origen:</strong></p>
+            <p><strong>Expediente:</strong></p>
+            <p>Ciudad de México, a ___ de __________ de 202__</p>
+            <p class="body-text">______________________________, representante legal de la empresa
+                ______________________________, en
+                términos de lo dispuesto por el artículo 158 fracción IV del Reglamento de la Ley de Comercio Exterior
+                (RLCE), otorgo mi
+                consentimiento para que los representantes legales acreditados de las partes interesadas, puedan
+                consultar la información
+                que mi representada presente con carácter confidencial en el procedimiento citado al rubro, siempre y
+                cuando cumplan con
+                los requisitos establecidos en los artículos 159 y 160 del RLCE, y cuenten con previa autorización de la
+                Secretaría de
+                Economía. Lo anterior, con fundamento en los artículos 6.5 del Acuerdo relativo a la Aplicación del
+                Artículo VI del
+                Acuerdo General sobre Aranceles Aduaneros y Comercio de 1994, 80 de la Ley de Comercio Exterior y 158
+                fracción IV del
+                RLCE.</p>
+            <p>____________________________
+                <br>Firma
+            </p>
+            <p><strong>FORMATO OFICIAL</strong></p>
+        </section>
+        <section>
+            </p>
+            </p>
+            <h2>Consentimiento para Recibir Información y Notificaciones Vía Electrónica</h2>
+            <p><strong>Procedimiento:</strong> Nuevo exportador</p>
+            <p><strong>Producto:</strong></p>
+            <p><strong>Origen:</strong></p>
+            <p><strong>Expediente:</strong></p>
+            <p>Ciudad de México, a ___ de ____________ de 202__.</p>
+            <p class="body-text">___________________________________________________________, representante legal de la
+                empresa
+                ___________________________________________________________; en términos de lo dispuesto por los
+                artículos 1, 3 y 8
+                inciso a, fracción IV del Acuerdo por el que se establecen medidas administrativas en la Secretaría de
+                Economía con el
+                objeto de brindar facilidades a los usuarios de los trámites y procedimientos que se indican, publicado
+                en el Diario
+                Oficial de la Federación el 4 de agosto de 2021.</p>
+
+            <!-- JavaScript del Header Flotante -->
+            <script src="floating-header.js"></script>
+            <!-- JavaScript del Header Flotante -->
+            <script src="floating-header.js"></script>
+</body>
+
+</html>

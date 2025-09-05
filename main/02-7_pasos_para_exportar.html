@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 Pasos para Exportar - Guía Completa</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .accordion-item {
+        background: white;
+        border-radius: 15px;
+        margin: 1rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .accordion-header {
+        width: 100%;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border: none;
+        text-align: left;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--dark-text);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .accordion-header:hover {
+        background: linear-gradient(135deg, #fff0b3, #e8f5ff);
+      }
+
+      .accordion-header .step-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .accordion-content {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        color: #666;
+        line-height: 1.6;
+        display: none;
+      }
+
+      .accordion-content.active {
+        display: block;
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .contact-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 1.5rem;
+        border-left: 5px solid var(--leaf-green);
+        text-align: center;
+      }
+
+      .contact-card h4 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .contact-card p {
+        margin: 0.5rem 0;
+        color: #666;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">7 Pasos para Exportar</h1>
+        <p class="hero-subtitle">
+          Guía de Requisitos Normativos: De la parcela al extranjero
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">📋</span>
+            <span class="stat-label">Registro RFC</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">🌍</span>
+            <span class="stat-label">Normativas</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">📄</span>
+            <span class="stat-label">Documentación</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">🚚</span>
+            <span class="stat-label">Logística</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="nav-title">
+          <i class="fas fa-seedling"></i>
+          Lic. Irene García
+        </div>
+
+        <a href="#introduccion" class="nav-item">
+          <i class="fas fa-home"></i>
+          Introducción
+        </a>
+
+        <a href="#pasos" class="nav-item">
+          <i class="fas fa-list-ol"></i>
+          7 Pasos
+        </a>
+
+        <a href="#formularios" class="nav-item">
+          <i class="fas fa-file-alt"></i>
+          Formularios
+        </a>
+
+        <a href="#enlaces" class="nav-item">
+          <i class="fas fa-link"></i>
+          Enlaces Oficiales
+        </a>
+
+        <a href="#contacto" class="nav-item">
+          <i class="fas fa-phone"></i>
+          Contacto
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Introducción -->
+        <section id="introduccion" class="section">
+          <div class="section-header">
+            <div class="section-number">📚</div>
+            <h2 class="section-title">Introducción</h2>
+          </div>
+
+          <p>
+            Para exportar mango de Jalisco al extranjero, debes obtener tu RFC y
+            registrarte en el Padrón de Exportadores Sectorial; luego, debes
+            cumplir con los requisitos de calidad, fitosanitarios y de embalaje
+            que establezca el país destino, utilizando un agente aduanal para
+            tramitar documentos clave como la factura comercial, el CFDI con
+            Complemento de Comercio Exterior, la lista de empaque, la carta de
+            instrucciones y el certificado de origen, además del documento de
+            transporte y el certificado fitosanitario de SENASICA.
+          </p>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-star"></i> Resumen de los 7 Pasos</h3>
+            <ol style="margin-left: 1.5rem; margin-top: 1rem">
+              <li>Inscripción y Registro</li>
+              <li>Identificación de Normativas y Fracción Arancelaria</li>
+              <li>Documentación Básica</li>
+              <li>Documentación de Trámite Aduanal y Transporte</li>
+              <li>Documentación Fitosanitaria</li>
+              <li>Cumplimiento de Normativas Internacionales</li>
+              <li>Logística y Embalaje</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 7 Pasos en Acordeón -->
+        <section id="pasos" class="section">
+          <div class="section-header">
+            <div class="section-number">📋</div>
+            <h2 class="section-title">Los 7 Pasos Detallados</h2>
+          </div>
+
+          <!-- Paso 1 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(1)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">1</div>
+                <span>Inscripción y Registro</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-1"></i>
+            </button>
+            <div class="accordion-content" id="content-1">
+              <h4 style="color: var(--mango-orange); margin-bottom: 1rem">
+                Requisitos Básicos:
+              </h4>
+              <ul style="margin-bottom: 1.5rem">
+                <li>
+                  Obtén tu
+                  <strong>Registro Federal de Contribuyentes (RFC)</strong>
+                </li>
+                <li>
+                  Inscríbete en el
+                  <strong>Padrón de Exportadores Sectorial</strong>
+                </li>
+                <li>
+                  Requiere infraestructura necesaria, RFC y cuenta bancaria
+                </li>
+              </ul>
+
+              <p>
+                El primer paso para cualquier empresa que desee exportar
+                productos desde México es registrarse en el Padrón de
+                Exportadores del Servicio de Administración Tributaria (SAT).
+                Este registro es obligatorio y permite a las empresas operar
+                legalmente en el comercio internacional.
+              </p>
+
+              <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Requisitos para el registro:</strong>
+                <ul style="margin-top: 0.5rem">
+                  <li>Estar al corriente en tus obligaciones fiscales</li>
+                  <li>Contar con firma electrónica avanzada (FIEL)</li>
+                  <li>No haber sido suspendido anteriormente del padrón</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(2)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">2</div>
+                <span>Identificación de Normativas y Fracción Arancelaria</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-2"></i>
+            </button>
+            <div class="accordion-content" id="content-2">
+              <p>
+                Una vez registrado como exportador, es esencial clasificar
+                correctamente los productos a exportar. Esto se hace a través
+                del Sistema Armonizado de Designación y Codificación de
+                Mercancías, conocido comúnmente como fracción arancelaria.
+              </p>
+
+              <h4 style="color: var(--mango-orange); margin: 1.5rem 0 1rem 0">
+                Pasos a seguir:
+              </h4>
+              <ul>
+                <li>Determina la fracción arancelaria de tu producto</li>
+                <li>
+                  Conoce las regulaciones arancelarias y no arancelarias
+                  específicas del país de destino
+                </li>
+                <li>
+                  Investiga los requisitos sanitarios y de calidad del país
+                  importador
+                </li>
+                <li>
+                  Identifica posibles tratamientos poscosecha (hidrotérmica o
+                  irradiación)
+                </li>
+                <li>
+                  Verifica requisitos para el registro de huertos y empacadoras
+                </li>
+              </ul>
+
+              <div class="success">
+                <i class="fas fa-info-circle"></i>
+                Este código de 8 a 10 dígitos determina los impuestos aplicables
+                y las regulaciones a cumplir para la exportación.
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(3)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">3</div>
+                <span>Documentación Básica</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-3"></i>
+            </button>
+            <div class="accordion-content" id="content-3">
+              <div class="info-grid">
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-file-invoice"></i> Factura Comercial
+                  </h5>
+                  <p>
+                    Documento fundamental para la transacción. Debe contener
+                    información precisa sobre los bienes exportados, incluidos
+                    descripción, cantidad, valor y términos de entrega.
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-ship"></i> Guía o Conocimiento de Embarque
+                  </h5>
+                  <p>
+                    Documento que acredita el transporte de las mercancías y su
+                    destino (Bill of Lading).
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-receipt"></i> CFDI y Complemento
+                  </h5>
+                  <p>
+                    Factura electrónica que se expide por la venta de la
+                    mercancía y su complemento, vinculado al despacho de
+                    exportación.
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-list"></i> Lista de Empaque
+                  </h5>
+                  <p>
+                    Detalla el contenido de los paquetes o contenedores,
+                    asegurando que se corresponda con lo declarado en la
+                    factura.
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-certificate"></i> Certificado de Origen
+                  </h5>
+                  <p>
+                    Acredita el origen de la mercancía, puede ser solicitado por
+                    el comprador extranjero. Fundamental para aprovechar
+                    beneficios arancelarios en tratados de libre comercio.
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <h5 style="color: var(--dark-green); margin-bottom: 0.5rem">
+                    <i class="fas fa-file-alt"></i> Pedimento de Exportación
+                  </h5>
+                  <p>
+                    Documento que acredita el cumplimiento de las obligaciones
+                    fiscales y aduaneras ante el SAT.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 4 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(4)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">4</div>
+                <span>Documentación de Trámite Aduanal y Transporte</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-4"></i>
+            </button>
+            <div class="accordion-content" id="content-4">
+              <h4 style="color: var(--mango-orange); margin-bottom: 1rem">
+                Documentos Requeridos:
+              </h4>
+              <ul style="margin-bottom: 1.5rem">
+                <li>
+                  <strong
+                    >Encargo Conferido y Carta de Instrucciones al Agente
+                    Aduanal:</strong
+                  >
+                  Autorizan al agente aduanal a realizar el despacho en tu
+                  nombre y le brindan detalles específicos de la operación.
+                </li>
+                <li>
+                  <strong>Documentos de Transporte:</strong> Como la guía aérea
+                  (Airway Bill) o el conocimiento de embarque (Bill of
+                  Lading/B/L).
+                </li>
+                <li>
+                  <strong>Pedimento de Exportación:</strong> Documento que
+                  formaliza la exportación ante la aduana.
+                </li>
+              </ul>
+
+              <div class="highlight-box">
+                <h4>Contratar a un Agente Aduanal</h4>
+                <p>
+                  En México, el agente aduanal juega un papel fundamental en el
+                  proceso de exportación. Su experiencia y conocimiento en el
+                  ámbito de la aduana pueden ser de gran ayuda para evitar
+                  errores en el proceso. El agente aduanal actúa como
+                  intermediario entre el exportador y las autoridades aduaneras,
+                  asegurando que toda la documentación esté en orden.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 5 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(5)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">5</div>
+                <span>Documentación Fitosanitaria</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-5"></i>
+            </button>
+            <div class="accordion-content" id="content-5">
+              <div class="success">
+                <i class="fas fa-leaf"></i>
+                <strong>Certificado Fitosanitario:</strong> Es emitido por
+                SENASICA (Servicio Nacional de Sanidad, Inocuidad y Calidad
+                Agroalimentaria) y es indispensable para la exportación de
+                productos agrícolas.
+              </div>
+
+              <p>
+                Este certificado garantiza que los productos agrícolas cumplen
+                con los requisitos fitosanitarios del país de destino y que
+                están libres de plagas y enfermedades que puedan afectar la
+                agricultura del país importador.
+              </p>
+
+              <h4 style="color: var(--mango-orange); margin: 1.5rem 0 1rem 0">
+                Importancia del Certificado:
+              </h4>
+              <ul>
+                <li>Garantiza la calidad sanitaria del producto</li>
+                <li>Cumple con regulaciones internacionales</li>
+                <li>Evita rechazos en el país de destino</li>
+                <li>Protege la reputación del exportador</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Paso 6 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(6)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">6</div>
+                <span>Cumplimiento de Normativas Internacionales</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-6"></i>
+            </button>
+            <div class="accordion-content" id="content-6">
+              <p>
+                Exportar desde México no solo implica cumplir con las
+                regulaciones locales, sino también adaptarse a las normativas
+                del país de destino. Es importante investigar los estándares y
+                regulaciones específicos que se aplican en los países
+                receptores.
+              </p>
+
+              <h4 style="color: var(--mango-orange); margin: 1.5rem 0 1rem 0">
+                Aspectos a considerar:
+              </h4>
+              <ul style="margin-bottom: 1.5rem">
+                <li>Requisitos estrictos de etiquetado</li>
+                <li>Estándares de calidad específicos</li>
+                <li>Certificaciones de seguridad</li>
+                <li>Control de plagas en productos agrícolas</li>
+              </ul>
+
+              <div class="highlight-box">
+                <h4>Uso de Tratados de Libre Comercio</h4>
+                <p>
+                  México cuenta con una de las redes de tratados de libre
+                  comercio más amplias del mundo, incluyendo el TMEC, el TLCUEM
+                  y el CPTPP. Estos tratados permiten a las empresas mexicanas
+                  acceder a mercados internacionales con aranceles reducidos o
+                  nulos.
+                </p>
+              </div>
+
+              <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Importante:</strong> Para beneficiarse de estos
+                tratados, es crucial que las empresas exportadoras aseguren que
+                sus productos cumplen con las reglas de origen estipuladas en
+                cada acuerdo.
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 7 -->
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(7)">
+              <div style="display: flex; align-items: center">
+                <div class="step-number">7</div>
+                <span>Logística y Embalaje</span>
+              </div>
+              <i class="fas fa-chevron-down" id="icon-7"></i>
+            </button>
+            <div class="accordion-content" id="content-7">
+              <h4 style="color: var(--mango-orange); margin-bottom: 1rem">
+                Pasos Finales:
+              </h4>
+              <ul style="margin-bottom: 1.5rem">
+                <li>
+                  Prepara la mercancía con el embalaje adecuado para el
+                  transporte de perecederos
+                </li>
+                <li>
+                  Contrata un agente aduanal y un experto en logística de
+                  exportación
+                </li>
+                <li>
+                  Gestiona la operación, el transporte y los trámites
+                  intermedios
+                </li>
+              </ul>
+
+              <p>
+                El embalaje adecuado es crucial para productos perecederos como
+                el mango. Debe garantizar que el producto llegue en óptimas
+                condiciones al destino final, manteniendo su calidad y frescura
+                durante todo el trayecto.
+              </p>
+
+              <div class="success">
+                <i class="fas fa-truck"></i>
+                <strong>Consideraciones logísticas:</strong> La cadena de frío,
+                tiempos de tránsito, y coordinación entre todos los actores
+                involucrados son elementos clave para el éxito de la
+                exportación.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Formularios y Anexos -->
+        <section id="formularios" class="section">
+          <div class="section-header">
+            <div class="section-number">📄</div>
+            <h2 class="section-title">Formularios y Anexos</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-file-pdf"></i> Formulario AD</h3>
+              <p>Formulario para solicitantes (PDF)</p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-building"></i> Anexos 1-4</h3>
+              <p>
+                Datos de empresa, información comercial, documentación técnica,
+                certificaciones
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-shield-alt"></i> Anexos 5-8</h3>
+              <p>
+                Procesos de calidad, trazabilidad, medidas sanitarias, control
+                de plagas
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-box"></i> Anexos 9-12</h3>
+              <p>
+                Laboratorio, empaque, transporte, documentos complementarios
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Enlaces Oficiales -->
+        <section id="enlaces" class="section">
+          <div class="section-header">
+            <div class="section-number">🔗</div>
+            <h2 class="section-title">Enlaces y Documentación Oficial</h2>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fas fa-window-maximize"></i> Ventanilla Única</h3>
+              <p><strong>Portal VUCEM:</strong> Acceso a Ventanilla Única</p>
+              <p><strong>Ayuda:</strong> Certificación y trámites</p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-university"></i> SAT y Aduanas</h3>
+              <p><strong>Portal:</strong> Portal de Aduanas SAT</p>
+              <p><strong>Herramienta:</strong> Clasificador Arancelario</p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-flag"></i> Gobierno de México</h3>
+              <p><strong>Portal Oficial:</strong> gob.mx</p>
+              <p><strong>Servicios:</strong> Trámites y Servicios</p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-balance-scale"></i> Marco Legal</h3>
+              <p><strong>Normatividad:</strong> Orden Jurídico Nacional</p>
+              <p><strong>Legislación:</strong> Leyes y reglamentos</p>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-calculator"></i> Herramientas y Servicios</h3>
+            <p>
+              Calculadora de aranceles, semáforo fiscal, sistema de
+              trazabilidad, calculadora de costos y consultas especializadas.
+            </p>
+          </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="section">
+          <div class="section-header">
+            <div class="section-number">📞</div>
+            <h2 class="section-title">Contacto</h2>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h4>🏛️ SENASICA Jalisco</h4>
+              <p><strong>Dirección:</strong> Av. Alcalde 1351, Guadalajara</p>
+              <p><strong>Teléfono:</strong> (33) 3668-0500</p>
+              <p><strong>Web:</strong> www.senasica.gob.mx</p>
+            </div>
+
+            <div class="contact-card">
+              <h4>💼 COFOCE Jalisco</h4>
+              <p>
+                <strong>Dirección:</strong> Av. Mariano Otero 1249, Guadalajara
+              </p>
+              <p><strong>Teléfono:</strong> (33) 3336-5800</p>
+              <p><strong>Web:</strong> www.cofoce.jalisco.gob.mx</p>
+            </div>
+
+            <div class="contact-card">
+              <h4>🌾 SAGARPA</h4>
+              <p>
+                <strong>Organismo:</strong> Secretaría de Agricultura Jalisco
+              </p>
+              <p><strong>Teléfono:</strong> (33) 3030-5000</p>
+              <p><strong>Web:</strong> agricultura.jalisco.gob.mx</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <p>
+        © 2025 Lic. Irene García Castillo - Consultor en Comercio Internacional
+      </p>
+      <p>Guía de 7 Pasos para Exportar Mango desde Jalisco</p>
+    </div>
+
+    <script>
+      function toggleAccordion(num) {
+        const content = document.getElementById(`content-${num}`);
+        const icon = document.getElementById(`icon-${num}`);
+
+        if (content.classList.contains("active")) {
+          content.classList.remove("active");
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          // Close all other accordions
+          document.querySelectorAll(".accordion-content").forEach((item) => {
+            item.classList.remove("active");
+          });
+          document.querySelectorAll(".accordion-header i").forEach((item) => {
+            item.style.transform = "rotate(0deg)";
+          });
+
+          // Open current accordion
+          content.classList.add("active");
+          icon.style.transform = "rotate(180deg)";
+        }
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

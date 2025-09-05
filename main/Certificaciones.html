@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Crimson Text', serif;
+      }
+      
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #FFF;
+        color: #121211;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      
+      .header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+        border-bottom: 1px solid #E0E0E0;
+      }
+      
+      .header-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #3879C9;
+      }
+      
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 40px;
+      }
+      
+      .left-column {
+        flex: 1;
+        padding-right: 40px;
+      }
+      
+      .right-column {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .page-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #3879C9;
+        margin-bottom: 30px;
+        line-height: 1.2;
+      }
+      
+      .insight-box {
+        background-color: #F8F9FA;
+        border-left: 4px solid #3879C9;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+      
+      .insight-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #3879C9;
+        margin-bottom: 10px;
+      }
+      
+      .certification-container {
+        margin-top: 30px;
+      }
+      
+      .certification-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+      
+      .certification-icon {
+        width: 50px;
+        height: 50px;
+        background-color: #F8F9FA;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+      
+      .certification-icon i {
+        font-size: 24px;
+        color: #3879C9;
+      }
+      
+      .certification-content {
+        flex: 1;
+      }
+      
+      .certification-title {
+        font-weight: 600;
+        color: #3879C9;
+        margin-bottom: 5px;
+      }
+      
+      .image-container {
+        width: 100%;
+        height: 250px;
+        margin-bottom: 20px;
+      }
+      
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid #E0E0E0;
+      }
+      
+      .certification-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      
+      .certification-grid-item {
+        background-color: #F8F9FA;
+        padding: 15px;
+        border-left: 3px solid #3879C9;
+      }
+      
+      .footer {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        border-top: 1px solid #E0E0E0;
+        font-size: 14px;
+        color: #666;
+      }
+      
+      .page-number {
+        font-weight: 600;
+      }
+    </style>
+  
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+        fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+          .then(res => res.text())
+          .then(html => {
+              document.getElementById("header").innerHTML = html;
+          });
+    </script>
+    <link rel="stylesheet" href="header.css">
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+        fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+          .then(res => res.text())
+          .then(html => {
+              document.getElementById("header").innerHTML = html;
+          });
+    </script>
+    <link rel="stylesheet" href="header.css">
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+<!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+<header class="floating-header" id="floatingHeader">
+    <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+            <i class="fas fa-seedling"></i>
+            <div class="logo-text">
+                <span class="logo-title">Tramitología ABC</span>
+                <span class="logo-subtitle">Exportación de Mango</span>
+            </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="main/01-Todo lo que necesitas saber .html" class="nav-link">Guía Completa</a></li>
+                <li><a href="main/02-7_pasos_para_exportar.html" class="nav-link">7 Pasos</a></li>
+                <li><a href="main/06-Requisitos_por_pais.html" class="nav-link">Requisitos</a></li>
+                <li><a href="main/07-Guia_de_bolsillo.html" class="nav-link">Guía de Bolsillo</a></li>
+                <li><a href="main/08-Normatividad.html" class="nav-link">Normatividad</a></li>
+            </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+            <a href="#descargas" class="action-btn download-indicator">
+                <i class="fas fa-download"></i> Descargas
+            </a>
+            <a href="#contacto" class="action-btn primary">
+                <i class="fas fa-envelope"></i> Contacto
+            </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="main/01-Todo lo que necesitas saber .html" class="mobile-nav-link">Guía Completa</a>
+            <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link">7 Pasos</a>
+            <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link">Requisitos</a>
+            <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link">Guía de Bolsillo</a>
+            <a href="main/08-Normatividad.html" class="mobile-nav-link">Normatividad</a>
+        </div>
+        <div class="mobile-actions">
+            <a href="#descargas" class="action-btn">
+                <i class="fas fa-download"></i> Descargas
+            </a>
+            <a href="#contacto" class="action-btn">
+                <i class="fas fa-envelope"></i> Contacto
+            </a>
+        </div>
+    </div>
+</header>
+
+    <div class="slide-container">
+      <div class="header">
+        <div class="header-title">Exportación de Mango desde Jalisco: Guía Estratégica</div>
+      </div>
+      
+      <div class="content-wrapper">
+        <div class="left-column">
+          <h1 class="page-title">Certificaciones: Factor crítico para acceso a mercados premium</h1>
+          
+          <div class="insight-box">
+            <div class="insight-title">INSIGHT ESTRATÉGICO</div>
+            <p>Las certificaciones no son solo requisitos regulatorios, sino diferenciadores competitivos que permiten acceder a segmentos de mercado con precios 15-30% superiores.</p>
+          </div>
+          
+          <div class="certification-container">
+            <div class="certification-item">
+              <div class="certification-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="certification-content">
+                <div class="certification-title">NOM-031-FITO-1995</div>
+                <p>Norma oficial mexicana obligatoria que establece los requisitos fitosanitarios y especificaciones para el embalaje, tratamiento y calidad del mango para exportación.</p>
+              </div>
+            </div>
+            
+            <div class="certification-item">
+              <div class="certification-icon">
+                <i class="fas fa-temperature-high"></i>
+              </div>
+              <div class="certification-content">
+                <div class="certification-title">Tratamiento Hidrotérmico</div>
+                <p>Proceso obligatorio para exportación a EE.UU. que garantiza la eliminación de la mosca de la fruta mediante inmersión en agua caliente a temperatura controlada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="right-column">
+          <div class="image-container">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/jl9NtqJ0D4BuuttMYadPro/sandbox/slides_resource_i3jg517186truwznvei4v-e55845cb-e2b-prod_1756968237705_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL1pXVm4weEpCaEJmSw.jpeg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvamw5TnRxSjBENEJ1dXR0TVlhZFByby9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pM2pnNTE3MTg2dHJ1d3pudmVpNHYtZTU1ODQ1Y2ItZTJiLXByb2RfMTc1Njk2ODIzNzcwNV9uYTFmbl9MMmh2YldVdmRXSjFiblIxTDNWd2JHOWhaQzl6WldGeVkyaGZhVzFoWjJWekwxcFhWbTR3ZUVwQ2FFSm1Tdy5qcGVnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTU2MCxoXzE1NjAvZm9ybWF0LHdlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=LLXoXi26JPjLaioDDXYbtIFhxDAJ9PvkMr12Cx7gXAYEHoxFAAiFs8GQkJMWdxlseewidsniiLDInCdu7gTGaVtxw88yxstrrM7-I-Tke-9AaP7RP6hadIuVapGBd6xKlsB2ZF0B92RyQ8J9g~iSMrLfAKEBjamg6z0ue3wXG8EHeMPmv0VmILQJfXM8crybs~KODkIQRFDto9WRlbMT0XjTwSKaFQCIjumGb~CkN9UYl~ShyqrVRP9q4l~fGJyOsh8TuLtYtiJ7rqSTePVCU3GLwkvwJ9NFgGJiAbdr8dG1qUI34GOE5CIV68-EC6ODasXSOAZYFth~oynfrYFzpg__" alt="Mango de alta calidad">
+          </div>
+          
+          <div class="certification-grid">
+            <div class="certification-grid-item">
+              <strong>Global G.A.P.</strong>
+              <p>Buenas prácticas agrícolas reconocidas internacionalmente</p>
+            </div>
+            
+            <div class="certification-grid-item">
+              <strong>HACCP</strong>
+              <p>Sistema de análisis de peligros y puntos críticos de control</p>
+            </div>
+            
+            <div class="certification-grid-item">
+              <strong>Certificación Orgánica</strong>
+              <p>Para acceso a mercados premium con sobreprecio</p>
+            </div>
+            
+            <div class="certification-grid-item">
+              <strong>Fair Trade</strong>
+              <p>Comercio justo, valorado en mercados europeos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <div>Septiembre 2025</div>
+        <div class="page-number">3</div>
+      </div>
+    </div>
+<!-- JavaScript del Header Flotante -->
+<script src="floating-header.js"></script>
+</body>
+</html>
+

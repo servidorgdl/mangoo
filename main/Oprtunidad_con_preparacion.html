@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Crimson Text", serif;
+      }
+
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        max-height: 720px;
+        background: #fff;
+        color: #121211;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .header-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #3879c9;
+      }
+
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 40px;
+      }
+
+      .left-column {
+        flex: 1;
+        padding-right: 40px;
+      }
+
+      .right-column {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .page-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #3879c9;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .insight-box {
+        background-color: #f8f9fa;
+        border-left: 4px solid #3879c9;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .insight-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #3879c9;
+        margin-bottom: 5px;
+      }
+
+      .key-points {
+        margin-top: 20px;
+      }
+
+      .key-point {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
+
+      .key-point-icon {
+        color: #3879c9;
+        margin-right: 15px;
+        margin-top: 3px;
+      }
+
+      .key-point-content {
+        flex: 1;
+      }
+
+      .key-point-title {
+        font-weight: 600;
+        color: #3879c9;
+        margin-bottom: 5px;
+      }
+
+      .image-container {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid #e0e0e0;
+      }
+
+      .action-steps {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      .action-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #3879c9;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .action-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .action-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .action-item i {
+        color: #3879c9;
+        margin-right: 10px;
+      }
+
+      .footer {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        border-top: 1px solid #e0e0e0;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .page-number {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="slide-container">
+      <div class="header">
+        <div class="header-title">
+          Exportación de Mango desde Jalisco: Guía Estratégica
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="left-column">
+          <h1 class="page-title">
+            Exportación de mango: Oportunidad rentable con preparación adecuada
+          </h1>
+
+          <div class="insight-box">
+            <div class="insight-title">CONCLUSIÓN ESTRATÉGICA</div>
+            <p>
+              La exportación de mango desde Jalisco representa una oportunidad
+              de alto potencial con ROI promedio de 30-40%, siempre que se
+              implementen procesos estructurados y se cumplan rigurosamente los
+              requisitos regulatorios.
+            </p>
+          </div>
+
+          <div class="key-points">
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="key-point-content">
+                <div class="key-point-title">Preparación integral</div>
+                <p>
+                  El éxito en la exportación requiere una planificación que
+                  abarca desde la investigación de mercados hasta la logística y
+                  documentación, con especial atención a la cadena de frío.
+                </p>
+              </div>
+            </div>
+
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="key-point-content">
+                <div class="key-point-title">Calidad como diferenciador</div>
+                <p>
+                  Las certificaciones y el cumplimiento de estándares
+                  internacionales son factores determinantes para acceder a
+                  segmentos premium con precios 15-30% superiores.
+                </p>
+              </div>
+            </div>
+
+            <div class="key-point">
+              <div class="key-point-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="key-point-content">
+                <div class="key-point-title">Alianzas estratégicas</div>
+                <p>
+                  Contar con socios especializados como agentes aduanales y
+                  operadores logísticos reduce riesgos y optimiza costos en toda
+                  la cadena de exportación.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="image-container">
+            <img
+              src="https://private-us-east-1.manuscdn.com/sessionFile/jl9NtqJ0D4BuuttMYadPro/sandbox/slides_resource_i3jg517186truwznvei4v-e55845cb-e2b-prod_1756968604245_na1fn_L2hvbWUvdWJ1bnR1L3VwbG9hZC9zZWFyY2hfaW1hZ2VzL21wNWtGV1J5eDBmbw.jpg?x-oss-process=image/resize,w_1560,h_1560/format,webp&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvamw5TnRxSjBENEJ1dXR0TVlhZFByby9zYW5kYm94L3NsaWRlc19yZXNvdXJjZV9pM2pnNTE3MTg2dHJ1d3pudmVpNHYtZTU1ODQ1Y2ItZTJiLXByb2RfMTc1Njk2ODYwNDI0NV9uYTFmbl9MMmh2YldVdmRXSjFiblIxTDNWd2JHOWhaQzl6WldGeVkyaGZhVzFoWjJWekwyMXdOV3RHVjFKNWVEQm1idy5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xNTYwLGhfMTU2MC9mb3JtYXQsd2VicCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=UZRTda1PJyM-R7rVCsESmzNKW8UnD~pAw7Zg79mrtQ0rx0UfICEttzcUFPKwO4lmvlf6h0ybea8q8Xja1XiKTmucZct7xP8GS85-DXUocqMgAilDMyK-kBeKACsG6VMdVN6rKKZro9GM6qRGsACHQ3gAW~q2FaR2wIIQ5bpkP7cRS3uR5vGphadUG2cKF285~OdhE8kv0-nl0CTjc9N9YBIYz7diqN3g9M9cXv3AQspgP~L~zwXYUaCU8lTC4svzPWD3ao7hE7RkNq9FwsX3r6BWi7TnOpAtngDqxPWIy8sY~IGMLxtYR8fTx-CEJ69YebNUk6vaf5xmkAgv6ae2kA__"
+              alt="Producto final de mango"
+            />
+          </div>
+
+          <div class="action-steps">
+            <div class="action-title">Próximos pasos recomendados</div>
+
+            <div class="action-list">
+              <div class="action-item">
+                <i class="fas fa-arrow-right"></i>
+                <span>Estudio de mercado detallado</span>
+              </div>
+
+              <div class="action-item">
+                <i class="fas fa-arrow-right"></i>
+                <span>Selección de certificaciones</span>
+              </div>
+
+              <div class="action-item">
+                <i class="fas fa-arrow-right"></i>
+                <span>Contacto con agentes aduanales</span>
+              </div>
+
+              <div class="action-item">
+                <i class="fas fa-arrow-right"></i>
+                <span>Desarrollo de plan financiero</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Septiembre 2025</div>
+        <div class="page-number">11</div>
+      </div>
+    </div>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

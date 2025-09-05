@@ -1,0 +1,1529 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dossier: Exportación de Mango Kent</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* Additional styles for dossier_mango.html content */
+      .dashboard {
+        background: linear-gradient(135deg, var(--dark-text), #16213e);
+        color: white;
+        padding: 5rem 2rem;
+        margin: 3rem 0;
+        border-radius: 30px;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .dashboard-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .dashboard-number {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: var(--mango-yellow);
+        margin-bottom: 0.5rem;
+      }
+
+      .dashboard-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .testimonial-carousel {
+        position: relative;
+        overflow: hidden;
+        margin: 3rem 0;
+      }
+
+      .testimonial-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .testimonial-item {
+        min-width: 100%;
+        padding: 3rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin: 0 1rem;
+      }
+
+      .testimonial-text {
+        font-size: 1.3rem;
+        font-style: italic;
+        margin-bottom: 2rem;
+        color: var(--dark-text);
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: var(--dark-green);
+      }
+
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ddd;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-dot.active {
+        background: var(--mango-yellow);
+        transform: scale(1.2);
+      }
+
+      .final-cta {
+        background: linear-gradient(
+          135deg,
+          var(--mango-yellow),
+          var(--mango-orange)
+        );
+        color: white;
+        text-align: center;
+        padding: 5rem 2rem;
+        margin: 3rem 0 0 0;
+        border-radius: 30px 30px 0 0;
+      }
+
+      .final-cta h2 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        margin-bottom: 2rem;
+        color: white;
+        background: none;
+        -webkit-text-fill-color: white;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+      }
+
+      .cta-button {
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .cta-primary {
+        background: white;
+        color: var(--mango-yellow);
+      }
+
+      .cta-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .flip-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .flip-card {
+        background-color: transparent;
+        width: 100%;
+        height: 300px;
+        perspective: 1000px;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .flip-card-front {
+        background: linear-gradient(
+          135deg,
+          var(--leaf-green),
+          var(--dark-green)
+        );
+        color: white;
+      }
+
+      .flip-card-back {
+        background: linear-gradient(
+          135deg,
+          var(--mango-yellow),
+          var(--mango-orange)
+        );
+        color: var(--dark-text);
+        transform: rotateY(180deg);
+      }
+
+      .flip-card h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .flip-card p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .price-highlight {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--mango-yellow);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .timeline-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        background: linear-gradient(
+          to bottom,
+          var(--leaf-green),
+          var(--mango-yellow)
+        );
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -2px;
+        border-radius: 2px;
+      }
+
+      .timeline-item {
+        padding: 1rem 2rem;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        opacity: 0;
+        animation: slideIn 0.6s forwards;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        animation-delay: 0.2s;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        animation-delay: 0.4s;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .timeline-content {
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid var(--mango-yellow);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--mango-yellow);
+        border: 4px solid white;
+        top: 2rem;
+        border-radius: 50%;
+        z-index: 1;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-item:nth-child(odd)::after {
+        right: -12px;
+      }
+
+      .timeline-item:nth-child(even)::after {
+        left: -12px;
+      }
+
+      @media (max-width: 768px) {
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::after {
+          left: 21px;
+        }
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        transform: translateY(-100%);
+      }
+
+      .navbar.visible {
+        transform: translateY(0);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: var(--leaf-green);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-text);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--mango-yellow);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      .section h2 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(
+          135deg,
+          var(--leaf-green),
+          var(--mango-yellow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .cta-hero {
+        background: var(--mango-yellow);
+        color: var(--dark-text);
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      .cta-hero:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(232, 185, 49, 0.4);
+      }
+
+      .stat-item {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: pulse 2s infinite alternate;
+        min-width: 200px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--mango-yellow);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.05);
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        line-height: 1.1;
+      }
+
+      .hero .subtitle {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 300;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .stats-carousel {
+        display: flex;
+        justify-content: space-around;
+        margin: 3rem 0;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--leaf-green) 0%,
+          var(--dark-green) 50%,
+          var(--mango-yellow) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mango" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23mango)"/></svg>');
+        animation: float 20s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+      }
+
+      .section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 0.8s forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVEGACIÓN PROFESIONAL -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="logo">🥭 MangoExport PRO</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#numeros">Números</a></li>
+          <li><a href="#experiencias">Experiencias</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO IMPACTANTE -->
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <h1>DE $5 PESOS A $2 DÓLARES</h1>
+        <p class="subtitle">Convierte tu Mango Kent en OPORTUNIDAD DE ORO</p>
+
+        <div class="stats-carousel">
+          <div class="stat-item">
+            <div class="stat-number">400%</div>
+            <div class="stat-label">Ganancia Mínima</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">68%</div>
+            <div class="stat-label">Mercado USA</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">0%</div>
+            <div class="stat-label">Aranceles T-MEC</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3-5</div>
+            <div class="stat-label">Días a Houston</div>
+          </div>
+        </div>
+
+        <a href="#proceso" class="cta-hero">🚀 DESCUBRE CÓMO</a>
+      </div>
+    </section>
+
+    <!-- PROCESO CON FLIP CARDS -->
+    <section class="section" id="proceso">
+      <h2>Tu Camino al Éxito Internacional</h2>
+
+      <div class="flip-cards-container">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>🌱 ORIGEN</h3>
+              <p>Compra Inteligente</p>
+              <div class="price-highlight">$5-10 MXN/kg</div>
+            </div>
+            <div class="flip-card-back">
+              <h3>🎯 ESTRATEGIA</h3>
+              <p>
+                <strong>"Apalabrado" desde noviembre:</strong><br />
+                • Anticipo 20-30%<br />
+                • Precio fijo garantizado<br />
+                • Ahorro: $2-4 MXN/kg
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>📋 CERTIFICACIONES</h3>
+              <p>Pasaporte al Mundo</p>
+              <div class="price-highlight">$20K-50K MXN</div>
+            </div>
+            <div class="flip-card-back">
+              <h3>💰 RETORNO</h3>
+              <p>
+                <strong>Inversión que se paga sola:</strong><br />
+                • GlobalGAP: Europa<br />
+                • SENASICA: Obligatorio<br />
+                • USDA Organic: Premium USA
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>🚛 LOGÍSTICA</h3>
+              <p>Cadena de Frío 10-13°C</p>
+              <div class="price-highlight">$0.5-1 USD/kg</div>
+            </div>
+            <div class="flip-card-back">
+              <h3>⚡ SECRETO</h3>
+              <p>
+                <strong>Contenedores compartidos:</strong><br />
+                • Ahorro 30% vs. FCL<br />
+                • Termógrafo $50 USD<br />
+                • Evita pérdidas $10K
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>🎯 VENTA</h3>
+              <p>Precio Final</p>
+              <div class="price-highlight">$1.5-2 USD/kg</div>
+            </div>
+            <div class="flip-card-back">
+              <h3>💎 PREMIUM</h3>
+              <p>
+                <strong>Marca "Puerto Vallarta":</strong><br />
+                • Storytelling del origen<br />
+                • Certificaciones visibles<br />
+                • Premium vs. Commodity
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE DEL PROCESO -->
+    <section class="section">
+      <h2>Proceso Paso a Paso</h2>
+
+      <div class="timeline-container">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>🤝 NOVIEMBRE: Apalabrado Inteligente</h3>
+              <p>
+                Reserva tu mango con 20-30% de anticipo. Los exportadores
+                exitosos no compran mango, lo "reservan" desde noviembre cuando
+                los precios están bajos.
+              </p>
+              <strong>Ahorro: $2-4 MXN/kg vs. temporada</strong>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>📋 DICIEMBRE-FEBRERO: Certificaciones</h3>
+              <p>
+                Tiempo para obtener GlobalGAP, SENASICA, USDA. Una inversión de
+                $20-50K MXN que abre mercados Premium y se paga sola en una
+                temporada.
+              </p>
+              <strong>ROI: 2-3 temporadas máximo</strong>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>🌱 MARZO: Cosecha y Post-Cosecha</h3>
+              <p>
+                Tratamiento térmico obligatorio para USA (48°C, 60-90 min).
+                Clasificación óptica = 80-90% exportable vs. 60-70% sin
+                tecnología.
+              </p>
+              <strong>Mermas: 8-10% vs. 12% promedio</strong>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>📦 ABRIL: Empaque y Envío</h3>
+              <p>
+                Cajas ventiladas 4-5kg, palets ISPM-15. Termógrafo de $50 USD
+                evita reclamaciones de $10,000 USD. Contenedores reefer
+                compartidos.
+              </p>
+              <strong>Ahorro logístico: 30% vs. FCL completo</strong>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3>🇺🇸 MAYO-JULIO: Distribución Premium</h3>
+              <p>
+                Houston: 1-3 días. Europa: 15-20 días marítimo. Marca "Puerto
+                Vallarta Premium" con storytelling del origen para diferenciarte
+                del commodity.
+              </p>
+              <strong
+                >Premium: $1.5-2 USD/kg vs. $1-1.2 USD/kg commodity</strong
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD DE NÚMEROS QUE IMPACTAN -->
+    <section class="dashboard" id="numeros">
+      <div class="container">
+        <h2 style="color: white; text-align: center; margin-bottom: 2rem">
+          NÚMEROS QUE CAMBIAN VIDAS
+        </h2>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="dashboard-number">$50K</div>
+            <div class="dashboard-label">Inversión Inicial Mínima</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-number">400%</div>
+            <div class="dashboard-label">ROI Conservador Anual</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-number">30%</div>
+            <div class="dashboard-label">Ahorro Logístico Inteligente</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-number">0%</div>
+            <div class="dashboard-label">Aranceles USA/Canadá</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-number">27</div>
+            <div class="dashboard-label">Países que Compran Mango MX</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="dashboard-number">68%</div>
+            <div class="dashboard-label">Mercado USA es Nuestro</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIAS CLAVE -->
+    <section class="section" id="experiencias">
+      <h2>Los Secretos que NO te Cuentan</h2>
+
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-item">
+            <div class="testimonial-text">
+              "Un termógrafo de $50 dólares me salvó de perder $10,000 en una
+              sola carga. Lo puse en el lado derecho de la última paleta y me
+              alertó que el contenedor salió de rango. Pude reclamar al
+              transportista y evité la pérdida total."
+            </div>
+            <div class="testimonial-author">
+              — Exportador de Jalisco, 5 años experiencia
+            </div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-text">
+              "Nunca llenes un contenedor completo si estás empezando. Los
+              contenedores reefer compartidos de 20 pies me ahorran 30% vs. FCL.
+              Coordino con TIBA y ya tengo rutas fijas a Houston."
+            </div>
+            <div class="testimonial-author">— Consorcio Mango Vallarta</div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-text">
+              "Mi A.C. bien estructurada me deduce gastos operativos. Constituí
+              una con productores por $15K y la registré como donataria
+              autorizada. Deduzco hasta 7% del ingreso gravable y el 100% de
+              salarios."
+            </div>
+            <div class="testimonial-author">— Asesor Fiscal, EMEX A.C.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <div class="carousel-dot active" onclick="currentSlide(1)"></div>
+        <div class="carousel-dot" onclick="currentSlide(2)"></div>
+        <div class="carousel-dot" onclick="currentSlide(3)"></div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL POTENTE -->
+    <section class="final-cta" id="contacto">
+      <h2>¡TU OPORTUNIDAD ES AHORA!</h2>
+      <p style="font-size: 1.3rem; margin-bottom: 2rem">
+        La próxima temporada empieza en 4 meses.<br />
+        <strong>Los que se preparan HOY, exportan MAÑANA.</strong>
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#" class="cta-button cta-primary">📞 COMENZAR AHORA</a>
+        <a href="#" class="cta-button cta-secondary"
+          >📋 DESCARGAR GUÍA COMPLETA</a
+        >
+      </div>
+
+      <div
+        style="
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.3);
+        "
+      >
+        <h3>Contacto Recomendado para Créditos:</h3>
+        <p>
+          <strong>Lic. Alejandro Medina Orozco</strong><br />
+          Banco del Bajío - Especialista en Exportación<br />
+          Medina Ascencio, Guadalajara, Jal.
+        </p>
+
+        <p style="margin-top: 2rem">
+          <strong>Consultoría:</strong><br />
+          Lic. Irene García Castillo<br />
+          Guadalajara, Jalisco • Julio 2025
+        </p>
+      </div>
+    </section>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("visible");
+        } else {
+          navbar.classList.remove("visible");
+        }
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Testimonial carousel functionality
+      let currentTestimonial = 0;
+      const testimonials = document.querySelectorAll(".testimonial-item");
+      const totalTestimonials = testimonials.length;
+
+      function showSlide(n) {
+        const track = document.getElementById("testimonialTrack");
+        const dots = document.querySelectorAll(".carousel-dot");
+
+        if (n >= totalTestimonials) currentTestimonial = 0;
+        if (n < 0) currentTestimonial = totalTestimonials - 1;
+
+        track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+
+        dots.forEach((dot) => dot.classList.remove("active"));
+        dots[currentTestimonial].classList.add("active");
+      }
+
+      function currentSlide(n) {
+        currentTestimonial = n - 1;
+        showSlide(currentTestimonial);
+      }
+
+      // Auto-advance testimonials
+      setInterval(() => {
+        currentTestimonial++;
+        showSlide(currentTestimonial);
+      }, 5000);
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections for animations
+      document
+        .querySelectorAll(".section, .dashboard, .flip-card, .timeline-item")
+        .forEach((el) => {
+          observer.observe(el);
+        });
+
+      // Enhanced flip card interactions
+      document.querySelectorAll(".flip-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          this.classList.toggle("flipped");
+        });
+      });
+
+      // Dashboard counter animation
+      function animateCounters() {
+        const counters = document.querySelectorAll(".dashboard-number");
+
+        counters.forEach((counter) => {
+          const target = counter.innerText;
+          const isPercent = target.includes("%");
+          const isDollar = target.includes("$");
+          let value = parseFloat(target.replace(/[^0-9.]/g, ""));
+          let start = 0;
+          let duration = 2000;
+          let startTime = null;
+
+          function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const progress = (currentTime - startTime) / duration;
+            const current = Math.min(progress, 1) * value;
+
+            if (isDollar) {
+              counter.innerText = `$${Math.round(current).toLocaleString()}`; // Format as currency
+            } else if (isPercent) {
+              counter.innerText = `${Math.round(current)}%`;
+            } else {
+              counter.innerText = Math.round(current);
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          }
+          requestAnimationFrame(animate);
+        });
+      }
+
+      // Trigger counter animation when dashboard is in view
+      const dashboardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounters();
+              dashboardObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      document.querySelectorAll(".dashboard").forEach((dashboard) => {
+        dashboardObserver.observe(dashboard);
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

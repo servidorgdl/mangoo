@@ -1,0 +1,1357 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿ES COMPLICADO EXPORTAR INTERNACIONALMENTE? - Guía Completa</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --mango-orange: #ff8c42;
+        --mango-yellow: #ffd23f;
+        --leaf-green: #2ecc71;
+        --dark-green: #27ae60;
+        --earth-brown: #8b4513;
+        --sky-blue: #3498db;
+        --dark-text: #2c3e50;
+        --light-bg: #fff8e1;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --warning-color: #f39c12;
+        --success-color: #27ae60;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.7;
+        color: var(--dark-text);
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e8 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange) 0%,
+          var(--mango-yellow) 50%,
+          var(--leaf-green) 100%
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+        100% {
+          transform: translateX(50px) translateY(50px);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        margin-bottom: 2rem;
+        opacity: 0.95;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: bold;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+          gap: 2rem;
+        }
+      }
+
+      .sidebar {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        height: fit-content;
+        position: sticky;
+        top: 2rem;
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: bold;
+        color: var(--mango-orange);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        color: var(--dark-text);
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .nav-item:hover {
+        background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+        border-left-color: var(--mango-orange);
+        transform: translateX(5px);
+        text-decoration: none;
+        color: var(--dark-text);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+        color: var(--mango-orange);
+        width: 20px;
+        flex-shrink: 0;
+      }
+
+      .main-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .section {
+        margin-bottom: 4rem;
+        scroll-margin-top: 2rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--mango-orange);
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: var(--dark-text);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #fff8e1 0%, #f0f8ff 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        border-left: 5px solid var(--leaf-green);
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-card h3 {
+        color: var(--dark-green);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .info-card i {
+        color: var(--leaf-green);
+      }
+
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          var(--mango-orange),
+          var(--mango-yellow)
+        );
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .highlight-box h3 {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+        margin-bottom: 1rem;
+      }
+
+      .warning {
+        background: linear-gradient(135deg, #fff3cd, #fce4b6);
+        border-left: 5px solid var(--warning-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .warning i {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+
+      .success {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-left: 5px solid var(--success-color);
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+
+      .success i {
+        color: var(--success-color);
+        margin-right: 0.5rem;
+      }
+
+      .strategy-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: var(--shadow);
+        border-left: 5px solid var(--mango-orange);
+      }
+
+      .strategy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .cost-comparison {
+        background: linear-gradient(135deg, #fff8e1, #f0f8ff);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 1rem 0;
+      }
+
+      .cost-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .cost-item:last-child {
+        border-bottom: none;
+        font-weight: bold;
+        color: var(--mango-orange);
+      }
+
+      .faq-item {
+        background: white;
+        border-radius: 15px;
+        margin: 1rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .faq-question {
+        width: 100%;
+        padding: 1.5rem;
+        background: none;
+        border: none;
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--dark-text);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background-color: var(--light-bg);
+      }
+
+      .faq-answer {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        color: #666;
+        line-height: 1.6;
+        display: none;
+      }
+
+      .faq-answer.active {
+        display: block;
+      }
+
+      .footer {
+        background: var(--dark-text);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      .footer p {
+        margin: 0;
+        opacity: 0.8;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 3rem 1rem;
+          min-height: 50vh;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 1rem;
+        }
+
+        .sidebar {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .progress-red {
+        background-color: #e74c3c;
+      }
+
+      .progress-green {
+        background-color: var(--success-color);
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .tip-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .tip-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .tip-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">¿ES COMPLICADO EXPORTAR INTERNACIONALMENTE?</h1>
+        <p class="hero-subtitle">
+          Puntos importantes para el emprendimiento y exportación de mango Kent
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">🥭</span>
+            <span class="stat-label">Mango Kent</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5°</span>
+            <span class="stat-label">Productor Mundial</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">4.5%</span>
+            <span class="stat-label">Crecimiento Anual</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Mar-Jul</span>
+            <span class="stat-label">Temporada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="nav-title">
+          <i class="fas fa-seedling"></i>
+          Lic. Irene García
+        </div>
+
+        <a href="#inicio" class="nav-item">
+          <i class="fas fa-home"></i>
+          Inicio
+        </a>
+
+        <a href="#requisitos" class="nav-item">
+          <i class="fas fa-clipboard-check"></i>
+          Requisitos
+        </a>
+
+        <a href="#mercados" class="nav-item">
+          <i class="fas fa-globe"></i>
+          Mercados
+        </a>
+
+        <a href="#estrategias" class="nav-item">
+          <i class="fas fa-lightbulb"></i>
+          Estrategias
+        </a>
+
+        <a href="#faq" class="nav-item">
+          <i class="fas fa-question-circle"></i>
+          FAQ
+        </a>
+
+        <a href="#contacto" class="nav-item">
+          <i class="fas fa-phone"></i>
+          Contacto
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Introducción -->
+        <section id="inicio" class="section">
+          <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Introducción: El Oro Verde de México</h2>
+          </div>
+
+          <p>
+            México se ha consolidado como el
+            <strong>quinto productor mundial de mango</strong> y el
+            <strong>líder indiscutible en exportación</strong>, con un
+            crecimiento anual del 4.5% desde 2019. Este documento es una guía
+            esencial para cualquier emprendedor que desee incursionar en la
+            exportación de mango, específicamente la variedad
+            <strong>Kent</strong>, desde la región de Jalisco hacia los mercados
+            más importantes del mundo.
+          </p>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-star"></i> ¿Por qué el Mango Kent?</h3>
+            <p>
+              El mango Kent no es solo una fruta, es una oportunidad de negocio.
+              Su
+              <strong>sabor dulce, textura suave y baja fibrosidad</strong> lo
+              convierten en el favorito de los consumidores internacionales.
+              Además, su <strong>excepcional vida de anaquel</strong> y
+              resistencia al transporte lo hacen ideal para conquistar mercados
+              lejanos.
+            </p>
+          </div>
+
+          <p>
+            La temporada de cosecha en Jalisco, de
+            <strong>marzo a julio</strong>, representa una ventana estratégica
+            para maximizar la rentabilidad, aprovechando la alta demanda cuando
+            otros países productores no están en su pico.
+          </p>
+        </section>
+
+        <!-- Requisitos para Exportar -->
+        <section id="requisitos" class="section">
+          <div class="section-header">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Requisitos para Exportar</h2>
+          </div>
+
+          <div class="success">
+            <i class="fas fa-check-circle"></i>
+            <strong
+              >Todo lo que necesitas saber para cumplir con las regulaciones
+              internacionales</strong
+            >
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>
+                <i class="fas fa-certificate"></i> Certificado Fitosanitario
+              </h3>
+              <p>
+                Emitido por SENASICA, certifica el cumplimiento de regulaciones
+                del país destino.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-flask"></i> Tratamientos Post-cosecha</h3>
+              <p>
+                Tratamientos hidrotérmicos o irradiación según país de destino.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-warehouse"></i> Registro de Empaques</h3>
+              <p>
+                Registro obligatorio de huertos y lugares de empaque para
+                exportación.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-file-alt"></i> Documentación</h3>
+              <p>
+                Factura comercial, BL, certificado de origen y documentos
+                aduaneros.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-search"></i> Trazabilidad</h3>
+              <p>
+                Sistema para identificar origen y seguir recorrido completo del
+                producto.
+              </p>
+            </div>
+
+            <div class="info-card">
+              <h3><i class="fas fa-tag"></i> Etiquetado</h3>
+              <p>
+                Cumplir regulaciones de etiquetado específicas de cada país
+                destino.
+              </p>
+            </div>
+          </div>
+
+          <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>¡Atención!</strong> Cada país destino tiene sus propias
+            regulaciones. Es fundamental investigar y cumplir con los requisitos
+            específicos de Estados Unidos, Canadá, la Unión Europea y Asia.
+          </div>
+        </section>
+
+        <!-- Mercados Destino -->
+        <section id="mercados" class="section">
+          <div class="section-header">
+            <div class="section-number">3</div>
+            <h2 class="section-title">Mercados Clave para el Mango Mexicano</h2>
+          </div>
+
+          <div class="highlight-box">
+            <h3><i class="fas fa-chart-pie"></i> Estadísticas Globales</h3>
+            <div class="strategy-grid">
+              <div>
+                <p>
+                  <strong>98%</strong> de las cajas de mango se mueven
+                  diariamente en mercados internacionales
+                </p>
+                <p>
+                  <strong>28 países</strong> consumen mango mexicano
+                  regularmente
+                </p>
+              </div>
+              <div>
+                <p>
+                  Estados Unidos y Canadá compran el <strong>98%</strong> de la
+                  exportación mundial
+                </p>
+                <p><strong>80M</strong> de cajas exportadas anualmente</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>🇺🇸 Estados Unidos</h3>
+              <p><strong>Participación:</strong> 68% de las exportaciones</p>
+              <p>
+                <strong>Tránsito:</strong> 1-3 días (flete terrestre rápido)
+              </p>
+              <p>
+                <strong>Requisitos especiales:</strong> Tratamiento hidrotérmico
+                obligatorio
+              </p>
+              <p><strong>Precio promedio:</strong> $2.50-4.00 USD/kg</p>
+            </div>
+
+            <div class="info-card">
+              <h3>🇨🇦 Canadá</h3>
+              <p><strong>Participación:</strong> 13.1% de las exportaciones</p>
+              <p><strong>Tránsito:</strong> 5-6 días (demanda creciente)</p>
+              <p><strong>Requisitos especiales:</strong> Certificación CFIA</p>
+              <p><strong>Precio promedio:</strong> $3.00-5.00 CAD/kg</p>
+            </div>
+
+            <div class="info-card">
+              <h3>🇪🇸 Europa</h3>
+              <p><strong>Participación:</strong> 8% de las exportaciones</p>
+              <p><strong>Tránsito:</strong> 15-20 días (mercado premium)</p>
+              <p>
+                <strong>Países clave:</strong> España, Países Bajos, Alemania
+              </p>
+              <p><strong>Precio promedio:</strong> €3.50-6.00/kg</p>
+            </div>
+
+            <div class="info-card">
+              <h3>🇨🇳 Asia (China)</h3>
+              <p><strong>Participación:</strong> 5% de las exportaciones</p>
+              <p><strong>Tránsito:</strong> 20-30 días (en expansión)</p>
+              <p>
+                <strong>Requisitos especiales:</strong> Irradiación obligatoria
+              </p>
+              <p><strong>Precio promedio:</strong> $4.00-7.00 USD/kg</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Estrategias Exitosas -->
+        <section id="estrategias" class="section">
+          <div class="section-header">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Estrategias Exitosas</h2>
+          </div>
+
+          <p class="text-center mb-4">
+            Métodos comprobados para maximizar rentabilidad
+          </p>
+
+          <!-- Strategy 1: Smart Contracting -->
+          <div class="strategy-card">
+            <div class="strategy-grid">
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--mango-orange),
+                        var(--mango-yellow)
+                      );
+                      width: 50px;
+                      height: 50px;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin-right: 1rem;
+                    "
+                  >
+                    <i class="fas fa-handshake" style="color: white"></i>
+                  </div>
+                  <h3
+                    style="
+                      font-size: 1.5rem;
+                      font-weight: bold;
+                      color: var(--dark-text);
+                    "
+                  >
+                    Apalabrado Inteligente
+                  </h3>
+                </div>
+                <p style="color: #666; margin-bottom: 1.5rem">
+                  Los exportadores exitosos no compran mango en temporada, lo
+                  "reservan" desde noviembre. Esta estrategia puede ahorrarte
+                  hasta 40% en costos.
+                </p>
+
+                <div style="margin-bottom: 1rem">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <i
+                      class="fas fa-check-circle"
+                      style="color: var(--success-color); margin-right: 0.5rem"
+                    ></i>
+                    <span>Contratos en nov-dic (fuera de temporada)</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <i
+                      class="fas fa-check-circle"
+                      style="color: var(--success-color); margin-right: 0.5rem"
+                    ></i>
+                    <span>20-30% anticipo sobre precio estimado</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <i
+                      class="fas fa-check-circle"
+                      style="color: var(--success-color); margin-right: 0.5rem"
+                    ></i>
+                    <span>Cláusulas de calidad obligatorias</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cost-comparison">
+                <h4
+                  style="
+                    font-weight: bold;
+                    color: var(--dark-text);
+                    margin-bottom: 1rem;
+                  "
+                >
+                  Comparativa de Costos
+                </h4>
+                <div class="cost-item">
+                  <span>Compra en temporada</span>
+                  <span style="font-weight: bold; color: #e74c3c"
+                    >$15-25 MXN/kg</span
+                  >
+                </div>
+                <div class="cost-item">
+                  <span>Apalabrado inteligente</span>
+                  <span style="font-weight: bold; color: var(--success-color)"
+                    >$4-8 MXN/kg</span
+                  >
+                </div>
+                <div class="cost-item">
+                  <span>Ahorro</span>
+                  <span style="color: var(--mango-orange)">60-70%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Strategy 2: Investment in Agriculture -->
+          <div class="strategy-card">
+            <div class="strategy-grid">
+              <div class="cost-comparison">
+                <h4
+                  style="
+                    font-weight: bold;
+                    color: var(--dark-text);
+                    margin-bottom: 1rem;
+                  "
+                >
+                  Reducción de Mermas
+                </h4>
+                <div style="margin-bottom: 1rem">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <span>Sin inversión</span>
+                    <span style="font-weight: bold; color: #e74c3c"
+                      >12% mermas</span
+                    >
+                  </div>
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill progress-red"
+                      style="width: 12%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <span>Con inversión</span>
+                    <span style="font-weight: bold; color: var(--success-color)"
+                      >8-10% mermas</span
+                    >
+                  </div>
+                  <div class="progress-bar">
+                    <div
+                      class="progress-fill progress-green"
+                      style="width: 10%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--mango-orange),
+                        var(--mango-yellow)
+                      );
+                      width: 50px;
+                      height: 50px;
+                      border-radius: 50%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin-right: 1rem;
+                    "
+                  >
+                    <i class="fas fa-seedling" style="color: white"></i>
+                  </div>
+                  <h3
+                    style="
+                      font-size: 1.5rem;
+                      font-weight: bold;
+                      color: var(--dark-text);
+                    "
+                  >
+                    Financiamiento Cruzado
+                  </h3>
+                </div>
+                <p style="color: #666; margin-bottom: 1.5rem">
+                  Invertir en el huerto = control total de calidad + precio
+                  preferencial + reducción de mermas del 12% al 8-10%.
+                </p>
+
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <i
+                      class="fas fa-bug"
+                      style="color: var(--mango-orange); margin-right: 0.5rem"
+                    ></i>
+                    <span>Sistemas anti-mosca: $10,000-50,000 MXN/ha</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <i
+                      class="fas fa-certificate"
+                      style="color: var(--mango-orange); margin-right: 0.5rem"
+                    ></i>
+                    <span>Certificaciones SENASICA y GlobalGAP</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <i
+                      class="fas fa-search"
+                      style="color: var(--mango-orange); margin-right: 0.5rem"
+                    ></i>
+                    <span>Trazabilidad completa del producto</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+          <div class="section-header">
+            <div class="section-number">5</div>
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+          </div>
+
+          <p style="text-align: center; color: #666; margin-bottom: 2rem">
+            Respuestas a las dudas más comunes sobre exportación de mango
+          </p>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(1)">
+              <span>¿Cuándo es la mejor época para exportar mango Kent?</span>
+              <i class="fas fa-chevron-down" id="icon-1"></i>
+            </button>
+            <div class="faq-answer" id="answer-1">
+              <p>
+                La temporada estratégica es de marzo a julio, con picos de
+                producción en abril-mayo y mayo-junio. Esta ventana permite
+                aprovechar la alta demanda internacional cuando otros países no
+                están en cosecha.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(2)">
+              <span>¿Qué certificaciones son obligatorias?</span>
+              <i class="fas fa-chevron-down" id="icon-2"></i>
+            </button>
+            <div class="faq-answer" id="answer-2">
+              <p>
+                El certificado fitosanitario de SENASICA es obligatorio.
+                GlobalGAP es altamente recomendado para mercados premium como
+                Europa. Cada país destino puede tener requisitos específicos
+                adicionales.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(3)">
+              <span>¿Cómo registro mi empresa para exportar?</span>
+              <i class="fas fa-chevron-down" id="icon-3"></i>
+            </button>
+            <div class="faq-answer" id="answer-3">
+              <p>
+                Debes registrarte en el padrón de exportadores del SAT, obtener
+                tu RFC, contratar servicios de aduana autorizada según destino,
+                y gestionar los documentos necesarios como factura comercial y
+                certificado de origen.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(4)">
+              <span>¿Cuál es la inversión mínima para empezar?</span>
+              <i class="fas fa-chevron-down" id="icon-4"></i>
+            </button>
+            <div class="faq-answer" id="answer-4">
+              <p>
+                La inversión varía según la escala, pero incluye: registro y
+                certificaciones ($50,000-100,000 MXN), seguro de carga, sistemas
+                de control de calidad, y capital de trabajo para contratos con
+                productores. El apalabrado inteligente reduce significativamente
+                los costos de materia prima.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(5)">
+              <span>¿Qué hacer con las mermas del 12%?</span>
+              <i class="fas fa-chevron-down" id="icon-5"></i>
+            </button>
+            <div class="faq-answer" id="answer-5">
+              <p>
+                Las mermas se pueden reducir al 8-10% invirtiendo en sistemas
+                anti-mosca ($10,000-50,000 MXN/ha), mejorando el manejo
+                post-cosecha, e implementando controles de calidad desde el
+                huerto. Esto aumenta el producto exportable del 88% al 92-95%.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Final Tips Section -->
+        <section class="section">
+          <div
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--mango-orange),
+                var(--mango-yellow)
+              );
+              border-radius: 15px;
+              padding: 2rem;
+              color: white;
+              text-align: center;
+            "
+          >
+            <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 2rem">
+              💡 Consejos Finales para el Éxito
+            </h2>
+            <div class="tips-grid">
+              <div class="tip-card">
+                <div class="tip-icon">🎯</div>
+                <div class="tip-title">Planifica desde Noviembre</div>
+                <p>
+                  Los contratos fuera de temporada son la clave del éxito
+                  financiero
+                </p>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon">🤝</div>
+                <div class="tip-title">Invierte en Calidad</div>
+                <p>La trazabilidad y certificaciones abren mercados premium</p>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon">📊</div>
+                <div class="tip-title">Construye Relaciones</div>
+                <p>Productores confiables son tu mayor activo competitivo</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contacto y Recursos -->
+        <section id="contacto" class="section">
+          <div class="section-header">
+            <div class="section-number">6</div>
+            <h2 class="section-title">Contacto y Recursos</h2>
+          </div>
+
+          <p style="text-align: center; color: #666; margin-bottom: 2rem">
+            Para más información, contáctenos a través de los siguientes
+            organismos especializados:
+          </p>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <h3>🏛️ SENASICA Jalisco</h3>
+              <p><strong>Dirección:</strong> Av. Alcalde 1351, Guadalajara</p>
+              <p><strong>Teléfono:</strong> (33) 3668-0500</p>
+              <p><strong>Web:</strong> www.senasica.gob.mx</p>
+            </div>
+
+            <div class="info-card">
+              <h3>💼 COFOCE Jalisco</h3>
+              <p>
+                <strong>Dirección:</strong> Av. Mariano Otero 1249, Guadalajara
+              </p>
+              <p><strong>Teléfono:</strong> (33) 3336-5800</p>
+              <p><strong>Web:</strong> www.cofoce.jalisco.gob.mx</p>
+            </div>
+
+            <div class="info-card">
+              <h3>🌾 SAGARPA</h3>
+              <p>
+                <strong>Organismo:</strong> Secretaría de Agricultura Jalisco
+              </p>
+              <p><strong>Teléfono:</strong> (33) 3030-5000</p>
+              <p><strong>Web:</strong> agricultura.jalisco.gob.mx</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <p>
+        © 2025 Lic. Irene García Castillo - Consultor en Comercio Internacional
+      </p>
+      <p>15 de julio de 2025</p>
+    </div>
+
+    <script>
+      function toggleFAQ(num) {
+        const answer = document.getElementById(`answer-${num}`);
+        const icon = document.getElementById(`icon-${num}`);
+
+        if (answer.classList.contains("active")) {
+          answer.classList.remove("active");
+          icon.style.transform = "rotate(0deg)";
+        } else {
+          // Close all other FAQs
+          document.querySelectorAll(".faq-answer").forEach((item) => {
+            item.classList.remove("active");
+          });
+          document.querySelectorAll(".faq-question i").forEach((item) => {
+            item.style.transform = "rotate(0deg)";
+          });
+
+          // Open current FAQ
+          answer.classList.add("active");
+          icon.style.transform = "rotate(180deg)";
+        }
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>

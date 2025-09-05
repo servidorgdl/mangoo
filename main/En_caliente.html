@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presentación: Exportación de Mango desde Jalisco</title>
+    <!-- Font Awesome (si no está incluido) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS del Header Flotante -->
+    <link rel="stylesheet" href="floating-header.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        overflow: hidden; /* Evita el scroll de la página */
+      }
+      .presentation-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        display: none; /* Oculta todas las diapositivas por defecto */
+      }
+      .slide-container.active {
+        display: block; /* Muestra solo la diapositiva activa */
+      }
+      .slide-container img {
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Aquí se cargará automáticamente el header -->
+    <div id="header"></div>
+
+    <script>
+      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header").innerHTML = html;
+        });
+    </script>
+    <link rel="stylesheet" href="header.css" />
+    <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
+    <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
+
+    <header class="floating-header" id="floatingHeader">
+      <div class="header-container">
+        <!-- Logo y título -->
+        <a href="index.html" class="header-logo">
+          <i class="fas fa-seedling"></i>
+          <div class="logo-text">
+            <span class="logo-title">Tramitología ABC</span>
+            <span class="logo-subtitle">Exportación de Mango</span>
+          </div>
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="header-nav">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li>
+              <a
+                href="main/01-Todo lo que necesitas saber .html"
+                class="nav-link"
+                >Guía Completa</a
+              >
+            </li>
+            <li>
+              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+                >7 Pasos</a
+              >
+            </li>
+            <li>
+              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+                >Requisitos</a
+              >
+            </li>
+            <li>
+              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+                >Guía de Bolsillo</a
+              >
+            </li>
+            <li>
+              <a href="main/08-Normatividad.html" class="nav-link"
+                >Normatividad</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Botones de acción -->
+        <div class="header-actions">
+          <a href="#descargas" class="action-btn download-indicator">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn primary">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+
+        <!-- Botón menú móvil -->
+        <button class="mobile-menu-toggle" onclick="FloatingHeader.toggle()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Menú móvil -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a
+            href="main/01-Todo lo que necesitas saber .html"
+            class="mobile-nav-link"
+            >Guía Completa</a
+          >
+          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+            >7 Pasos</a
+          >
+          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+            >Requisitos</a
+          >
+          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+            >Guía de Bolsillo</a
+          >
+          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+            >Normatividad</a
+          >
+        </div>
+        <div class="mobile-actions">
+          <a href="#descargas" class="action-btn">
+            <i class="fas fa-download"></i> Descargas
+          </a>
+          <a href="#contacto" class="action-btn">
+            <i class="fas fa-envelope"></i> Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="presentation-container" id="presentationContainer">
+      <!-- Slide 1: Portada -->
+      <div class="slide-container active">
+        <img
+          src="/home/ubuntu/mango_export_presentation/portada_boceto.png"
+          alt="Exportación de Mango desde Jalisco: Guía Completa"
+        />
+      </div>
+
+      <!-- Slide 2: Introducción -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/introduccion_boceto.png"
+          alt="Introducción a la Exportación de Mango desde Jalisco"
+        />
+      </div>
+
+      <!-- Slide 3: Investigación de Mercado -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/investigacion_boceto.png"
+          alt="Investigación de Mercado para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 4: Calidad y Certificaciones -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/certificaciones_boceto.png"
+          alt="Calidad y Certificaciones para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 5: Plan de Negocios -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/plan_negocios_boceto.png"
+          alt="Plan de Negocios para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 6: Registro Empresarial -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/registro_boceto.png"
+          alt="Registro Empresarial para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 7: Agente Aduanal -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/agente_boceto.png"
+          alt="Agente Aduanal para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 8: Permisos y Certificados -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/permisos_boceto.png"
+          alt="Permisos y Certificados para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 9: Documentación de Exportación -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/documentacion_boceto.png"
+          alt="Documentación de Exportación para Mango"
+        />
+      </div>
+
+      <!-- Slide 10: Logística de Exportación -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/logistica_boceto.png"
+          alt="Logística de Exportación para Mango"
+        />
+      </div>
+
+      <!-- Slide 11: Costos -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/costos_boceto.png"
+          alt="Costos para la Exportación de Mango"
+        />
+      </div>
+
+      <!-- Slide 12: Conclusión -->
+      <div class="slide-container">
+        <img
+          src="/home/ubuntu/mango_export_presentation/conclusion_boceto.png"
+          alt="Conclusión sobre la Exportación de Mango"
+        />
+      </div>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide-container");
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.classList.add("active");
+          } else {
+            slide.classList.remove("active");
+          }
+        });
+      }
+
+      document.body.addEventListener("click", () => {
+        currentSlide++;
+        if (currentSlide < slides.length) {
+          showSlide(currentSlide);
+        } else {
+          // Opcional: Volver al inicio o mostrar un mensaje de fin
+          alert("Fin de la presentación.");
+          currentSlide = 0;
+          showSlide(currentSlide);
+        }
+      });
+
+      showSlide(currentSlide); // Muestra la primera diapositiva al cargar
+    </script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+    <!-- JavaScript del Header Flotante -->
+    <script src="floating-header.js"></script>
+  </body>
+</html>
