@@ -29,7 +29,7 @@
     />
 
     <!-- CSS del Header Flotante -->
-    <link rel="stylesheet" href="floating-header.css" />
+    <link rel="stylesheet" href="mangoo/floating-header.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
@@ -736,20 +736,20 @@
     <div id="header"></div>
 
     <script>
-      fetch("header.html") // Ajusta la ruta si está en /includes/header.html
+      fetch("mangoo/main/header.html") // Ajusta la ruta si está en /includes/header.html
         .then((res) => res.text())
         .then((html) => {
           document.getElementById("header").innerHTML = html;
         });
     </script>
-    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="mangoo/main/header.css" />
     <!-- ===== FLOATING HEADER COMPONENT - TRAMITOLOGÍA ABC ===== -->
     <!-- Este archivo contiene solo el HTML del header para incluir en otros archivos -->
 
     <header class="floating-header" id="floatingHeader">
       <div class="header-container">
         <!-- Logo y título -->
-        <a href="index.html" class="header-logo">
+        <a href="mangoo/index.html" class="header-logo">
           <i class="fas fa-seedling"></i>
           <div class="logo-text">
             <span class="logo-title">Tramitología ABC</span>
@@ -760,7 +760,7 @@
         <!-- Navegación principal -->
         <nav class="header-nav">
           <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li><a href="mangoo/index.html" class="nav-link">Inicio</a></li>
             <li>
               <a
                 href="main/01-Todo lo que necesitas saber .html"
@@ -769,22 +769,22 @@
               >
             </li>
             <li>
-              <a href="main/02-7_pasos_para_exportar.html" class="nav-link"
+              <a href="mangoo/main/02-7_pasos_para_exportar.html" class="nav-link"
                 >7 Pasos</a
               >
             </li>
             <li>
-              <a href="main/06-Requisitos_por_pais.html" class="nav-link"
+              <a href="mangoo/main/06-Requisitos_por_pais.html" class="nav-link"
                 >Requisitos</a
               >
             </li>
             <li>
-              <a href="main/07-Guia_de_bolsillo.html" class="nav-link"
+              <a href="mangoo/main/07-Guia_de_bolsillo.html" class="nav-link"
                 >Guía de Bolsillo</a
               >
             </li>
             <li>
-              <a href="main/08-Normatividad.html" class="nav-link"
+              <a href="mangoo/main/08-Normatividad.html" class="nav-link"
                 >Normatividad</a
               >
             </li>
@@ -810,22 +810,22 @@
       <!-- Menú móvil -->
       <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-nav-links">
-          <a href="index.html" class="mobile-nav-link">Inicio</a>
+          <a href="mangoo/index.html" class="mobile-nav-link">Inicio</a>
           <a
-            href="main/01-Todo lo que necesitas saber .html"
+            href="mangoo/main/01-Todo lo que necesitas saber .html"
             class="mobile-nav-link"
             >Guía Completa</a
           >
-          <a href="main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
+          <a href="mangoo/main/02-7_pasos_para_exportar.html" class="mobile-nav-link"
             >7 Pasos</a
           >
-          <a href="main/06-Requisitos_por_pais.html" class="mobile-nav-link"
+          <a href="mangoo/main/06-Requisitos_por_pais.html" class="mobile-nav-link"
             >Requisitos</a
           >
-          <a href="main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
+          <a href="mangoo/main/07-Guia_de_bolsillo.html" class="mobile-nav-link"
             >Guía de Bolsillo</a
           >
-          <a href="main/08-Normatividad.html" class="mobile-nav-link"
+          <a href="mangoo/main/08-Normatividad.html" class="mobile-nav-link"
             >Normatividad</a
           >
         </div>
@@ -1800,9 +1800,7 @@
       });
     </script>
     <!-- JavaScript del Header Flotante -->
-    <script src="floating-header.js"></script>
+    <script src="mangoo/floating-header.js"></script>
 
-    <!-- JavaScript del Header Flotante -->
-    <script src="floating-header.js"></script>
   </body>
 </html>
